@@ -70,4 +70,116 @@ public class MaterielService {
         }
     }
     
+    
+    public List<Materiel> findDispo()
+    {
+        List<Materiel> list = new ArrayList<>() ;
+        
+        String sql = "SELECT * from materiel WHERE dispo != 0";
+        try {
+            Statement st= cnx.createStatement() ;
+            ResultSet rs =st.executeQuery(sql);
+            while(rs.next()){
+            list.add(new Materiel(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getFloat(5),rs.getBoolean(6)));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return list;
+    }
+
+    public List<Materiel> searchLabel(Materiel m)
+    {
+        
+        List<Materiel> list = new ArrayList<>() ;
+        
+        String sql = "SELECT * from materiel WHERE label like '"+m.getLabel()+"%'";
+        try {
+            Statement st= cnx.createStatement() ;
+            ResultSet rs =st.executeQuery(sql);
+            while(rs.next()){
+            list.add(new Materiel(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getFloat(5),rs.getBoolean(6)));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return list;
+    }
+
+    public List<Materiel> almostUnavailable()
+    {
+        
+        List<Materiel> list = new ArrayList<>() ;
+        
+        String sql = "SELECT *, (m.stock - m.qte_reserve) AS free from materiel WHERE (m.stock - m.qte_reserve) <= 15 ORDER By free DESC";
+        try {
+            Statement st= cnx.createStatement() ;
+            ResultSet rs =st.executeQuery(sql);
+            while(rs.next()){
+            list.add(new Materiel(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getFloat(5),rs.getBoolean(6)));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return list;
+    }
+
+    public List<Materiel> filterMat(Materiel m)
+    {
+        
+        List<Materiel> list = new ArrayList<>() ;
+        
+        String sql = "SELECT * from materiel WHERE label LIKE '"+m.getLabel()+"%' ";
+        
+        if ( (m.getDispo() == true) || (m.getDispo() == false) ) {
+            sql = sql + "AND dispo = " +m.getDispo();
+        }
+
+        if (
+            (m.getStock() != 0 ) ||
+            (m.getQte_reserve() != 0 ) ||
+            (m.getPrix() != 0)
+        ) {
+            sql = sql +" ORDER BY";
+        }
+        
+        if (m.getStock() != 0 ) {
+            if(m.getStock() == -1)
+                sql = sql + " stock DESC";
+            if(m.getStock() == 1)
+                sql = sql + " stock ASC";
+        }
+
+        if (m.getQte_reserve() != 0 ) {
+            if (m.getStock() != 0) {
+                sql = sql + ", ";
+            }
+            if(m.getStock() == -1)
+                sql = sql + " qte_reserve DESC";
+            else
+                sql = sql + " qte_reserve ASC";
+        }
+
+        if (m.getPrix() != Float.parseFloat("0") ) {
+            if (m.getQte_reserve() !=  0 ) {
+                sql = sql + ", ";
+            }
+             if(m.getStock() == Float.parseFloat("-1"))
+                sql = sql + " prix DESC";
+            else
+                sql = sql + " prix ASC";
+        }
+        
+        try {
+            Statement st= cnx.createStatement() ;
+            ResultSet rs =st.executeQuery(sql);
+            while(rs.next()){
+            list.add(new Materiel(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getFloat(5),rs.getBoolean(6)));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return list;
+    }
+    
 }
