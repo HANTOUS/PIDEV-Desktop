@@ -67,7 +67,7 @@ public class UtilisateurServices {
             System.out.println(e.getMessage());
         }
     }
-
+ 
     public Utilisateur afficherUtilisateur(int id) throws SQLException {
         String req = "select * from utilisateur where id =?";
 

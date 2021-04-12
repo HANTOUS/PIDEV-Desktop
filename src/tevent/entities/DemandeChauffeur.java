@@ -18,7 +18,7 @@ public class DemandeChauffeur {
     private int num_permis ;
     private Date date_permis ; 
     private Date date_expiration ;
-    private String etat;
+    private String etat="encours";
 
     
     public DemandeChauffeur() {

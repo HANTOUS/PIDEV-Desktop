@@ -17,7 +17,7 @@ public class DemandeMateriel {
     private int utilisateur_id ;
     private int materiel_id ;
     private String qte ; 
-    private String etat ; 
+    private String etat="encours"; 
     private Date date_debut ;
     private Date date_fin ;
 

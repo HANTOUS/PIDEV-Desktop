@@ -21,7 +21,7 @@ public class DemandeBus {
     private String ville_arrivee;
     private String heure_depart;
     private String heure_arrivee;
-    private String etat;
+    private String etat="encours";
     private Date jour_location;
 
     public DemandeBus() {
