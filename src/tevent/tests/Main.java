@@ -10,9 +10,11 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import tevent.entities.Bus;
+import tevent.entities.ChauffBusEvent;
 import tevent.entities.Chauffeur;
 import tevent.entities.Materiel;
 import tevent.services.BusService;
+import tevent.services.ChauffBusEventService;
 import tevent.services.ChauffeurServices;
 import tevent.services.MaterielService;
 import tevent.services.UtilisateurServices;
@@ -43,9 +45,20 @@ public class Main {
        
         //Chauffeur c = new Chauffeur(12345679,Date.valueOf("2021-04-08"),Date.valueOf("2017-11-16"),Date.valueOf("2026-11-15"),8);
         
-        
+        ChauffBusEventService cbe= new ChauffBusEventService();
         
         BusService bs = new BusService();
+        
+        ChauffBusEvent cb = new ChauffBusEvent(2, 2, 1, 12, 14, "marsa", "tunis");
+        System.out.println(cbe.listChauffBusEvent());
+        cbe.addChauffBusEvent(cb);
+        
+        cb.setHeureDepart(13);
+        cb.setHeureArrive(20);
+        
+        cbe.updateChauffBusEvent(cb);
+        
+        cbe.deleteChauffBusEvent(cb);
         
         /*Bus b1 = new Bus("Renauts", "C3", 1, Boolean.TRUE);
         
