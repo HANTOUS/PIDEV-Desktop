@@ -8,20 +8,26 @@ package tevent.services;
 import tevent.entities.Utilisateur;
 import tevent.tools.DataSource;
 import java.sql.*;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import tevent.interfaces.IserviceUtilisateur;
 
 /**
  *
  * @author hanto
  */
-public class UtilisateurServices {
+public class UtilisateurServices implements IserviceUtilisateur {
 
     private Connection cnx = DataSource.getInstance().getCnx();
 
     public void ajouterUtilisateur(Utilisateur user) {
         String req = "insert into utilisateur(nom,prenom,email,password,cin,date_naissance,roles) VALUES (?,?,?,?,?,?,?)";
-
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, user.getNom());
@@ -56,12 +62,23 @@ public class UtilisateurServices {
     }
 
     public void supprimerUtilisateur(int id) {
+        ChauffeurServices cs = new ChauffeurServices();
+        String req1 = "select roles from utilisateur where id =?";
         String req = "delete from utilisateur where id =?";
         try {
 
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, id);
             ps.executeUpdate();
+
+            PreparedStatement ps1 = cnx.prepareStatement(req1);
+            ps1.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                if (rs.getString("roles").equals("[\"ROLE_CHAUFFEUR\"]")) {
+                    cs.supprimerChauffeur(id);
+                }
+            }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -124,22 +141,139 @@ public class UtilisateurServices {
         }
         return listUser;
     }
-    
-     public boolean login(String email, String mdp) {
 
+    public int calculAge(Date dateNaissance) throws SQLException {
+
+        LocalDate l = dateNaissance.toLocalDate();
+        LocalDate now = LocalDate.now(); //gets localDate
+        Period diff = Period.between(l, now);
+        return diff.getYears();
+    }
+
+    public String getRolebyId(int id) {
         try {
-            PreparedStatement ps = cnx.prepareStatement("select * from utilisateur where email=? and password=?");
-            ps.setString(1, email);
-            ps.setString(2, mdp);
-            ResultSet rs = ps.executeQuery();
-            if (rs.isBeforeFirst()) {
-                return true;
+            PreparedStatement st = cnx.prepareStatement("select * from utilisateur where id=?");
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            rs.beforeFirst();
+            if (rs.next()) {
+                return rs.getString("roles");
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return false;
+        return "Utilisateur n'existe pas";
+
     }
 
+    public String getNombyId(int id) {
+        try {
+            PreparedStatement st = cnx.prepareStatement("select * from utilisateur where id=?");
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            rs.beforeFirst();
+            if (rs.next()) {
+                return rs.getString("nom");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+        return "Utilisateur n'existe pas";
+
+    }
+
+    public String getPrenombyId(int id) {
+        try {
+            PreparedStatement st = cnx.prepareStatement("select * from utilisateur where id=?");
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            rs.beforeFirst();
+            if (rs.next()) {
+                return rs.getString("prenom");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+        return "Utilisateur n'existe pas";
+
+    }
+
+    public String getDatebyId(int id) {
+        try {
+            PreparedStatement st = cnx.prepareStatement("select * from utilisateur where id=?");
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            rs.beforeFirst();
+            if (rs.next()) {
+                return rs.getDate("date_naissance").toString();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+        return "";
+    }
+
+    public String getPassbyId(int id) {
+        try {
+            PreparedStatement st = cnx.prepareStatement("select * from utilisateur where id=?");
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            rs.beforeFirst();
+            if (rs.next()) {
+                return rs.getString("password");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+        return "Utilisateur n'existe pas";
+    }
+
+    public String getMailbyId(int id) {
+        try {
+            PreparedStatement st = cnx.prepareStatement("select * from utilisateur where id=?");
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            rs.beforeFirst();
+            if (rs.next()) {
+                return rs.getString("email");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+        return "Utilisateur n'existe pas";
+    }
+
+    public Utilisateur getUserByMail(String email) {
+        try {
+            PreparedStatement st = cnx.prepareStatement("select * from utilisateur where email=?");
+            st.setString(1, email);
+            ResultSet rs = st.executeQuery();
+            Utilisateur user = new Utilisateur();
+            if (rs.next()) {
+                user.setId(rs.getInt("id"));
+                user.setNom(rs.getString("nom"));
+                user.setPrenom(rs.getString("prenom"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setCin(rs.getString("cin"));
+                user.setDateNaissance((Date) rs.getDate("date_naissance"));
+                user.setRoles(rs.getString("roles"));
+                user.setActivation_token(rs.getString("activation_token"));
+                user.setReset_token(rs.getString("reset_token"));
+                user.setImage(rs.getString("image"));
+                return user;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+
+        return null;
+    }
 
 }

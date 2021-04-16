@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tevent.entities.Festival;
-import tevent.services.IserviceFestival;
+import tevent.interfaces.IserviceFestival;
 import tevent.tools.DataSource;
 
 /**
