@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tevent.services;
+package tevent.interfaces;
 
 import java.sql.SQLException;
 import javafx.collections.ObservableList;

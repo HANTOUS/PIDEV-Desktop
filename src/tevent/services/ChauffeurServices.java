@@ -10,6 +10,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import tevent.entities.Chauffeur;
@@ -35,11 +37,12 @@ public class ChauffeurServices {
             ps.setDate(3, (Date) c.getDatePermis());
             ps.setDate(4, (Date) c.getDateExpiration());
             ps.setInt(5, c.getIdUser());
-            
+
             ps1.setString(1, "[\"ROLE_CHAUFFEUR\"]");
             ps1.setInt(2, c.getIdUser());
 
             ps.executeUpdate();
+            ps1.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -172,6 +175,51 @@ public class ChauffeurServices {
 
         }
 
+        return listc;
+    }
+
+    public List<Chauffeur> permisExpirer() throws SQLException {
+        String req = "select * from chauffeur";
+        String req1 = "select * from utilisateur where id=?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        PreparedStatement ps1 = cnx.prepareStatement(req1);
+        ResultSet rs = ps.executeQuery();
+
+        List<Chauffeur> listc = new ArrayList();
+        while (rs.next()) {
+            
+            Date dateEx = (Date) rs.getDate("date_expiration");
+            LocalDate l = dateEx.toLocalDate();
+            LocalDate now = LocalDate.now();
+            Period diff = Period.between(l, now);
+            if (diff.getYears() >= 0 && diff.getMonths() >= 0 && diff.getDays() >= 0) {
+                Chauffeur c = new Chauffeur();
+                c.setId(rs.getInt("id"));
+                c.setNumPermis(rs.getInt("num_permis"));
+                c.setDateDebut((Date) rs.getDate("date_debut"));
+                c.setDatePermis((Date) rs.getDate("date_permis"));
+                c.setDateExpiration((Date) rs.getDate("date_expiration"));
+                c.setIdUser(rs.getInt("id_user"));
+
+                ps1.setInt(1, rs.getInt("id_user"));
+                ResultSet rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    c.setId(rs1.getInt("id"));
+                    c.setNom(rs1.getString("nom"));
+                    c.setPrenom(rs1.getString("prenom"));
+                    c.setEmail(rs1.getString("email"));
+                    c.setPassword(rs1.getString("password"));
+                    c.setCin(rs1.getString("cin"));
+                    c.setDateNaissance((Date) rs1.getDate("date_naissance"));
+                    c.setRoles(rs1.getString("roles"));
+                    c.setActivation_token(rs1.getString("activation_token"));
+                    c.setReset_token(rs1.getString("reset_token"));
+                    c.setImage(rs1.getString("image"));
+                }
+
+                listc.add(c);
+            }
+        }
         return listc;
     }
 }
