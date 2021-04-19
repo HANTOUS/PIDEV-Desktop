@@ -9,6 +9,12 @@ import tevent.entities.Utilisateur;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
+import javafx.application.Application;
+import static javafx.application.Application.launch;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import tevent.entities.Chauffeur;
 import tevent.services.ChauffeurServices;
 import tevent.services.UtilisateurServices;
@@ -17,7 +23,17 @@ import tevent.services.UtilisateurServices;
  *
  * @author hanto
  */
-public class Main {
+public class Main extends Application {
+    
+    
+    public void start(Stage stage) throws Exception {
+      Parent root = FXMLLoader.load(getClass().getResource("/academiccalendar/ui/main/FXMLDocument.fxml"));
+       Scene scene = new Scene(root);
+       //Scene scene = new Scene(F.page());
+        
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public static void main(String[] args) throws SQLException {
        /* Utilisateur user1 = new Utilisateur(8, "Bellalouna", "Tarek", "tarek.bellalounkka@esprit.tn", "123456", "12345679", null, Date.valueOf("1998-12-04"), null, null);
@@ -36,13 +52,18 @@ public class Main {
             System.out.println("Cette utilisateur n'existe pas!");
         else
             System.out.println(u);*/
-       
+     /*  
         Chauffeur c = new Chauffeur(12345679,Date.valueOf("2021-04-08"),Date.valueOf("2017-11-16"),Date.valueOf("2026-11-15"),8);
         
         ChauffeurServices cc = new ChauffeurServices();
         
         //cc.ajouterChauffeur(c);
-        cc.modifierChauffeur(c);
-    }
+cc.modifierChauffeur(c);
+
+*/
+launch(args);     
+      
+}
+
 
 }

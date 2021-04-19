@@ -5,11 +5,14 @@
  */
 package tevent.services;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,7 +20,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tevent.entities.Festival;
-import tevent.services.IserviceFestival;
+import tevent.interfaces.IserviceFestival;
 import tevent.tools.DataSource;
 
 /**
@@ -26,6 +29,7 @@ import tevent.tools.DataSource;
  */
 public class FestivalServices implements IserviceFestival{
     Connection cnx;
+    public int id;
 
     public FestivalServices(Connection cnx) {
         this.cnx = DataSource.getInstance().getCnx();
@@ -37,33 +41,7 @@ public class FestivalServices implements IserviceFestival{
 
     @Override
     public void AjouterFestival(Festival F) {
-         int insertedID =0 ;
-        String queryUe = "INSERT INTO `event`(`nomevent`,`tarif`)"
-                + "VALUES(?,?)" ;
-        try {
-            PreparedStatement pse = cnx.prepareStatement(queryUe,Statement.RETURN_GENERATED_KEYS);
-            pse.setString(1,F.getNomevent());
-            pse.setFloat(2,F.getTarif());
-            pse.executeUpdate();
-            
-            
-           
-            
-            try (ResultSet generatedKeys = pse.getGeneratedKeys()) {
-            if (generatedKeys.next()) {
-                insertedID = (generatedKeys.getInt(1));
-                System.out.println(insertedID);
-            }
-            else {
-                throw new SQLException("Creating fest failed, no ID obtained.");
-            }
-            }
-            
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(FestivalServices.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         
       
         
         
@@ -71,7 +49,7 @@ public class FestivalServices implements IserviceFestival{
             PreparedStatement ps;
         try {
            ps = cnx.prepareStatement(queryU);
-           ps.setInt(1,insertedID );//ID EVENT
+           ps.setInt(1,F.getId() );//ID EVENT
            ps.setString(2,F.getType_fest());
            ps.setString(3,F.getArtist());
            ps.setString(4, F.getPicture());
@@ -101,20 +79,98 @@ public class FestivalServices implements IserviceFestival{
             {
                 
                 Festival f= new Festival();
+              
                 f.setId(rst.getInt(1));
                 f.setType_fest(rst.getString(2));
                 f.setArtist(rst.getString(3));
                 f.setPicture(rst.getString(4));
                 f.setNb_invit(rst.getInt(5));
                 f.setNomevent(rst.getString(7));
-                 f.setTarif(rst.getFloat(16));
+                f.setTarif(rst.getFloat(16));
+                f.setDatedebut(rst.getDate(8));
+                f.setDatefin(rst.getDate(9));
+                System.out.println(f);
                 oblist.add(f);   
             }
      
                      
         return oblist;
     }
-
+    
+    public ArrayList<String> readFestEv() throws SQLException {
+     
+            ArrayList <String> oblist = new ArrayList <> ();
+            Statement stm;
+            stm = cnx.createStatement();
+            ResultSet rst = stm.executeQuery("Select * from festival INNER JOIN event WHERE festival.id=event.id");
+            
+            
+             while (rst.next())
+            {
+                
+                
+                
+                
+                oblist.add(rst.getString(7));   
+            }
+     
+                     
+        return oblist;
+    }
+    public int getID(String nom) throws SQLException {
+     
+            Statement stm;
+            
+            stm = cnx.createStatement();
+            ResultSet rst = stm.executeQuery("Select id from Event where nomevent = '"+nom+"'");
+            
+            
+             while (rst.next())
+            {
+                
+                
+                
+                
+                id = rst.getInt(1);   
+            }
+     
+                     
+        return id;
+    }
+    
+    
+    
+    public Festival find(int id) throws SQLException{
+     List <Festival> Festival = new ArrayList <> ();
+            Statement stm;
+            stm = cnx.createStatement();
+            ResultSet rst = stm.executeQuery("Select * from festival INNER JOIN event WHERE festival.id="+id + " AND event.id="+id);
+            
+             Festival f= new Festival();
+            
+             while (rst.next())
+            {
+                
+                
+                f.setId(rst.getInt(1));
+                f.setType_fest(rst.getString(2));
+                f.setArtist(rst.getString(3));
+                f.setPicture(rst.getString(4));
+                f.setNb_invit(rst.getInt(5));
+                f.setNomevent(rst.getString(7));
+                f.setHeuredebut(rst.getString(10));
+                f.setHeurefin(rst.getString(11));
+                f.setNbmaxparticipant(rst.getInt(13));
+                f.setDescription(rst.getString(15));
+                f.setTarif(rst.getFloat(16));
+                f.setDatedebut(rst.getDate(8));
+                f.setDatefin(rst.getDate(9));
+              
+                  
+            }
+    
+    return f ;
+    } 
     @Override
     public void SupprimerFestival(int id) {
        String queryU = "delete  from Event where id="+id;
@@ -162,12 +218,26 @@ public class FestivalServices implements IserviceFestival{
             
            
            
-            String queryP = "UPDATE event SET `nomevent`=?,`tarif`=? WHERE id ="+F.getId();
+            String queryP = "UPDATE event SET `nomevent`=?,`datedebut`=?,`datefin`=?,`heuredebut`=?,`heurefin`=?," 
+    +"`nbmaxparticipant`=?,`description`=?,`tarif`=? WHERE id ="+F.getId();
+          
             PreparedStatement psp;
         try {
             psp = cnx.prepareStatement(queryP);
             psp.setString(1,F.getNomevent());
-            psp.setFloat(2,F.getTarif());
+            
+            psp.setDate(2,Date.valueOf(F.getDatedebut().toString()));
+            psp.setDate(3,Date.valueOf(F.getDatefin().toString()));
+            
+            psp.setString(4,F.getHeuredebut());
+             psp.setString(5,F.getHeurefin());
+             
+              psp.setInt(6,F.getNbmaxparticipant());
+              psp.setString(7,F.getDescription());
+            
+            
+            
+            psp.setFloat(8,F.getTarif());
             psp.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(FestivalServices.class.getName()).log(Level.SEVERE, null, ex);
