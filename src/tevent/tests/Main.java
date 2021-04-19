@@ -26,39 +26,22 @@ import tevent.services.UtilisateurServices;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-       /* Utilisateur user1 = new Utilisateur(8, "Bellalouna", "Tarek", "tarek.bellalounkka@esprit.tn", "123456", "12345679", null, Date.valueOf("1998-12-04"), null, null);
-        UtilisateurServices us = new UtilisateurServices();
-
-        //us.ajouterUtilisateur(user);
-        //us.modifierUtilisateur(user);
-        //us.supprimerUtilisateur(9);
-        List<Utilisateur> users = us.afficherToutUtilisateur();
-        for (Utilisateur user : users) {
-            System.out.println(user);
-        }
-
-        Utilisateur u = us.afficherUtilisateur(3);
-        if (u==null)
-            System.out.println("Cette utilisateur n'existe pas!");
-        else
-            System.out.println(u);*/
-       
-        //Chauffeur c = new Chauffeur(12345679,Date.valueOf("2021-04-08"),Date.valueOf("2017-11-16"),Date.valueOf("2026-11-15"),8);
         
         ChauffBusEventService cbe= new ChauffBusEventService();
         
         BusService bs = new BusService();
         
-        ChauffBusEvent cb = new ChauffBusEvent(2, 2, 1, 12, 14, "marsa", "tunis");
+        
         System.out.println(cbe.listChauffBusEvent());
-        cbe.addChauffBusEvent(cb);
+        ChauffBusEvent cb = new ChauffBusEvent(2, 2, 1, 12, 14, "marsa", "tunis");
+        /*cbe.addChauffBusEvent(cb);
         
         cb.setHeureDepart(13);
         cb.setHeureArrive(20);
         
-        cbe.updateChauffBusEvent(cb);
+        cbe.updateChauffBusEvent(cb);*/
         
-        cbe.deleteChauffBusEvent(cb);
+        //cbe.deleteChauffBusEvent(cb);
         
         /*Bus b1 = new Bus("Renauts", "C3", 1, Boolean.TRUE);
         
@@ -92,19 +75,14 @@ public class Main {
         System.out.println(bs.searchWithMultiParams(bSearch));
         */
         
-        /*
+        
         MaterielService ms = new MaterielService();
         
-        System.out.println(ms.searchLabel(new Materiel("", 0, 0, Float.NaN, Boolean.TRUE)));
+        System.out.println(ms.searchLabel(new Materiel("v", 0, 0, Float.NaN, Boolean.TRUE)));
         
         
-        System.out.println(ms.filterMat(new Materiel("", 0, 0, Float.parseFloat("-1"), Boolean.FALSE)));
-        */
+        System.out.println(ms.filterMat(new Materiel("v", -1, 0, Float.parseFloat("-1"), Boolean.TRUE)));
         
-        //ChauffeurServices cc = new ChauffeurServices();
-        
-        //cc.ajouterChauffeur(c);
-        //cc.modifierChauffeur(c);
     }
 
 }

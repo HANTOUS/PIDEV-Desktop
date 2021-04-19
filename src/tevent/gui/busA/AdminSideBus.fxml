@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #302b63;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.busA.AdminSideBusController">
+    <children>
+      <AnchorPane layoutX="7.0" layoutY="7.0" prefHeight="700.0" prefWidth="250.0" style="-fx-background-color: #090031;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="50.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Logo-Off.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tableListBusId" layoutX="250.0" layoutY="388.0" prefHeight="312.0" prefWidth="1050.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="388.0">
+        <columns>
+          <TableColumn fx:id="col_table_nbre_id" prefWidth="75.0" text="N° bus" />
+            <TableColumn fx:id="col_table_fabriquant_id" prefWidth="116.00003051757812" text="Fabriquant" />
+          <TableColumn fx:id="col_table_modele_id" prefWidth="96.0" text="Modele" />
+            <TableColumn fx:id="col_table_nbreplace_id" prefWidth="147.0" text="Nbre de place" />
+            <TableColumn fx:id="col_table_panne_id" prefWidth="143.0" text="Panne" />
+        </columns>
+      </TableView>
+      <Accordion layoutX="85.0" layoutY="-86.0" />
+      <TextField fx:id="lb_id" layoutX="373.0" layoutY="41.0" />
+      <Button fx:id="btn_add" layoutX="560.0" layoutY="293.0" mnemonicParsing="false" onAction="#ajoutBus" text="Ajouter" />
+      <Button fx:id="btn_update" layoutX="698.0" layoutY="293.0" mnemonicParsing="false" onAction="#updateBus" text="Modifier" />
+      <Button fx:id="btn_delete" layoutX="849.0" layoutY="293.0" mnemonicParsing="false" onAction="#deleteBus" text="Supprimer" />
+      <TextField fx:id="lb_fab" layoutX="373.0" layoutY="108.0" />
+      <TextField fx:id="lb_nbre_place" layoutX="893.0" layoutY="41.0" />
+      <Label layoutX="288.0" layoutY="46.0" text="Id :" textFill="#fd5056" />
+      <Label layoutX="288.0" layoutY="113.0" text="Fabriquant :" textFill="#fd5056" />
+      <Label layoutX="288.0" layoutY="190.0" text="Modele :" textFill="#fd5056" />
+      <Label layoutX="775.0" layoutY="46.0" text="Nbre de palce:" textFill="#fd5056" />
+      <Label layoutX="775.0" layoutY="113.0" text="Panne :" textFill="#fd5056" />
+      <Button fx:id="btn_clear" layoutX="945.0" layoutY="170.0" mnemonicParsing="false" onAction="#clear" text="Clear" />
+      <ComboBox fx:id="cb_panne" layoutX="897.0" layoutY="108.0" prefHeight="31.0" prefWidth="187.0" />
+      <ComboBox fx:id="cb_modele" layoutX="373.0" layoutY="186.0" prefHeight="31.0" prefWidth="187.0" />
+   </children>
+</AnchorPane>
