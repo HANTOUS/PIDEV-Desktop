@@ -26,7 +26,7 @@ public class UtilisateurServices implements IserviceUtilisateur {
 
     private Connection cnx = DataSource.getInstance().getCnx();
 
-    public void ajouterUtilisateur(Utilisateur user) {
+    public String ajouterUtilisateur(Utilisateur user) {
         String req = "insert into utilisateur(nom,prenom,email,password,cin,date_naissance,roles) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
@@ -38,12 +38,13 @@ public class UtilisateurServices implements IserviceUtilisateur {
             ps.setDate(6, (Date) user.getDateNaissance());
             ps.setString(7, user.getRoles());
             ps.executeUpdate();
+            return "Utilisateur ajouté avec succés";
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         }
     }
 
-    public void modifierUtilisateur(Utilisateur user) {
+    public String modifierUtilisateur(Utilisateur user) {
         String req = "update utilisateur set nom=?, prenom= ? , email= ?, cin= ?, date_naissance= ? where id = ?";
 
         try {
@@ -56,8 +57,9 @@ public class UtilisateurServices implements IserviceUtilisateur {
             ps.setDate(5, (Date) user.getDateNaissance());
             ps.setInt(6, user.getId());
             ps.executeUpdate();
+            return "Utilisateur modifié avec succés";
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         }
     }
 
@@ -155,7 +157,7 @@ public class UtilisateurServices implements IserviceUtilisateur {
             PreparedStatement st = cnx.prepareStatement("select * from utilisateur where id=?");
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
-            rs.beforeFirst();
+            //rs.beforeFirst();
             if (rs.next()) {
                 return rs.getString("roles");
             }
@@ -166,12 +168,30 @@ public class UtilisateurServices implements IserviceUtilisateur {
 
     }
 
+    public String getRolebyEmail(String email) {
+        try {
+            PreparedStatement st = cnx.prepareStatement("select * from utilisateur where email=?");
+            st.setString(1, email);
+            ResultSet rs = st.executeQuery();
+            //rs.beforeFirst();
+            if (rs.next()) {
+                return rs.getString("roles");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return "Utilisateur n'existe pas";
+        
+    }
+
+    
+
     public String getNombyId(int id) {
         try {
             PreparedStatement st = cnx.prepareStatement("select * from utilisateur where id=?");
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
-            rs.beforeFirst();
+            //rs.beforeFirst();
             if (rs.next()) {
                 return rs.getString("nom");
             }

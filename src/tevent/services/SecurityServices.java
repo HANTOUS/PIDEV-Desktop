@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.UUID;
 import tevent.entities.Utilisateur;
 import tevent.tools.DataSource;
-import org.mindrot.jbcrypt.BCrypt; 
+//import org.mindrot.jbcrypt.BCrypt; 
 
 /**
  *
@@ -24,7 +24,7 @@ public class SecurityServices {
 
     private Connection cnx = DataSource.getInstance().getCnx();
 
-    public void register(Utilisateur user) {
+    public String register(Utilisateur user) {
         String req = "insert into utilisateur(nom,prenom,email,password,cin,date_naissance,roles,activation_token) VALUES (?,?,?,?,?,?,?,?)";
         String token = UUID.randomUUID().toString();
 
@@ -33,15 +33,16 @@ public class SecurityServices {
             ps.setString(1, user.getNom());
             ps.setString(2, user.getPrenom());
             ps.setString(3, user.getEmail());
-            String generatedSecuredPasswordHash = BCrypt.hashpw( user.getPassword(), BCrypt.gensalt(12));
-            ps.setString(4,generatedSecuredPasswordHash);
+           // String generatedSecuredPasswordHash = BCrypt.hashpw( user.getPassword(), BCrypt.gensalt(12));
+            ps.setString(4,user.getPassword());
             ps.setString(5, user.getCin());
             ps.setDate(6, (Date) user.getDateNaissance());
             ps.setString(7, user.getRoles());
             ps.setString(8, token);
             ps.executeUpdate();
+            return "Utilisateur ajouté avec succés";
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         }
     }
 
@@ -67,14 +68,10 @@ public class SecurityServices {
     }
 
     public void resetPassword(int id, String pass) {
-        PreparedStatement ps;
         try {
-            String req = "UPDATE utilisateur SET password = ? "+"WHERE id = ?";
-            ps = cnx.prepareStatement(req);
-            ps.setString(1, pass);
-            ps.setInt(2, id);
-            ps.executeUpdate(req);
-            System.out.println(req);
+            String req = "UPDATE utilisateur SET password = '"+ pass +"' WHERE id = "+ id ;
+            Statement st = cnx.createStatement();
+            st.executeUpdate(req);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

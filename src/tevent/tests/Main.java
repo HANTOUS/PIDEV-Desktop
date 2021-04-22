@@ -30,10 +30,17 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         Utilisateur user1 = new Utilisateur(10, "Bellalouna", "Tarek", "tarek.bellalounkka@esprit.tn", "123456", "12345689", null, Date.valueOf("1998-12-04"), null, null);
         UtilisateurServices us = new UtilisateurServices();
-        /*
-        us.ajouterUtilisateur(user1);
+        Utilisateur u = new Utilisateur();
+        u = us.getUserByMail("skander.bachta@esprit.tn");
+        System.out.println(u);
+        System.out.println(us.getRolebyId(1));
+        
+         SecurityServices ss = new SecurityServices();
+         ss.resetPassword(23,"123456789");
+        
+       // us.ajouterUtilisateur(user1);
         System.out.println("-----------------------------------------------------------------------------------------");
-
+/*
         //us.modifierUtilisateur(user);
         //us.supprimerUtilisateur(9);
         List<Utilisateur> users = us.afficherToutUtilisateur();
@@ -44,11 +51,11 @@ public class Main {
         Utilisateur u = us.afficherUtilisateur(3);
         if (u == null) {
             System.out.println("Cette utilisateur n'existe pas!");
-
+        }
         else
-            System.out.println(u);*/
-       
-        Chauffeur c = new Chauffeur(12345679,Date.valueOf("2021-04-08"),Date.valueOf("2017-11-16"),Date.valueOf("2026-11-15"),8);
+            System.out.println(u);
+       */
+      /*  Chauffeur c = new Chauffeur(12345679,Date.valueOf("2021-04-08"),Date.valueOf("2017-11-16"),Date.valueOf("2026-11-15"),8);
         
         
         ChauffeurServices cs = new ChauffeurServices();
