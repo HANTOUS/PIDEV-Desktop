@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.AdminListDemandeChauffeurController">
+   <children>
+      <Pane prefHeight="485.0" prefWidth="278.0" style="-fx-background-color: #4e73df;">
+         <children>
+            <Text fill="WHITE" layoutX="15.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Demande Chauffeur">
+               <font>
+                  <Font name="Arial Black" size="23.0" />
+               </font>
+            </Text>
+            <Label layoutX="14.0" layoutY="85.0" text="Utilisateur :" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="132.0" text="Email :" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="174.0" text="N°Permis :" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="215.0" text="Date permis :" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="262.0" text="Date expiration :" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="312.0" text="Etat :" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="utilisateur" editable="false" layoutX="122.0" layoutY="83.0" prefHeight="25.0" prefWidth="142.0" />
+            <TextField fx:id="dateexpiration" editable="false" layoutX="139.0" layoutY="260.0" prefHeight="25.0" prefWidth="135.0" />
+            <TextField fx:id="datepermis" editable="false" layoutX="122.0" layoutY="213.0" prefHeight="25.0" prefWidth="142.0" />
+            <TextField fx:id="email" editable="false" layoutX="122.0" layoutY="130.0" prefHeight="25.0" prefWidth="142.0" />
+            <TextField fx:id="numpermis" editable="false" layoutX="122.0" layoutY="172.0" prefHeight="25.0" prefWidth="142.0" />
+            <TextField fx:id="etat" editable="false" layoutX="122.0" layoutY="310.0" prefHeight="25.0" prefWidth="142.0" />
+            <Button fx:id="accepter" layoutX="145.0" layoutY="424.0" mnemonicParsing="false" onAction="#accepterDemande" text="Accepter Demande" />
+            <Button fx:id="refuser" layoutX="14.0" layoutY="424.0" mnemonicParsing="false" onAction="#refuserDemande" text="Refuser Demande" />
+         </children>
+      </Pane>
+      <Button layoutX="337.0" layoutY="405.0" mnemonicParsing="false" onAction="#selectDemande" style="-fx-background-color: #4e73df;" text="Select" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="652.0" layoutY="405.0" mnemonicParsing="false" onAction="#supprimerDemande" style="-fx-background-color: #4e73df;" text="Supprimer" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="13.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tableDemandeChauffeur" layoutX="278.0" layoutY="104.0" prefHeight="265.0" prefWidth="505.0">
+        <columns>
+          <TableColumn fx:id="colID" prefWidth="43.0" text="ID" />
+            <TableColumn fx:id="colUser" prefWidth="66.0" text="ID_USER" />
+            <TableColumn fx:id="colNumpermis" prefWidth="113.0" text="Numéro de permis" />
+            <TableColumn fx:id="colDatepermis" prefWidth="99.0" text="Date de permis" />
+            <TableColumn fx:id="colDateexpiration" prefWidth="109.0" text="Date d'expiration" />
+            <TableColumn fx:id="colEtat" prefWidth="75.0" text="Etat" />
+        </columns>
+      </TableView>
+      <Button layoutX="585.0" layoutY="40.0" mnemonicParsing="false" onAction="#rechercher" text="Rechercher" />
+      <TextField fx:id="numkey" layoutX="337.0" layoutY="40.0" prefHeight="25.0" prefWidth="110.0" promptText="Numéro permis" />
+      <TextField fx:id="datekey" layoutX="468.0" layoutY="40.0" prefHeight="25.0" prefWidth="104.0" promptText="Date d'expiration" />
+   </children>
+</AnchorPane>
