@@ -5,6 +5,7 @@
  */
 package tevent.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -16,8 +17,8 @@ public class DemandeChauffeur {
     private int id ;
     private int utilisateur_id ;
     private int num_permis ;
-    private Date date_permis ; 
-    private Date date_expiration ;
+    private LocalDate date_permis ; 
+    private LocalDate date_expiration ;
     private String etat="encours";
 
     
@@ -26,9 +27,7 @@ public class DemandeChauffeur {
 
     //constructeur pour ajouter dans la base de données sans id 
 
-   
-
-    public DemandeChauffeur(int utilisateur_id, int num_permis, Date date_permis, Date date_expiration, String etat) {
+    public DemandeChauffeur(int utilisateur_id, int num_permis, LocalDate date_permis, LocalDate date_expiration, String etat) {
         this.utilisateur_id = utilisateur_id;
         this.num_permis = num_permis;
         this.date_permis = date_permis;
@@ -37,7 +36,7 @@ public class DemandeChauffeur {
     }
     //constructeur pour recuperer de la base de données  
 
-    public DemandeChauffeur(int id, int utilisateur_id, int num_permis, Date date_permis, Date date_expiration, String etat) {
+    public DemandeChauffeur(int id, int utilisateur_id, int num_permis, LocalDate date_permis, LocalDate date_expiration, String etat) {
         this.id = id;
         this.utilisateur_id = utilisateur_id;
         this.num_permis = num_permis;
@@ -70,19 +69,19 @@ public class DemandeChauffeur {
         this.num_permis = num_permis;
     }
 
-    public Date getDate_permis() {
+    public LocalDate getDate_permis() {
         return date_permis;
     }
 
-    public void setDate_permis(Date date_permis) {
+    public void setDate_permis(LocalDate date_permis) {
         this.date_permis = date_permis;
     }
 
-    public Date getDate_expiration() {
+    public LocalDate getDate_expiration() {
         return date_expiration;
     }
 
-    public void setDate_expiration(Date date_expiration) {
+    public void setDate_expiration(LocalDate date_expiration) {
         this.date_expiration = date_expiration;
     }
 

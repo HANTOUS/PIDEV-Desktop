@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="573.0" prefWidth="1036.0" style="-fx-background-color: #090031;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.ListdmdbusController">
+   <children>
+      <TableView fx:id="tableDemandeBus" layoutX="325.0" layoutY="70.0" prefHeight="387.0" prefWidth="714.0" style="-fx-background-color: white;">
+        <columns>
+          <TableColumn fx:id="tabID" prefWidth="44.0" text="ID" />
+          <TableColumn fx:id="tabNb" prefWidth="89.0" text="Nb Participant" />
+            <TableColumn fx:id="tabVilleDep" prefWidth="83.0" text="Ville Depart" />
+            <TableColumn fx:id="tabVilleArr" prefWidth="84.0" text="Ville Arrivée" />
+            <TableColumn fx:id="tabHeureDep" prefWidth="107.0" text="Heure Depart" />
+            <TableColumn fx:id="tabHeureArr" prefWidth="110.0" text="Heure Arrivée" />
+            <TableColumn fx:id="tabEtat" prefWidth="79.0" text="Etat" />
+            <TableColumn fx:id="tabJourLoc" prefWidth="117.0" text="Jour Location" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnsupprimer" layoutX="842.0" layoutY="480.0" mnemonicParsing="false" onAction="#supprimerDemande" text="Supprimer" />
+      <Button fx:id="btnupdate" layoutX="937.0" layoutY="480.0" mnemonicParsing="false" onAction="#updateDemande" text="Modifier" />
+      <Pane prefHeight="573.0" prefWidth="325.0" style="-fx-background-color: #fd5056;">
+         <children>
+            <TextField fx:id="nbparticipants" layoutX="153.0" layoutY="71.0" />
+            <Label layoutX="14.0" layoutY="75.0" text="Nb Participants" textFill="#090031">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="128.0" text="Ville Depart" textFill="#090031">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="172.0" text="Ville Arrivée" textFill="#090031">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="331.0" text="Jour de Location" textFill="#090031">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="villedepart" layoutX="152.0" layoutY="124.0" prefWidth="150.0" />
+            <ComboBox fx:id="villearrivee" layoutX="152.0" layoutY="168.0" prefWidth="150.0" />
+            <DatePicker fx:id="jourloc" layoutX="153.0" layoutY="327.0" prefHeight="25.0" prefWidth="149.0" />
+            <TextField fx:id="heuredepart" layoutX="153.0" layoutY="221.0" />
+            <TextField fx:id="heurearrivee" layoutX="153.0" layoutY="274.0" />
+            <Label layoutX="14.0" layoutY="278.0" text="Heure Arrivée" textFill="#090031">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="225.0" text="Heure Depart" textFill="#090031">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="annuler" layoutX="96.0" layoutY="418.0" mnemonicParsing="false" onAction="#annulerUpdate" text="Annuler" />
+            <Button fx:id="confirmer" layoutX="227.0" layoutY="418.0" mnemonicParsing="false" onAction="#confirmUpdate" text="Confirmer" />
+            <Pane layoutX="-5.0" layoutY="52.0" prefHeight="3.0" prefWidth="331.0" style="-fx-background-color: #090031;" />
+            <Label layoutX="44.0" layoutY="8.0" text="Modifier Demande" textFill="#090031">
+               <font>
+                  <Font name="Arial Black" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button layoutX="343.0" layoutY="518.0" mnemonicParsing="false" onAction="#refuserDemande" style="-fx-background-color: red;" text="Refuser Demande">
+         <font>
+            <Font name="Arial Black" size="13.0" />
+         </font></Button>
+      <Button layoutX="338.0" layoutY="478.0" mnemonicParsing="false" onAction="#accepterDemande" style="-fx-background-color: green;" text="Accepter Demande">
+         <font>
+            <Font name="Arial Black" size="13.0" />
+         </font></Button>
+      <TextField fx:id="recherchekey" layoutX="560.0" layoutY="20.0" prefHeight="28.0" prefWidth="144.0" promptText="Ville" />
+      <Button layoutX="760.0" layoutY="20.0" mnemonicParsing="false" onAction="#Rechercher" prefHeight="28.0" prefWidth="91.0" text="Rechercher" />
+      <TextField fx:id="recherchenb" layoutX="391.0" layoutY="20.0" prefHeight="28.0" prefWidth="149.0" promptText="Nombre participant" />
+   </children>
+</AnchorPane>

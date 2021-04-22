@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.HomeController">
+   <children>
+      <Button fx:id="btndb" layoutX="41.0" layoutY="35.0" mnemonicParsing="false" onAction="#AllerVersDemandeBus" text="Demande Bus" />
+      <Button fx:id="btndc" layoutX="41.0" layoutY="82.0" mnemonicParsing="false" onAction="#AllerVersDemandeChauffeur" text="Demande Chauffeur" />
+      <Button layoutX="41.0" layoutY="123.0" mnemonicParsing="false" onAction="#AllerVersDemandeMateriel" text="Demande Materiel" />
+      <Button layoutX="379.0" layoutY="82.0" mnemonicParsing="false" onAction="#AllerVersListDemandeChauffeur" text="List Demande Chauffeur" />
+      <Button layoutX="379.0" layoutY="35.0" mnemonicParsing="false" onAction="#AllerVersListDemandeBus" text="List Demande Bus" />
+      <Button layoutX="379.0" layoutY="123.0" mnemonicParsing="false" onAction="#AllerVersListDemandeMateriel" text="List Demande Materiel" />
+      <Button layoutX="47.0" layoutY="235.0" mnemonicParsing="false" onAction="#AllerVersListDemandeMaterielAdmin" text="List Demande Materiel Admin" />
+   </children>
+</AnchorPane>
