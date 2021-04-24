@@ -6,8 +6,16 @@
 package tevent.services;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import tevent.entities.Reclamation;
 import tevent.tools.DataSource;
 
@@ -20,7 +28,7 @@ public class ReclamationServices {
     private Connection cnx = DataSource.getInstance().getCnx();
     
     public void addreclamation(Reclamation r){
-        String req = "INSERT INTO reclamation (sujet, contenu, etat) VALUES ('"+r.getSujet()+"','"+r.getContenu()+"','"+r.getEtat()+"')";
+        String req = "INSERT INTO reclamation (user_id,sujet, contenu, etat) VALUES ('"+r.getId_user()+"','"+r.getSujet()+"','"+r.getContenu()+"','"+r.getEtat()+"')";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
@@ -30,8 +38,8 @@ public class ReclamationServices {
         }
     }
     
-    public void delreclamation(Reclamation r){
-        String req = "DELETE FROM Reclamation WHERE id="+ r.getId();
+    public void delreclamation(int id){
+        String req = "DELETE FROM Reclamation WHERE id="+ id;
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
@@ -51,4 +59,110 @@ public class ReclamationServices {
             System.out.println(ex.getMessage());
         }
     }
+    
+    public ObservableList<Reclamation> readReclamation(){
+        List<Reclamation> list = new ArrayList<>();
+        ObservableList<Reclamation> list1 = FXCollections.observableArrayList();
+        String  req="SELECT * FROM reclamation ";
+        try{
+            Statement st=cnx.createStatement();
+            ResultSet rs=st.executeQuery(req);
+            while(rs.next()){
+                list1.add(new Reclamation(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+            
+            }
+
+      }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+       }
+       return list1; 
+    }
+    
+    public ObservableList<Reclamation> readReclamationByID(int id){
+        List<Reclamation> list = new ArrayList<>();
+         ObservableList<Reclamation> list1 = FXCollections.observableArrayList();
+
+        String  req="SELECT * FROM reclamation  WHERE id="+id;
+        try{
+            Statement st=cnx.createStatement();
+            ResultSet rs=st.executeQuery(req);
+            while(rs.next()){
+                list1.add(new Reclamation(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4)));
+            
+            }
+            
+        }catch(SQLException ex){
+               System.out.println(ex.getMessage());
+        }
+             return list1; 
+    }
+    
+    public List<Reclamation> readReclamationBySubject(String s){
+        List<Reclamation> list = new ArrayList<>();
+        String  req="SELECT * FROM reclamation  WHERE sujet = ? ";
+        try{
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, s);
+            //Statement st=cnx.createStatement();
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                list.add(new Reclamation(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4)));
+            
+            }
+            
+        }catch(SQLException ex){
+               System.out.println(ex.getMessage());
+        }
+             return list; 
+    }
+    
+    public ObservableList<Reclamation> reclamationTraité(){
+        List<Reclamation> list = new ArrayList<>();
+                ObservableList<Reclamation> list1 = FXCollections.observableArrayList();
+        String  req="SELECT * FROM reclamation WHERE etat = 'traité' ";
+        try{
+            Statement st=cnx.createStatement();
+            ResultSet rs=st.executeQuery(req);
+            while(rs.next()){
+                list1.add(new Reclamation(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+            
+            }
+
+      }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+       }
+       return list1; 
+    }
+    
+    public ObservableList<Reclamation> reclamationEncours(){
+        List<Reclamation> list = new ArrayList<>();
+        ObservableList<Reclamation> list1 = FXCollections.observableArrayList();
+        String  req="SELECT * FROM reclamation WHERE etat = 'En cours' ";
+        try{
+            Statement st=cnx.createStatement();
+            ResultSet rs=st.executeQuery(req);
+            while(rs.next()){
+                list1.add(new Reclamation(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4)));
+            
+            }
+
+      }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+       }
+       return list1; 
+    }
+    
+    public void traiteReclamation(int id){
+        String req = "UPDATE reclamation SET etat= ? WHERE id = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1,"traité");
+           ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+    }
+    
 }
