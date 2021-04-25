@@ -69,7 +69,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
+import org.apache.poi.ss.usermodel.RichTextString;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import tevent.entities.Festival;
 import tevent.services.FestivalServices;
 
@@ -119,8 +123,6 @@ public class FXMLDocumentController implements Initializable {
     private VBox centerArea;
     @FXML
     private Label calendarNameLbl;
-    @FXML
-    private JFXButton GlobalCalendar;
     
     //**************************************************************************
     //**************************************************************************
@@ -452,9 +454,9 @@ public class FXMLDocumentController implements Initializable {
                     String green = colors[1];
                     String blue = colors[2];*/
                   
-                     String red = "100";
-                    String green = "128";
-                    String blue = "114";
+                     String red = "137";
+                    String green = "207";
+                    String blue = "240";
                     System.out.println("Color; " + red + green + blue);
                                       
                     eventLbl.setStyle("-fx-background-color: rgb(" + red+ 
@@ -491,11 +493,12 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
-   /* public void exportCalendarPDF()
-    {
-         TableView<Workshop> table = new TableView<Workshop>();
-         Festival wService = new Festival();
-         ObservableList<Workshop> data =FXCollections.observableArrayList();  
+    @FXML
+    private void on_exporter(ActionEvent event) throws SQLException {
+        
+        TableView<Festival> table = new TableView<Festival>();
+         FestivalServices Service = new FestivalServices();
+         ObservableList<Festival> data =FXCollections.observableArrayList();  
    
         
         double w = 500.00;
@@ -504,104 +507,104 @@ public class FXMLDocumentController implements Initializable {
         // set resize policy
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         // intialize columns
-        TableColumn<Workshop,String> nomEvent  = new TableColumn<Workshop,String>("nomEvent");
-        TableColumn<Workshop,String> dateD  = new TableColumn<Workshop,String>("Debut");
-        TableColumn<Workshop,String> dateF = new TableColumn<Workshop,String>("Fin");
-        TableColumn<Workshop,String> hDebut  = new TableColumn<Workshop,String>("hDebut");
-        TableColumn<Workshop,String> hFin  = new TableColumn<Workshop,String>("hFin");
-        TableColumn<Workshop,String> lieu = new TableColumn<Workshop,String>("lieu");
-        TableColumn<Workshop,String> nbP  = new TableColumn<Workshop,String>("nb P");
-               
-        // set width of columns
-        nomEvent.setMaxWidth( 1f * Integer.MAX_VALUE * 40 ); // 50% width
-        dateD.setMaxWidth( 1f * Integer.MAX_VALUE * 60 ); // 50% width
-        dateF.setMaxWidth( 1f * Integer.MAX_VALUE * 60 ); // 50% width
-        hDebut.setMaxWidth( 1f * Integer.MAX_VALUE * 40 ); // 50% width
-        hFin.setMaxWidth( 1f * Integer.MAX_VALUE * 40 ); // 50% width
-        lieu.setMaxWidth( 1f * Integer.MAX_VALUE * 40 ); // 50% width
-        nbP.setMaxWidth( 1f * Integer.MAX_VALUE * 40 ); // 50% width       
+        TableColumn<Festival,String> nomevent  = new TableColumn<Festival,String>("nomevent");
+        TableColumn<Festival,String> Type  = new TableColumn<Festival,String>("type_fest");
+        TableColumn<Festival,String> artist  = new TableColumn<Festival,String>("artist");
+        TableColumn<Festival,String> desc  = new TableColumn<Festival,String>("description");
+        TableColumn<Festival,Integer> nb_inv = new TableColumn<Festival,Integer>("nb_invit");
+        TableColumn<Festival,Integer> nb_max  = new TableColumn<Festival,Integer>("nbmaxparticipant");
+        TableColumn<Festival,Float> tarif = new TableColumn<Festival,Float>("tarif");
+        TableColumn<Festival,Date> date_d = new TableColumn<Festival,Date>("datedebut");
+        TableColumn<Festival,Date> date_f  = new TableColumn<Festival,Date>("datefin");
         
+        
+            
+        // set width of columns
+        nomevent.setMaxWidth( 1f * Integer.MAX_VALUE * 40 ); // 50% width
+        Type.setMaxWidth( 1f * Integer.MAX_VALUE * 40 ); // 50% width
+        artist.setMaxWidth( 1f * Integer.MAX_VALUE * 40 ); // 50% width
+        desc.setMaxWidth( 1f * Integer.MAX_VALUE * 40 ); // 50% width
+        nb_inv.setMaxWidth( 1f * Integer.MAX_VALUE * 40 ); // 50% width
+        nb_max.setMaxWidth( 1f * Integer.MAX_VALUE * 40 ); // 50% width
+        date_d.setMaxWidth( 1f * Integer.MAX_VALUE * 40 ); // 50% width       
+        date_f.setMaxWidth( 1f * Integer.MAX_VALUE * 40 ); // 50% width
+        tarif.setMaxWidth( 1f * Integer.MAX_VALUE * 40 ); // 50% width
         
         // 
-        nomEvent.setCellValueFactory(new PropertyValueFactory<Workshop,String>("nomEvent"));
-        dateD.setCellValueFactory( new PropertyValueFactory<Workshop,String>("dateDebut"));
-        dateF.setCellValueFactory(new PropertyValueFactory<Workshop,String>("dateFin"));
-        hDebut.setCellValueFactory(new PropertyValueFactory<Workshop,String>("hDebut"));
-        hFin.setCellValueFactory( new PropertyValueFactory<Workshop,String>("hFin"));
-        lieu.setCellValueFactory(new PropertyValueFactory<Workshop,String>("lieu"));
-        nbP.setCellValueFactory(new PropertyValueFactory<Workshop,String>("nbParticipant")); 
+        nomevent.setCellValueFactory(new PropertyValueFactory<Festival,String>("nomevent"));
+        Type.setCellValueFactory( new PropertyValueFactory<Festival,String>("type_fest"));
+        nb_max.setCellValueFactory(new PropertyValueFactory<Festival,Integer>("nbmaxparticipant"));
+       nb_inv.setCellValueFactory( new PropertyValueFactory<Festival,Integer>("nb_invit"));
+        tarif.setCellValueFactory(new PropertyValueFactory<Festival,Float>("tarif"));
+        date_d.setCellValueFactory(new PropertyValueFactory<Festival,Date>("datedebut")); 
+        date_f.setCellValueFactory(new PropertyValueFactory<Festival,Date>("datefin"));
+         artist.setCellValueFactory( new PropertyValueFactory<Festival,String>("artist"));
+          desc.setCellValueFactory( new PropertyValueFactory<Festival,String>("description"));
         
         
         
         // Add columns to the table
-        table.getColumns().addAll(nomEvent,dateD,dateF,hDebut,hFin,lieu,nbP);
+        table.getColumns().addAll(nomevent,Type,nb_max,tarif,nb_inv,date_d,date_f,desc,artist);
         
         
-        String calendarName = Model.getInstance().calendar_name;
+        // Query to get ALL Events from the selected calendar!!
+        //String getMonthEventsQuery = "SELECT * From EVENTS WHERE CalendarName='" + calendarName + "' ORDER BY EventDate";
         
+        // Store the results here
+        //ResultSet result = databaseHandler.executeQuery(getMonthEventsQuery);
+        data = Service.AfficherFestival();
+        
+        /*
         try {
-            // Query to get ALL Events from the selected calendar!!
-            //String getMonthEventsQuery = "SELECT * From EVENTS WHERE CalendarName='" + calendarName + "' ORDER BY EventDate";
-            
-            // Store the results here
-            //ResultSet result = databaseHandler.executeQuery(getMonthEventsQuery);
-            data = wService.readAllW(calendarName);
-            
-            
-            /*
-            try {
-            
-            while(result.next()){
-            //initalize temporarily strings
-            String tempTerm="";
-            
-            
-            //***** Get term, Event Description and Date *****
-            
-            //Get Event Description
-            String eventDescript = result.getString("EventDescription");
-            //Get Term ID for an event
-            int termID = result.getInt("TermID");
-            
-            //Get Event Date and format it as day-month-year
-            Date dDate=result.getDate("EventDate");
-            DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-            String eventDate = df.format(dDate);
-            
-            //Query that will get the term name based on a term ID
-            String getTermQuery = "SELECT TermName FROM TERMS WHERE TermID=" + termID + "";
-            //Execute query to get TermName and store it in a ResultSet variable
-            ResultSet termResult = databaseHandler.executeQuery(getTermQuery);
-            
-            
-            while(termResult.next())
-            {
-            tempTerm=termResult.getString(1);
-            /*
-            while(programResult.next())
-            {
-            tempProgram = programResult.getString(1);
-            }
-            tempTerm+=" "+tempProgram;
-            
-            }
-            
-            
-            //Get Term Name for an event
-            //tempTerm = termResult.getString(1);
-            
-            
-            //Add event information in a row
-            data.add(new Event(tempTerm,eventDescript,eventDate));
-            
-            }
-            } catch (SQLException ex) {
-            Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        
+        while(result.next()){
+        //initalize temporarily strings
+        String tempTerm="";
+        
+        
+        //***** Get term, Event Description and Date ***
+        
+        //Get Event Description
+        String eventDescript = result.getString("EventDescription");
+        //Get Term ID for an event
+        int termID = result.getInt("TermID");
+        
+        //Get Event Date and format it as day-month-year
+        Date dDate=result.getDate("EventDate");
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        String eventDate = df.format(dDate);
+        
+        //Query that will get the term name based on a term ID
+        String getTermQuery = "SELECT TermName FROM TERMS WHERE TermID=" + termID + "";
+        //Execute query to get TermName and store it in a ResultSet variable
+        ResultSet termResult = databaseHandler.executeQuery(getTermQuery);
+        
+        
+        while(termResult.next())
+        {
+        tempTerm=termResult.getString(1);
+        /*
+        while(programResult.next())
+        {
+        tempProgram = programResult.getString(1);
         }
+        tempTerm+=" "+tempProgram;
+        
+        }
+        
+        
+        //Get Term Name for an event
+        //tempTerm = termResult.getString(1);
+        
+        
+        //Add event information in a row
+        data.add(new Event(tempTerm,eventDescript,eventDate));
+        
+        }
+        } catch (SQLException ex) {
+        Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
          
        
         table.getItems().setAll(data);
@@ -614,7 +617,8 @@ public class FXMLDocumentController implements Initializable {
           job.endJob();
         }
        }
-    */
+    
+    
     
      public void exportCalendarExcel() 
     {
@@ -629,63 +633,61 @@ public class FXMLDocumentController implements Initializable {
               File file = fileChooser.showSaveDialog(new Stage());
 
               if(file != null){
-                 // createExcelSheet(file);
+                 createExcelSheet(file);
                   System.out.println("hi");
               }
     }        
-  /* public void createExcelSheet(File file){
-       Festival wService = new Festival();
-       ObservableList<Workshop> data =FXCollections.observableArrayList();  
+   public void createExcelSheet(File file){
+       FestivalServices wService = new FestivalServices();
+       ObservableList<Festival> data =FXCollections.observableArrayList();  
         String calendarName = Model.getInstance().calendar_name;
         XSSFWorkbook wb = new XSSFWorkbook();
-        XSSFSheet sheet =wb.createSheet(calendarName);
+        XSSFSheet sheet =wb.createSheet("Festival");
         
         
         XSSFRow row = sheet.createRow(1);
         XSSFCell cell;
         
         cell = row.createCell(1);
-        cell.setCellValue("Nom Event");
+        cell.setCellValue("Nom festival");
         cell = row.createCell(2);
         cell.setCellValue("Date Debut");
         cell = row.createCell(3);
         cell.setCellValue("Date Fin");
         cell = row.createCell(4);
-        cell.setCellValue("Heure Debut");
+        cell.setCellValue("Artiste");
         cell = row.createCell(5);
-        cell.setCellValue("Heure Fin");
+        cell.setCellValue("type festival");
         cell = row.createCell(6);
         cell.setCellValue("nombre participant");
         cell = row.createCell(7);
-        cell.setCellValue("Type");
-        cell = row.createCell(8);
-        cell.setCellValue("Prix");
+        cell.setCellValue("Tarif");
+       
         
        
         
          try {
              int counter=2;
-                data = wService.readAllW(calendarName);
+                data = wService.AfficherFestival();
             
                 
                 for(int i=0;i<data.size();i++ ){
                     row = sheet.createRow(counter);
                     cell = row.createCell(1);
-                    cell.setCellValue(data.get(i).getNomEvent());
+                    cell.setCellValue(data.get(i).getNomevent().toString());
                     cell = row.createCell(2);
-                    cell.setCellValue(data.get(i).getDateDebut().toString());
+                    cell.setCellValue(data.get(i).getDatedebut().toString());
                     cell = row.createCell(3);
-                    cell.setCellValue(data.get(i).getDateFin().toString());
+                    cell.setCellValue(data.get(i).getDatefin().toString());
                     cell = row.createCell(4);
-                    cell.setCellValue(data.get(i).gethDebut().toString());
+                    cell.setCellValue(data.get(i).getArtist().toString());
                     cell = row.createCell(5);
-                    cell.setCellValue(data.get(i).gethFin().toString());
+                    cell.setCellValue(data.get(i).getType_fest().toString());
                     cell = row.createCell(6);
-                    cell.setCellValue(data.get(i).getNbParticipant());
+                    cell.setCellValue(data.get(i).getNbmaxparticipant());
                     cell = row.createCell(7);
-                    cell.setCellValue(data.get(i).getType());
-                    cell = row.createCell(8);
-                    cell.setCellValue(data.get(i).getPrix());
+                    cell.setCellValue(data.get(i).getTarif());
+                 
                     counter++;
                 }
                 
@@ -695,7 +697,7 @@ public class FXMLDocumentController implements Initializable {
                
                 
         } catch (SQLException ex) {
-             Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
+             
         } 
          try{
         FileOutputStream out = new FileOutputStream(file);
@@ -709,7 +711,7 @@ public class FXMLDocumentController implements Initializable {
             e.printStackTrace();
          }  
     }
-   */
+   
     private String getRGB(Color c){
         
         String rgb = Integer.toString((int)(c.getRed() * 255)) + "-"
@@ -807,20 +809,6 @@ public class FXMLDocumentController implements Initializable {
         
     }
 
-    //**********************************************************************************
-    //**********************************************************************************
-    //**********************************************************************************
-    
-    // Side - menu buttons 
-    @FXML
-    private void newCalendar(MouseEvent event) {
-        //newCalendarEvent();
-    }
-    
-    @FXML
-    private void manageCalendars(MouseEvent event) {
-        //listCalendarsEvent();
-    }
     
 
     @FXML
@@ -1229,11 +1217,6 @@ public class FXMLDocumentController implements Initializable {
             
     }
 
-    @FXML
-    private void pdf(ActionEvent event) {
-        
-       // this.exportCalendarPDF();
-    }
 
     @FXML
     private void backDash(ActionEvent event) throws IOException {
@@ -1244,7 +1227,6 @@ public class FXMLDocumentController implements Initializable {
         
     }
 
-    @FXML
     private void showCalendarGlobal(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
                loader.setLocation(getClass().getResource("/yeartable/TrackEmployeeFX.fxml"));
@@ -1267,6 +1249,12 @@ public class FXMLDocumentController implements Initializable {
         }
                
     
+    }
+
+    @FXML
+    private void REFRESH(ActionEvent event) {
+         repaintView();
+        
     }
     
     

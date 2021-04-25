@@ -28,12 +28,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import static javafx.scene.input.KeyCode.F;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import static tevent.gui.CrudSponsorController.ids;
-
+import tevent.entities.Sponsor;
+import tevent.entities.Sponsor;
+import tevent.entities.Sponsor;
 import tevent.entities.Sponsor;
 import tevent.services.SponsorServices;
 
@@ -70,6 +72,8 @@ public class CrudSponsorController implements Initializable {
     @FXML
     private TableColumn<Sponsor, String> picc1;
      public static  int ids;
+    @FXML
+    private VBox vboxmodifier;
     
 
     /**
@@ -77,6 +81,7 @@ public class CrudSponsorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         namesp1.setCellValueFactory(new PropertyValueFactory<>("nom_sponsor"));
         grant1.setCellValueFactory(new PropertyValueFactory<>("type_subvention"));
         actd1.setCellValueFactory(new PropertyValueFactory<>("domaine_acivite"));
@@ -155,15 +160,32 @@ public class CrudSponsorController implements Initializable {
 
                // Pass main controller reference to view
                AddsponsorController eventController = loader.getController();
-               //eventController.setMainController(this);
+               eventController.setMainController(this);
                
                // Show the scene containing the root layout.
+               
+        namesp1.setCellValueFactory(new PropertyValueFactory<>("nom_sponsor"));
+        grant1.setCellValueFactory(new PropertyValueFactory<>("type_subvention"));
+        actd1.setCellValueFactory(new PropertyValueFactory<>("domaine_acivite"));
+        picc1.setCellValueFactory(new PropertyValueFactory<>("image"));
+        
+        ObservableList <Sponsor> L =  FXCollections.observableArrayList();
+      
+        SponsorServices s = new SponsorServices ();
+        try {
+            tableaff.setItems(s.AfficherSponsor());
+        } catch (SQLException ex) {
+            Logger.getLogger(CrudSponsorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        confirmer.setVisible(false);
+            annuler.setVisible(false);
                Scene scene = new Scene(rootLayout);
                stage.setScene(scene);
                stage.show();
            } catch (IOException ex) {
                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
            }
+          
     }
 
     @FXML
@@ -172,7 +194,7 @@ public class CrudSponsorController implements Initializable {
         SponsorServices sf = new SponsorServices();
        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         
-        
+        vboxmodifier.setVisible(true);
         if (tableaff.getSelectionModel().getSelectedItem() != null)
         {
             confirmer.setVisible(true);
@@ -185,6 +207,25 @@ public class CrudSponsorController implements Initializable {
            pathpicc.setText(String.valueOf((tableaff.getSelectionModel().getSelectedItem()).getImage()));
         }
 
+    }
+
+    @FXML
+    private void REFRESH(ActionEvent event) {
+         namesp1.setCellValueFactory(new PropertyValueFactory<>("nom_sponsor"));
+        grant1.setCellValueFactory(new PropertyValueFactory<>("type_subvention"));
+        actd1.setCellValueFactory(new PropertyValueFactory<>("domaine_acivite"));
+        picc1.setCellValueFactory(new PropertyValueFactory<>("image"));
+        
+        ObservableList <Sponsor> L =  FXCollections.observableArrayList();
+      
+        SponsorServices s = new SponsorServices ();
+        try {
+            tableaff.setItems(s.AfficherSponsor());
+        } catch (SQLException ex) {
+            Logger.getLogger(CrudSponsorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        confirmer.setVisible(false);
+            annuler.setVisible(false);
     }
 
 

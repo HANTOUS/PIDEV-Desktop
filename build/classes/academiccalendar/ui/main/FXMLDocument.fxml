@@ -95,42 +95,18 @@
          <left>
             <JFXTabPane prefHeight="800.0" prefWidth="304.0" rotateGraphic="true" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                <tabs>
-                  <Tab text="File">
+                  <Tab text="festival">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="637.0" prefWidth="304.0" stylesheets="@../style/menuStyle.css">
                                  <children>
                                     <JFXButton onAction="#backDash" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #2556;" text="Back" />
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="23.0" prefWidth="343.0" text="Calendar Options:" textAlignment="CENTER">
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
+                                    <Label alignment="CENTER" prefHeight="30.0" prefWidth="307.0" text="Gestion des festivales">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font>
                                     </Label>
-                                    <JFXButton id="menuButton" onMouseClicked="#newCalendar" prefHeight="37.0" prefWidth="265.0" text="Create New Calendar">
-                                       <font>
-                                          <Font size="12.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets left="20.0" right="20.0" />
-                                       </VBox.margin>
-                                    </JFXButton>
-                                    <JFXButton id="menuButton" layoutX="30.0" layoutY="30.0" onMouseClicked="#manageCalendars" prefHeight="37.0" prefWidth="265.0" text="Manage Your Calendars">
-                                       <font>
-                                          <Font size="12.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets left="20.0" right="20.0" top="20.0" />
-                                       </VBox.margin>
-                                    </JFXButton>
-                                    <JFXButton id="menuButton" fx:id="GlobalCalendar" onAction="#showCalendarGlobal" onMouseClicked="#manageCalendars" prefHeight="37.0" prefWidth="265.0" text="Global Calendar">
-                                       <font>
-                                          <Font size="12.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets left="20.0" right="20.0" top="20.0" />
-                                       </VBox.margin>
-                                    </JFXButton>
                                     <Label alignment="CENTER" prefHeight="30.0" prefWidth="307.0" text="Export Options:">
                                        <font>
                                           <Font size="12.0" />
@@ -139,7 +115,7 @@
                                           <Insets top="50.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <JFXButton id="menuButton" onAction="#pdf" onMouseClicked="#pdfBtn" prefHeight="37.0" prefWidth="261.0" text="Export Calendar to PDF">
+                                    <JFXButton id="menuButton" onAction="#on_exporter" onMouseClicked="#pdfBtn" prefHeight="37.0" prefWidth="261.0" text="Export Calendar to PDF">
                                        <font>
                                           <Font size="12.0" />
                                        </font>
@@ -157,22 +133,23 @@
                                     </JFXButton>
                                  </children>
                               </VBox>
+                              <JFXButton id="menuButton" layoutX="232.0" layoutY="699.0" onAction="#REFRESH" text="REFRESH" />
                            </children>
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Tools">
+                  <Tab text="sponsor">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="235.0">
                            <children>
                               <VBox fx:id="toolsRootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="637.0" prefWidth="304.0" stylesheets="@../style/menuStyle.css">
                                  <children>
-                                    <Label alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="158.0" prefHeight="40.0" prefWidth="304.0" text="Event Options:">
+                                    <Label alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="158.0" prefHeight="40.0" prefWidth="304.0" text="Gestion des Sponsors">
                                        <font>
                                           <Font size="12.0" />
                                        </font>
                                     </Label>
-                                    <JFXButton id="menuButton" layoutX="30.0" layoutY="208.0" onMouseClicked="#deleteAllEvents" prefHeight="44.0" prefWidth="329.0" text="Delete All Events">
+                                    <JFXButton id="menuButton" layoutX="30.0" layoutY="208.0" onMouseClicked="#deleteAllEvents" prefHeight="44.0" prefWidth="329.0" text="Gestion des sponsors">
                                        <font>
                                           <Font size="12.0" />
                                        </font>

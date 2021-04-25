@@ -19,24 +19,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tevent.entities.Sponsor;
 import tevent.entities.Sponsor;
-import tevent.interfaces.IserviceFestival;
 import tevent.interfaces.IserviceSponsor;
-import tevent.tools.DataSource;
+import tevent.tools.Connexion;
 
 /**
  *
  * @author skand
  */
-public class SponsorServices implements IserviceSponsor{
-    Connection cnx;
-    public int id;
+public class SponsorServices implements IserviceSponsor {
+        Connection cnx;
 
     public SponsorServices(Connection cnx) {
-        this.cnx = DataSource.getInstance().getCnx();
+        this.cnx = Connexion.getInstance().getConnexion();
     }
 
     public SponsorServices() {
-       this.cnx = DataSource.getInstance().getCnx();
+       this.cnx = Connexion.getInstance().getConnexion();
     }
 
 
@@ -119,7 +117,7 @@ String queryU= " UPDATE sponsor SET `nom_sponsor`=?,`domaine_activite`=?,`image`
             
            ps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(FestivalServices.class.getName()).log(Level.SEVERE, null, ex);
+            
         }    
            
     }

@@ -19,9 +19,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
 import tevent.entities.Festival;
 import tevent.interfaces.IserviceFestival;
-import tevent.tools.DataSource;
+import tevent.tools.Connexion;
 
 /**
  *
@@ -32,11 +33,11 @@ public class FestivalServices implements IserviceFestival{
     public int id;
 
     public FestivalServices(Connection cnx) {
-        this.cnx = DataSource.getInstance().getCnx();
+        this.cnx = Connexion.getInstance().getConnexion();
     }
 
     public FestivalServices() {
-       this.cnx = DataSource.getInstance().getCnx();
+       this.cnx = Connexion.getInstance().getConnexion();
     }
 
     @Override
@@ -64,6 +65,45 @@ public class FestivalServices implements IserviceFestival{
            
             
                }
+    
+    
+    public String image ;
+    public String findimage(int id) {
+        try {
+            List <Festival> Festival = new ArrayList <> ();
+            Statement stm;
+            stm = cnx.createStatement();
+            ResultSet rst = stm.executeQuery("Select s.image from festival INNER JOIN sponsor s WHERE "+id+"=s.festival_id");
+            
+            while (rst.next())
+            {
+                image=rst.getString(1);
+            }
+          
+        } catch (SQLException ex) {
+            Logger.getLogger(FestivalServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          return image ;
+    }
+    
+    public int id1 ;
+    public int sponsor(int id) {
+        try {
+            List <Festival> Festival = new ArrayList <> ();
+            Statement stm;
+            stm = cnx.createStatement();
+            ResultSet rst = stm.executeQuery("Select s.id from festival INNER JOIN sponsor s WHERE festival.id=s.festival_id");
+            
+            while (rst.next())
+            {
+                id1=rst.getInt(1);
+            }
+          
+        } catch (SQLException ex) {
+            Logger.getLogger(FestivalServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          return id1 ;
+    }
 
     @Override
     public ObservableList<Festival> AfficherFestival() throws SQLException {
@@ -89,6 +129,9 @@ public class FestivalServices implements IserviceFestival{
                 f.setTarif(rst.getFloat(16));
                 f.setDatedebut(rst.getDate(8));
                 f.setDatefin(rst.getDate(9));
+                f.setDescription(rst.getString(15));
+                f.setNbmaxparticipant(rst.getInt(13));
+               
                 System.out.println(f);
                 oblist.add(f);   
             }

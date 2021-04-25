@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/tevent/tools/Connexion.java</file>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/tevent/gui/CrudSponsor.fxml</file>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/tevent/interfaces/IserviceFestival.java</file>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/academiccalendar/ui/editfestival/EditfestivalController.java</file>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/tevent/gui/CrudSponsorController.java</file>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/tevent/tools/Mask.java</file>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/tevent/gui/AddsponsorController.java</file>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/academiccalendar/ui/main/FXMLDocumentController.java</file>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/tevent/gui/CrudFestivalController.java</file>
             <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/tevent/tests/Main.java</file>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/tevent/tools/DataSource.java</file>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/tevent/gui/addsponsor.fxml</file>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/tevent/entities/Sponsor.java</file>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/tevent/interfaces/IserviceSponsor.java</file>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/academiccalendar/ui/addfestival/AddfestivalController.java</file>
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/tevent/entities/Festival.java</file>
         </group>
     </open-files>
 </project-private>

@@ -162,6 +162,12 @@ public class EditfestivalController implements Initializable {
         
         
         Mask.noSymbolsAndNumbers(nomevent);
+        Mask.noSymbolsAndNumbers(artiste);
+        Mask.noLetters(nbP);
+        Mask.noLetters(nb_inv);
+        Mask.noLetters(tarif1);
+      
+        
         
         setMainController(mainController);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

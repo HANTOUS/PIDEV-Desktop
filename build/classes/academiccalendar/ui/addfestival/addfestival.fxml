@@ -44,12 +44,12 @@
                </font>
             </JFXTextField>
             <JFXComboBox fx:id="typefest" focusColor="#4d4d4d" layoutX="10.0" layoutY="102.0" prefHeight="25.0" prefWidth="166.0" promptText="type" />
-            <JFXDatePicker fx:id="dateED" defaultColor="#fb8d33" promptText="Start Date of Festival" />
-            <JFXDatePicker fx:id="dateEF" defaultColor="#fb8d33" promptText="End Date of Festival" />
+            <JFXDatePicker fx:id="dateED" defaultColor="#4e73df" promptText="Start Date of Festival" />
+            <JFXDatePicker fx:id="dateEF" defaultColor="#4e73df" promptText="End Date of Festival" />
             <HBox prefHeight="46.0" prefWidth="320.0">
                <children>
-                  <JFXTimePicker fx:id="timeED" defaultColor="#fb8d33" promptText="Start Time" />
-                  <JFXTimePicker fx:id="timeEF" defaultColor="#fb8d33" promptText="End Time" />
+                  <JFXTimePicker fx:id="timeED" defaultColor="#4e73df" promptText="Start Time" />
+                  <JFXTimePicker fx:id="timeEF" defaultColor="#4e73df" promptText="End Time" />
                </children></HBox>
             <Label text="NB Participant" />
             <JFXTextField fx:id="nbP" prefHeight="31.0" prefWidth="246.0" />
@@ -59,12 +59,12 @@
       </VBox>
       <HBox layoutY="181.0" prefHeight="41.0" prefWidth="340.0" stylesheets="@../style/materialButtonStyle.css" AnchorPane.bottomAnchor="0.0">
          <children>
-            <JFXButton fx:id="saveButton" onMouseClicked="#save" prefHeight="40.0" prefWidth="200.0" text="Save">
+            <JFXButton fx:id="saveButton" onMouseClicked="#save" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #4e73df;" text="Save">
                <font>
                   <Font size="13.0" />
                </font>
             </JFXButton>
-            <JFXButton onAction="#cancelaction" onMouseClicked="#cancel" prefHeight="40.0" prefWidth="200.0" text="Cancel">
+            <JFXButton onAction="#cancelaction" onMouseClicked="#cancel" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #4e73df;" text="Cancel">
                <font>
                   <Font size="13.0" />
                </font>

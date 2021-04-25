@@ -36,7 +36,7 @@
             </Label>
          </children>
       </HBox>
-      <VBox layoutX="10.0" layoutY="57.0" prefHeight="484.0" prefWidth="320.0" spacing="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="57.0">
+      <VBox layoutX="9.0" layoutY="57.0" prefHeight="484.0" prefWidth="320.0" spacing="20.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="57.0">
          <children>
             <JFXTextField fx:id="nomevent" focusColor="#4d4d4d" labelFloat="true" prefHeight="40.0" prefWidth="337.0" promptText="title">
                <font>
@@ -44,12 +44,12 @@
                </font>
             </JFXTextField>
             <JFXComboBox fx:id="typefest" focusColor="#4d4d4d" layoutX="10.0" layoutY="102.0" prefHeight="25.0" prefWidth="166.0" promptText="type" />
-            <JFXDatePicker fx:id="dateED" defaultColor="#fb8d33" promptText="Start Date of Festival" />
-            <JFXDatePicker fx:id="dateEF" defaultColor="#fb8d33" promptText="End Date of Festival" />
+            <JFXDatePicker fx:id="dateED" defaultColor="#4e73df" promptText="Start Date of Festival" />
+            <JFXDatePicker fx:id="dateEF" defaultColor="#4e73df" promptText="End Date of Festival" />
             <HBox prefHeight="46.0" prefWidth="320.0">
                <children>
-                  <JFXTimePicker fx:id="timeED" defaultColor="#fb8d33" promptText="Start Time" />
-                  <JFXTimePicker fx:id="timeEF" defaultColor="#fb8d33" promptText="End Time" />
+                  <JFXTimePicker fx:id="timeED" defaultColor="#4e73df" promptText="Start Time" />
+                  <JFXTimePicker fx:id="timeEF" defaultColor="#4e73df" promptText="End Time" />
                </children></HBox>
             <Label text="NB Participant" />
             <JFXTextField fx:id="nbP" prefHeight="31.0" prefWidth="246.0" />
@@ -59,13 +59,13 @@
       </VBox>
       <HBox layoutY="181.0" prefHeight="41.0" prefWidth="340.0" stylesheets="@../style/materialButtonStyle.css" AnchorPane.bottomAnchor="0.0">
          <children>
-            <JFXButton fx:id="saveButton" onMouseClicked="#save" prefHeight="40.0" prefWidth="200.0" text="Save">
+            <JFXButton fx:id="saveButton" buttonType="RAISED" onMouseClicked="#save" prefHeight="52.0" prefWidth="133.0" style="-fx-background-color: #4e73df;" text="Save">
                <font>
                   <Font size="13.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="delete" onAction="#delete" prefHeight="41.0" prefWidth="168.0" text="Delete" />
-            <JFXButton onAction="#cancelaction" onMouseClicked="#cancel" prefHeight="40.0" prefWidth="174.0" text="Cancel">
+            <JFXButton fx:id="delete" buttonType="RAISED" onAction="#delete" prefHeight="41.0" prefWidth="146.0" style="-fx-background-color: #4e73df;" text="Delete" />
+            <JFXButton buttonType="RAISED" onAction="#cancelaction" onMouseClicked="#cancel" prefHeight="40.0" prefWidth="129.0" style="-fx-background-color: #4e73df;" text="Cancel">
                <font>
                   <Font size="13.0" />
                </font>
@@ -76,6 +76,6 @@
       <JFXTextField fx:id="artiste" layoutX="10.0" layoutY="582.0" promptText="Artist" />
       <JFXTextField fx:id="nb_inv" layoutX="10.0" layoutY="638.0" promptText="NB Invitation" />
       <JFXTextField fx:id="pathpicture" layoutX="10.0" layoutY="690.0" promptText="picture" />
-      <JFXButton fx:id="uploadpic" buttonType="RAISED" layoutX="160.0" layoutY="696.0" onAction="#uploadpicture" text="upload" />
+      <JFXButton fx:id="uploadpic" layoutX="160.0" layoutY="696.0" onAction="#uploadpicture" style="-fx-background-color: #4e73df;" text="upload" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tevent.entities.Chauffeur;
+import tevent.gui.FrontFestivalController;
 import tevent.services.ChauffeurServices;
 import tevent.services.UtilisateurServices;
 
@@ -25,9 +26,9 @@ import tevent.services.UtilisateurServices;
  */
 public class Main extends Application {
     
-    
+     FrontFestivalController F = new FrontFestivalController();
     public void start(Stage stage) throws Exception {
-      Parent root = FXMLLoader.load(getClass().getResource("/academiccalendar/ui/main/FXMLDocument.fxml"));
+      Parent root = FXMLLoader.load(getClass().getResource("/tevent/gui/CrudSponsor.fxml"));
        Scene scene = new Scene(root);
        //Scene scene = new Scene(F.page());
         

@@ -15,7 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import tevent.entities.Event;
-import tevent.tools.DataSource;
+import tevent.tools.Connexion;
 
 /**
  *
@@ -27,11 +27,11 @@ public class EventServices {
  public static int InsertedId;
 
     public EventServices(Connection cnx) {
-        this.cnx = DataSource.getInstance().getCnx();
+        this.cnx = Connexion.getInstance().getConnexion();
     }
 
     public EventServices() {
-       this.cnx = DataSource.getInstance().getCnx();
+       this.cnx = Connexion.getInstance().getConnexion();
     }    
     public void AddEvent(Event e) throws SQLException{
       String  req="INSERT INTO event (nomevent,datedebut,datefin,heuredebut,heurefin,lieu,nbmaxparticipant,type,description,tarif,discr) VALUES ('"+e.getNomevent()+"','"+e.getDatedebut()+"','"+e.getDatefin()+"','"+e.getHeuredebut()+"','"+e.getHeurefin()+"','"+e.getLieu()+"','"+e.getNbmaxparticipant()+"','"+e.getType()+"','"+e.getDescription()+"','"+e.getTarif()+"','"+""+"')";

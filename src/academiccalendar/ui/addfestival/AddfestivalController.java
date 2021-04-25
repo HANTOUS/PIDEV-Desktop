@@ -18,6 +18,9 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -37,10 +40,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
 import tevent.entities.Event;
 import tevent.entities.Festival;
 import tevent.services.EventServices;
 import tevent.services.FestivalServices;
+import tevent.tools.Mask;
 
 /**
  * FXML Controller class
@@ -85,7 +91,7 @@ public class AddfestivalController implements Initializable {
     private JFXButton uploadpic;
   //  private CrudFestivalController mainController ;
     private FXMLDocumentController mainController ;
-
+    public String fullpath="" ;
     @FXML
     private void exit(MouseEvent event) {
     }
@@ -120,6 +126,7 @@ public class AddfestivalController implements Initializable {
         se.AddEvent(E);
         F.setId(EventServices.InsertedId);
         sf.AjouterFestival(F);
+        uploadtp(pathpicture.getText(), fullpath);
           
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
@@ -138,6 +145,13 @@ public class AddfestivalController implements Initializable {
     private void cancel(MouseEvent event) {
     }
 
+
+
+
+//API upload download 
+    
+    
+    
     @FXML
     private void uploadpicture(ActionEvent event) {
          FileChooser fil_chooser = new FileChooser();
@@ -145,15 +159,83 @@ public class AddfestivalController implements Initializable {
         File file = fil_chooser.showOpenDialog(null); 
   
                 if (file != null) { 
-                      pathpicture.setText(file.getAbsolutePath());
+                      pathpicture.setText(file.getName());
+                      fullpath=file.getAbsolutePath();
                   
            
                 }
     }
 
+   
+    
+   public void  uploadtp(String path,String fullpath)
+    {
+        String server = "127.0.0.1";
+        int port = 21;
+        String user = "skander";
+        String pass = "123";
+ 
+        FTPClient ftpClient = new FTPClient();
+        try {
+ 
+            ftpClient.connect(server, port);
+            ftpClient.login(user, pass);
+            ftpClient.enterLocalPassiveMode();
+ 
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+ 
+            // APPROACH #1: uploads first file using an InputStream
+            File firstLocalFile = new File(fullpath);
+ 
+            String firstRemoteFile = path;
+            InputStream inputStream = new FileInputStream(firstLocalFile);
+ 
+            System.out.println("Start uploading first file");
+            boolean done = ftpClient.storeFile(firstRemoteFile, inputStream);
+            inputStream.close();
+            if (done) {
+                System.out.println("The first file is uploaded successfully.");
+            }
+ 
+            // APPROACH #2: uploads second file using an OutputStream
+
+ 
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (ftpClient.isConnected()) {
+                    ftpClient.logout();
+                    ftpClient.disconnect();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    } 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     typefest.getItems().addAll("concert","theatre","comedie");
+    Mask.noSymbolsAndNumbers(nomevent);
+        Mask.noSymbolsAndNumbers(artiste);
+        Mask.noLetters(nbP);
+        Mask.noLetters(nb_inv);
+        Mask.noLetters(tarif1);
     }
       
     
