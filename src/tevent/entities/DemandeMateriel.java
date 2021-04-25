@@ -5,6 +5,7 @@
  */
 package tevent.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -17,14 +18,14 @@ public class DemandeMateriel {
     private int utilisateur_id ;
     private int materiel_id ;
     private String qte ; 
-    private String etat ; 
-    private Date date_debut ;
-    private Date date_fin ;
+    private String etat="encours"; 
+    private LocalDate date_debut ;
+    private LocalDate date_fin ;
 
     public DemandeMateriel() {
     }
     //constructeur pour recuperer de la base de données avec id 
-    public DemandeMateriel(int id, int utilisateur_id, int materiel_id, String qte, String etat, Date date_debut, Date date_fin) {
+    public DemandeMateriel(int id, int utilisateur_id, int materiel_id, String qte, String etat, LocalDate date_debut, LocalDate date_fin) {
         this.id = id;
         this.utilisateur_id = utilisateur_id;
         this.materiel_id = materiel_id;
@@ -35,7 +36,7 @@ public class DemandeMateriel {
     }
     //constructeur pour ajouter dans la base de données sans id 
 
-    public DemandeMateriel(int utilisateur_id, int materiel_id, String qte, String etat, Date date_debut, Date date_fin) {
+    public DemandeMateriel(int utilisateur_id, int materiel_id, String qte, String etat, LocalDate date_debut, LocalDate date_fin) {
         this.utilisateur_id = utilisateur_id;
         this.materiel_id = materiel_id;
         this.qte = qte;
@@ -84,19 +85,19 @@ public class DemandeMateriel {
         this.etat = etat;
     }
 
-    public Date getDate_debut() {
+    public LocalDate getDate_debut() {
         return date_debut;
     }
 
-    public void setDate_debut(Date date_debut) {
+    public void setDate_debut(LocalDate date_debut) {
         this.date_debut = date_debut;
     }
 
-    public Date getDate_fin() {
+    public LocalDate getDate_fin() {
         return date_fin;
     }
 
-    public void setDate_fin(Date date_fin) {
+    public void setDate_fin(LocalDate date_fin) {
         this.date_fin = date_fin;
     }
 
