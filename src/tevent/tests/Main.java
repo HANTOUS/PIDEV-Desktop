@@ -10,12 +10,15 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import tevent.entities.Bus;
 import tevent.entities.ChauffBusEvent;
 import tevent.entities.Chauffeur;
-import tevent.entities.Materiel;
-import tevent.services.BusService;
-import tevent.services.ChauffBusEventService;
+import tevent.gui.FrontFestivalController;
 import tevent.services.ChauffeurServices;
 
 import tevent.services.SecurityServices;
@@ -29,7 +32,22 @@ import tevent.services.DemandeBusServices;
  *
  * @author hanto
  */
+<<<<<<< HEAD
 public class Main {
+=======
+public class Main extends Application {
+    
+     FrontFestivalController F = new FrontFestivalController();
+    public void start(Stage stage) throws Exception {
+      Parent root = FXMLLoader.load(getClass().getResource("/tevent/gui/CrudSponsor.fxml"));
+       Scene scene = new Scene(root);
+       //Scene scene = new Scene(F.page());
+        
+        stage.setScene(scene);
+        stage.show();
+    }
+
+>>>>>>> 0895d4d591deeb317e6eba571ad53829013c8d64
     public static void main(String[] args) throws SQLException {
         Utilisateur user1 = new Utilisateur(10, "Bellalouna", "Tarek", "tarek.bellalounkka@esprit.tn", "123456", "12345689", null, Date.valueOf("1998-12-04"), null, null);
         UtilisateurServices us = new UtilisateurServices();
@@ -92,8 +110,24 @@ public class Main {
 
         else
             System.out.println(u);*/
+<<<<<<< HEAD
     }
 =======
+=======
+     /*  
+        Chauffeur c = new Chauffeur(12345679,Date.valueOf("2021-04-08"),Date.valueOf("2017-11-16"),Date.valueOf("2026-11-15"),8);
+        
+        ChauffeurServices cc = new ChauffeurServices();
+        
+        //cc.ajouterChauffeur(c);
+cc.modifierChauffeur(c);
+
+*/
+launch(args);     
+      
+}
+
+>>>>>>> 0895d4d591deeb317e6eba571ad53829013c8d64
 
        //dcs.updateDemandeChauffeur(new DemandeChauffeur(1,11128163,LocalDate.of(2020, 1, 8),LocalDate.of(2021, 1, 8),"encours"), 2);
        System.out.println(dcs.advancedSearchDemandeChauffeur(0,LocalDate.of(2030,11,19)));

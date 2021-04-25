@@ -4,11 +4,23 @@
  * and open the template in the editor.
  */
 package tevent.interfaces;
+<<<<<<< HEAD
+=======
+
+import java.sql.SQLException;
+import javafx.collections.ObservableList;
+import tevent.entities.Sponsor;
+>>>>>>> 0895d4d591deeb317e6eba571ad53829013c8d64
 
 /**
  *
  * @author skand
  */
 public interface IserviceSponsor {
+    
+    public void AjouterSponsor(Sponsor S);
+    public ObservableList <Sponsor > AfficherSponsor()throws SQLException;
+    public void SupprimerSponsor(int id );
+    public void ModifierSponsor(Sponsor  S);
     
 }
