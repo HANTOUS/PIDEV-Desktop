@@ -153,7 +153,7 @@ public class CrudSponsorController implements Initializable {
           try {
                // Load root layout from fxml file.
                FXMLLoader loader = new FXMLLoader();
-               loader.setLocation(getClass().getResource("/projetpidev/addsponsor.fxml"));
+               loader.setLocation(getClass().getResource("addsponsor.fxml"));
                AnchorPane rootLayout = (AnchorPane) loader.load();
                Stage stage = new Stage(StageStyle.UNDECORATED);
                stage.initModality(Modality.APPLICATION_MODAL); 

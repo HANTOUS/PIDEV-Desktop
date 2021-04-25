@@ -36,7 +36,6 @@ import javafx.stage.Stage;
 import tevent.entities.DemandeBus;
 import tevent.entities.DemandeChauffeur;
 import tevent.entities.Festival;
-import static tevent.gui.CrudFestivalController.ids;
 import tevent.services.DemandeBusServices;
 import tevent.services.FestivalServices;
 

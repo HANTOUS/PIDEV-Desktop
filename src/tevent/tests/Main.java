@@ -32,13 +32,13 @@ import tevent.services.DemandeBusServices;
  *
  * @author hanto
  */
-<<<<<<< HEAD
-public class Main {
-=======
+
+
 public class Main extends Application {
     
-     FrontFestivalController F = new FrontFestivalController();
+    
     public void start(Stage stage) throws Exception {
+         FrontFestivalController F = new FrontFestivalController();
       Parent root = FXMLLoader.load(getClass().getResource("/tevent/gui/CrudSponsor.fxml"));
        Scene scene = new Scene(root);
        //Scene scene = new Scene(F.page());
@@ -47,11 +47,12 @@ public class Main extends Application {
         stage.show();
     }
 
->>>>>>> 0895d4d591deeb317e6eba571ad53829013c8d64
+
     public static void main(String[] args) throws SQLException {
         Utilisateur user1 = new Utilisateur(10, "Bellalouna", "Tarek", "tarek.bellalounkka@esprit.tn", "123456", "12345689", null, Date.valueOf("1998-12-04"), null, null);
         UtilisateurServices us = new UtilisateurServices();
-        /*
+      
+        launch(args);  /*
         us.ajouterUtilisateur(user1);
         System.out.println("-----------------------------------------------------------------------------------------");
    String message="Vous êtes prié de bien vouloir vous présenter à l'agence pour l'évenement du  qui debute le et qui prendra fin le  pour la signature de la location du bus";
@@ -102,18 +103,9 @@ public class Main extends Application {
       //  cc.modifierChauffeur(c);
     }
 }
-<<<<<<< HEAD (80eb306) - update master
-        System.out.println("-----------------------------------------------------------------------------------------");
-        Utilisateur u = us.afficherUtilisateur(3);
-        if (u == null) {
-            System.out.println("Cette utilisateur n'existe pas!");
 
-        else
-            System.out.println(u);*/
-<<<<<<< HEAD
-    }
-=======
-=======
+       
+
      /*  
         Chauffeur c = new Chauffeur(12345679,Date.valueOf("2021-04-08"),Date.valueOf("2017-11-16"),Date.valueOf("2026-11-15"),8);
         
@@ -123,13 +115,6 @@ public class Main extends Application {
 cc.modifierChauffeur(c);
 
 */
-launch(args);     
+   
       
-}
 
->>>>>>> 0895d4d591deeb317e6eba571ad53829013c8d64
-
-       //dcs.updateDemandeChauffeur(new DemandeChauffeur(1,11128163,LocalDate.of(2020, 1, 8),LocalDate.of(2021, 1, 8),"encours"), 2);
-       System.out.println(dcs.advancedSearchDemandeChauffeur(0,LocalDate.of(2030,11,19)));
-       //System.out.println(dms.MaterielName());
->>>>>>> GestionDemandes1 (cd1ab00) - version 1.2
