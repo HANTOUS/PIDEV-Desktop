@@ -10,19 +10,13 @@ package tevent.entities;
  * @author skand
  */
 public class Festival extends Event{
-    private int id ;
+    
     private String type_fest ;
     private String artist;
     private String picture;
     private int nb_invit;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+  
 
     public String getType_fest() {
         return type_fest;
