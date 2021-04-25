@@ -85,6 +85,10 @@ public class AddDemandeBusController implements Initializable {
       DemandeBus DB = new DemandeBus(1,nb_participant,ville_depart,ville_arrivee,heure_depart,heure_arrivee,"encours",jour_location);
       DemandeBusServices dbs = new DemandeBusServices();
       dbs.addDemandeBus(DB);
+       Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Demande Bus ");
+        alert.setContentText("Vous recevez un email dans quelques heures ");
+        alert.show();
     
       try {
             Parent homePage = FXMLLoader.load(getClass().getResource("listdmdbus.fxml"));

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -10,28 +13,68 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.AddDemandeMaterielController">
-   <children>
-      <Button fx:id="btnadd" layoutX="454.0" layoutY="328.0" mnemonicParsing="false" onAction="#addDemande" text="Ajouter">
+<AnchorPane id="AnchorPane" prefHeight="431.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.AddDemandeMaterielController">
+   <stylesheets>
+        <URL value="@ajouterdemandemateriel.css" />
+    </stylesheets>
+    <children>
+      <Pane layoutY="-1.0" prefHeight="139.0" prefWidth="600.0" styleClass="addDemandeMateriel" stylesheets="@ajouterdemandemateriel.css">
+         <children>
+            <Button fx:id="Retourbtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#retour" style="-fx-background-color: transparent;" text="Retour" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CHEVRON_LEFT" size="40" />
+               </graphic>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text fill="WHITE" layoutX="142.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home\Demande Matériel">
+               <font>
+                  <Font name="Arial Black" size="21.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Button fx:id="btnadd" layoutX="476.0" layoutY="375.0" mnemonicParsing="false" onAction="#addDemande" prefHeight="32.0" prefWidth="90.0" styleClass="buttonstyle" stylesheets="@ajouterdemandemateriel.css" text="Ajouter" textFill="GREEN">
          <font>
-            <Font name="Arial Black" size="14.0" />
+            <Font name="Arial" size="14.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <ComboBox fx:id="materiel" layoutX="40.0" layoutY="92.0" prefWidth="150.0" />
-      <DatePicker fx:id="datedebut" layoutX="40.0" layoutY="210.0" prefHeight="25.0" prefWidth="150.0" />
-      <DatePicker fx:id="datefin" layoutX="372.0" layoutY="210.0" prefHeight="25.0" prefWidth="149.0" />
-      <TextField fx:id="quantite" layoutX="372.0" layoutY="92.0" />
-      <Label layoutX="41.0" layoutY="59.0" text="Materiel" />
-      <Label layoutX="373.0" layoutY="59.0" text="Quantité" />
-      <Label layoutX="41.0" layoutY="176.0" text="Date debut" />
-      <Label layoutX="376.0" layoutY="176.0" text="Date fin" />
-      <TextField fx:id="prix" editable="false" layoutX="300.0" layoutY="280.0" prefHeight="25.0" prefWidth="74.0" />
-      <Label layoutX="230.0" layoutY="284.0" text="Prix Totale :" />
-      <Pane layoutX="18.0" layoutY="326.0" prefHeight="32.0" prefWidth="206.0">
+      <ComboBox fx:id="materiel" layoutX="30.0" layoutY="188.0" prefHeight="26.0" prefWidth="159.0" promptText="Matériel" styleClass="inputstyle" stylesheets="@ajouterdemandemateriel.css" />
+      <DatePicker fx:id="datedebut" layoutX="286.0" layoutY="190.0" prefHeight="25.0" prefWidth="150.0" promptText="Entrer une date" styleClass="inputstyle" stylesheets="@ajouterdemandemateriel.css" />
+      <DatePicker fx:id="datefin" layoutX="287.0" layoutY="250.0" prefHeight="25.0" prefWidth="149.0" promptText="Entrer une date" styleClass="inputstyle" stylesheets="@ajouterdemandemateriel.css" />
+      <TextField fx:id="quantite" layoutX="30.0" layoutY="249.0" onKeyReleased="#calculPrix" prefHeight="26.0" prefWidth="159.0" promptText="Quantité" styleClass="inputstyle" stylesheets="@ajouterdemandemateriel.css" />
+      <Label layoutX="30.0" layoutY="159.0" text="Materiel" textFill="#090031">
+         <font>
+            <Font name="Arial Black" size="11.0" />
+         </font></Label>
+      <Label layoutX="30.0" layoutY="224.0" text="Quantité" textFill="#090031">
+         <font>
+            <Font name="Arial Black" size="11.0" />
+         </font></Label>
+      <Label layoutX="287.0" layoutY="159.0" text="Date debut" textFill="#090031">
+         <font>
+            <Font name="Arial Black" size="11.0" />
+         </font></Label>
+      <Label layoutX="286.0" layoutY="224.0" text="Date fin" textFill="#090031">
+         <font>
+            <Font name="Arial Black" size="11.0" />
+         </font></Label>
+      <TextField fx:id="prix" editable="false" layoutX="117.0" layoutY="309.0" prefHeight="25.0" prefWidth="74.0" styleClass="inputstyle" stylesheets="@ajouterdemandemateriel.css" />
+      <Label layoutX="30.0" layoutY="314.0" text="Prix Totale :" textFill="#090031">
+         <font>
+            <Font name="Arial Black" size="11.0" />
+         </font></Label>
+      <Pane layoutX="20.0" layoutY="375.0" prefHeight="32.0" prefWidth="206.0">
          <children>
             <Text fx:id="message" layoutX="31.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" />
          </children>
       </Pane>
-      <Button fx:id="Retourbtn" layoutX="25.0" layoutY="14.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
    </children>
 </AnchorPane>

@@ -28,6 +28,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import tevent.entities.DemandeMateriel;
@@ -87,11 +89,41 @@ public class AddDemandeMaterielController implements Initializable {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
+        }        DemandeMateriel DM = new DemandeMateriel(1,idm,"6","encours",date_debut,date_fin);
 
-        DemandeMateriel DM = new DemandeMateriel(1,idm,"6","encours",date_debut,date_fin);
-        message.setText(dms.addDemandeMateriel(DM,qte));
-        prix.setText(""+dms.PrixTotale(idm, qte)+"DT");
+           if(dms.addDemandeMateriel(DM,qte).equals("DemandeMateriel Ajoutée !")){
+               Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(dms.addDemandeMateriel(DM,qte));
+        alert.setContentText("Vous recevez un email dans quelques heures ");
+        alert.show();
+               prix.setText(""+dms.PrixTotale(idm, qte)+"DT");
+
+        
+        
+        
+        //message.setText(dms.addDemandeMateriel(DM,qte));
+       try {
+            Parent homePage = FXMLLoader.load(getClass().getResource("listdmdmateriel.fxml"));
+            
+            Scene homePage_scene=new Scene(homePage);
+            
+            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            app_stage.setScene(homePage_scene);
+            
+            app_stage.show();
+            Stage stage = (Stage) btnadd.getScene().getWindow(); 
+           
+        } catch (IOException ex) {
+             System.out.println(ex.getMessage());
+        }
+                  }else{
+               Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText("Demande Matériel ");
+        alert.setContentText(dms.addDemandeMateriel(DM,qte));
+        alert.show();
+           }
+
     }
     }
     
@@ -156,5 +188,30 @@ public class AddDemandeMaterielController implements Initializable {
              System.out.println(ex.getMessage());
         }
     }
+
+    @FXML
+    private void calculPrix(KeyEvent event) {
+        int idm=0;
+    
+     int qte = Integer.parseInt(quantite.getText());
+           String mat = materiel.getSelectionModel().getSelectedItem().toString();
+           String req="SELECT id from materiel where label=?";
+           try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, mat);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                idm = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        prix.setText(""+dms.PrixTotale(idm, qte)+"DT");
+    }
+
+  
+    
+    
     
 }

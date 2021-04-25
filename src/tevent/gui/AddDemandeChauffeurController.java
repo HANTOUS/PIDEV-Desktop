@@ -62,7 +62,12 @@ public class AddDemandeChauffeurController implements Initializable {
         DemandeChauffeur DC = new DemandeChauffeur(1,num_permis,date_permis,date_expiration,"encours");
         DemandeChauffeurServices dcb = new DemandeChauffeurServices();
         dcb.addDemandeChauffeur(DC);
-        
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Demande Chauffeur ");
+        alert.setContentText("Vous recevez un email dans quelques heures ");
+        alert.show();
+                        //dcs.SMS();
+
         try {
             Parent homePage = FXMLLoader.load(getClass().getResource("listdmdchauffeur.fxml"));
             
