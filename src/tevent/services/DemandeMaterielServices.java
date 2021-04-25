@@ -5,6 +5,18 @@
  */
 package tevent.services;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import tevent.entities.DemandeMateriel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,11 +24,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.print.PrinterJob;
+import javax.swing.JOptionPane;
 import tevent.entities.DemandeChauffeur;
 import tevent.entities.DemandeMateriel;
 import tevent.entities.DemandeMateriel;
@@ -248,6 +263,67 @@ public class DemandeMaterielServices {
         }
 
         return list;
+
+    }
+    
+     public void PDF(DemandeMateriel db , String Materiel , String Nom , String Prenom) throws DocumentException, FileNotFoundException, BadElementException, IOException {
+        String file_name = "C:\\Users\\DELL\\Documents\\NetBeansProjects\\PIDEV-Desktop\\src\\demande.pdf";
+        Document document = new Document();
+        LocalDate localDate = LocalDate.now();
+        LocalTime localTime = LocalTime.now();
+
+        PdfWriter.getInstance(document, new FileOutputStream(file_name));
+        document.open();
+        document.add(new Paragraph("Agence TEvent", FontFactory.getFont(FontFactory.TIMES)));
+        document.add(new Paragraph("Demande Matériel", FontFactory.getFont(FontFactory.TIMES)));
+        document.add(new Paragraph("-----------------------------------------------------------------"));
+         Image image1 = Image.getInstance("C:\\Users\\DELL\\Documents\\NetBeansProjects\\PIDEV-Desktop\\src\\Logo-Off.png");
+    //Fixed Positioning
+    image1.setAbsolutePosition(495f,745f);
+    //Scale to new height and new width of image
+    image1.scaleAbsolute(100, 100);
+    //Add to document
+    document.add(image1);
+        com.itextpdf.text.pdf.PdfPTable table = new com.itextpdf.text.pdf.PdfPTable(2);
+        com.itextpdf.text.pdf.PdfPCell cell = new com.itextpdf.text.pdf.PdfPCell(new Paragraph("details de la demande"));
+        cell.setColspan(4);
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GREEN);
+        table.addCell(cell);
+
+        table.addCell("Nom");
+        table.addCell(Nom);
+        table.addCell("Prénom");
+        table.addCell(Prenom);
+        table.addCell("Materiel");
+        table.addCell("" + db.getMateriel_id());
+        table.addCell("Quantité reservé");
+        table.addCell(db.getQte());
+        table.addCell("Date de debut");
+        table.addCell(db.getDate_debut().toString());
+        table.addCell("Date de fin");
+        table.addCell(db.getDate_fin().toString());
+        
+
+        //table.addCell(selectedUser.getNom());
+        //System.out.println("*******************"+selectedUser.getNom().toString());
+        document.add(table);
+        document.add(new Paragraph("Tunis le   " + localDate.toString() + "   " + localTime.toString()));
+        Paragraph sign = new Paragraph("Signature du client" + "   " + ".................");
+        document.add(sign);
+
+
+
+        PrinterJob job = PrinterJob.createPrinterJob();
+        System.out.println(table);
+        if (job != null) {
+
+            //job.printPage();
+            job.endJob();
+        }
+        document.close();
+
+        JOptionPane.showMessageDialog(null, " données exportées en pdf evec succés ");
 
     }
 }

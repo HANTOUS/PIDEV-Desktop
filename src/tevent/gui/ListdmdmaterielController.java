@@ -5,6 +5,9 @@
  */
 package tevent.gui;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.DocumentException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +22,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -27,6 +35,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import tevent.entities.DemandeMateriel;
 import tevent.entities.DemandeMateriel;
 import tevent.services.DemandeMaterielServices;
@@ -75,11 +84,15 @@ public class ListdmdmaterielController implements Initializable {
     private TextField etatkey;
     @FXML
     private TextField qtekey;
+    @FXML
+    private Button btnpdf;
+    @FXML
+    private Button retourbtn;
 
         
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {       
         ObservableList<String> Materiel = FXCollections.observableArrayList(dms.MaterielName());
                materiel.setItems(Materiel);
         
@@ -102,7 +115,8 @@ System.out.println(d.getMateriel_id());
                
             
         }
-        
+         confirmer.setVisible(false);
+        annuler.setVisible(false);
          colID.setCellValueFactory(new PropertyValueFactory<>("id"));
                
 
@@ -118,7 +132,7 @@ System.out.println(d.getMateriel_id());
                                System.out.println(label);
                 tableDemandeMateriel.setItems(DemandeMaterielList);
                 tableDemandeMateriel.getColumns().addAll(colID,colMateriel,colQuantite,colDateDebut,colDateFin,colEtat) ;
-    }    
+                   }    
 
     @FXML
     private void annulerUpdate(ActionEvent event) {
@@ -126,10 +140,13 @@ System.out.println(d.getMateriel_id());
             materiel.setValue("");
             datedebut.setValue(null);
             datefin.setValue(null);
-            
+             confirmer.setVisible(false);
+        annuler.setVisible(false);
     }
     @FXML
     private void modifierDemande(ActionEvent event) {
+                    btnpdf.setVisible(false);
+
         String label ="";
         String req ="select label from materiel where id=?";
                               
@@ -150,9 +167,20 @@ System.out.println(d.getMateriel_id());
          confirmer.setVisible(true);
         annuler.setVisible(true);
         // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        if(     "accepter".equals(tableDemandeMateriel.getSelectionModel().getSelectedItem().getEtat())){
+    System.out.println("Tarek");
+    btnpdf.setVisible(true);
+}else{
+        btnpdf.setVisible(false);
 
-        if (tableDemandeMateriel.getSelectionModel().getSelectedItem() != null) {
-
+}
+        if (tableDemandeMateriel.getSelectionModel().getSelectedItem() != null & "encours".equals(tableDemandeMateriel.getSelectionModel().getSelectedItem().getEtat()) ) {
+             quantite.setDisable(false);
+            datefin.setDisable(false);
+            materiel.setDisable(false);
+            datedebut.setDisable(false);
+            confirmer.setDisable(false);
+            annuler.setDisable(false);
             id = ((tableDemandeMateriel.getSelectionModel().getSelectedItem()).getId());
 
             quantite.setText(String.valueOf((tableDemandeMateriel.getSelectionModel().getSelectedItem()).getQte()));
@@ -161,12 +189,21 @@ System.out.println(d.getMateriel_id());
             datefin.setValue(((tableDemandeMateriel.getSelectionModel().getSelectedItem()).getDate_fin()));
             
 
+        }else {
+              quantite.setDisable(true);
+            datefin.setDisable(true);
+            materiel.setDisable(true);
+            datedebut.setDisable(true);
+            confirmer.setDisable(true);
+            annuler.setDisable(true);
         }
     }
 
     @FXML
     private void confirmerUpdate(ActionEvent event) {
-         id = ((tableDemandeMateriel.getSelectionModel().getSelectedItem()).getId());
+        if( isValidate() ){
+            
+        id = ((tableDemandeMateriel.getSelectionModel().getSelectedItem()).getId());
 
         int qte = Integer.parseInt(quantite.getText());
         String mat = materiel.getSelectionModel().getSelectedItem().toString();
@@ -189,6 +226,7 @@ System.out.println(d.getMateriel_id());
         DemandeMateriel DM = new DemandeMateriel(1,idm,"6","encours",date_debut,date_fin);
 
         dms.updateDemandeMateriel(DM,qte,id);
+        }
 
         tableDemandeMateriel.setItems(dms.getDemandeByUser(1));
         
@@ -209,4 +247,88 @@ System.out.println(d.getMateriel_id());
            tableDemandeMateriel.setItems(dms.advancedSearchDemandeMateriel(qte, etat));
  
     }
+    
+    private void showDialog(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText("Attention");
+        alert.setContentText(message);
+        alert.show();
+    }
+    //Remplissage des champs obligatoire
+
+    private boolean isValidate() {
+        boolean isValid = true;
+        String message = "";
+
+        //System.out.println("gui.EventController.ajouter()" + comboType.getValue());
+        if (quantite.getText().isEmpty()) {
+            isValid = false;
+            message = "Veuillez entrer une quantité à reserver";
+        } else if (materiel.getValue() == null) {
+            isValid = false;
+            message = "Veuillez selectionnez un materiel";
+        } else if (datedebut.getValue() == null) {
+            isValid = false;
+            message = "Veuillez selectionnez une date de debut ";
+
+        } else if (datefin.getValue() == null) {
+            isValid = false;
+            message = "Veuillez selectionnez une date de fin ";
+        }else if (datefin.getValue().isBefore(datedebut.getValue())) {
+            isValid = false;
+            message = "La date fin doit etre superieur à la date debut ";
+        }
+        //else if (comboEtat.getValue() == null) {
+//            isValid = false;
+//            message = "Veuillez selectionnez type etat";
+//        }
+
+        if (!isValid) {
+            showDialog(message);
+        }
+
+        return isValid;
+
+    }
+
+    @FXML
+    private void getPDF(ActionEvent event) throws DocumentException, BadElementException, IOException {
+           String label="";
+        String req ="select label from materiel where id=?";
+                   DemandeMateriel db = tableDemandeMateriel.getSelectionModel().getSelectedItem();           
+               try {
+
+                   
+            int idmat = (tableDemandeMateriel.getSelectionModel().getSelectedItem()).getMateriel_id();
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1, idmat);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                label=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+               dms.PDF(db, label, "Bellalouna", "Tarek");
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+        try {
+            Parent homePage = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            
+            Scene homePage_scene=new Scene(homePage);
+            
+            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            app_stage.setScene(homePage_scene);
+            
+            app_stage.show();
+            Stage stage = (Stage) retourbtn.getScene().getWindow(); 
+           
+        } catch (IOException ex) {
+             System.out.println(ex.getMessage());
+        }
+    }
+ 
 }

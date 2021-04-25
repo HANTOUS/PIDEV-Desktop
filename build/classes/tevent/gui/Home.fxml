@@ -7,10 +7,12 @@
    <children>
       <Button fx:id="btndb" layoutX="41.0" layoutY="35.0" mnemonicParsing="false" onAction="#AllerVersDemandeBus" text="Demande Bus" />
       <Button fx:id="btndc" layoutX="41.0" layoutY="82.0" mnemonicParsing="false" onAction="#AllerVersDemandeChauffeur" text="Demande Chauffeur" />
-      <Button layoutX="41.0" layoutY="123.0" mnemonicParsing="false" onAction="#AllerVersDemandeMateriel" text="Demande Materiel" />
-      <Button layoutX="379.0" layoutY="82.0" mnemonicParsing="false" onAction="#AllerVersListDemandeChauffeur" text="List Demande Chauffeur" />
-      <Button layoutX="379.0" layoutY="35.0" mnemonicParsing="false" onAction="#AllerVersListDemandeBus" text="List Demande Bus" />
-      <Button layoutX="379.0" layoutY="123.0" mnemonicParsing="false" onAction="#AllerVersListDemandeMateriel" text="List Demande Materiel" />
-      <Button layoutX="47.0" layoutY="235.0" mnemonicParsing="false" onAction="#AllerVersListDemandeMaterielAdmin" text="List Demande Materiel Admin" />
+      <Button fx:id="btndm" layoutX="41.0" layoutY="123.0" mnemonicParsing="false" onAction="#AllerVersDemandeMateriel" text="Demande Materiel" />
+      <Button fx:id="btnlistdc" layoutX="379.0" layoutY="82.0" mnemonicParsing="false" onAction="#AllerVersListDemandeChauffeur" text="List Demande Chauffeur" />
+      <Button fx:id="btnlistdb" layoutX="379.0" layoutY="35.0" mnemonicParsing="false" onAction="#AllerVersListDemandeBus" text="List Demande Bus" />
+      <Button fx:id="btnlistdm" layoutX="379.0" layoutY="123.0" mnemonicParsing="false" onAction="#AllerVersListDemandeMateriel" text="List Demande Materiel" />
+      <Button fx:id="btnAdm" layoutX="47.0" layoutY="235.0" mnemonicParsing="false" onAction="#AllerVersListDemandeMaterielAdmin" text="List Demande Materiel Admin" />
+      <Button fx:id="btnAdb" layoutX="191.0" layoutY="316.0" mnemonicParsing="false" onAction="#AllerVersListDemandeBusAdmin" text="List Demande Bus Admin" />
+      <Button fx:id="btnAdc" layoutX="316.0" layoutY="235.0" mnemonicParsing="false" onAction="#AllerVersListDemandeChauffeurAdmin" text="List Demande Materiel Admin" />
    </children>
 </AnchorPane>

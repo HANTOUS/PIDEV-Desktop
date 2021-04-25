@@ -28,15 +28,15 @@ import tevent.services.DemandeBusServices;
  * @author hanto
  */
 public class Main {
-
     public static void main(String[] args) throws SQLException {
-   
+   String message="Vous êtes prié de bien vouloir vous présenter à l'agence pour l'évenement du  qui debute le et qui prendra fin le  pour la signature de la location du bus";
+
        DemandeBusServices dbs = new DemandeBusServices();
        DemandeChauffeurServices dcs = new DemandeChauffeurServices();
        DemandeMaterielServices dms = new DemandeMaterielServices();
         try {
                         System.out.println("amr");
-            dbs.SendMail();
+            dbs.SendMail(message,"Bus","tarek.bellalouna@gmail.com");
             System.out.println("tarek");
         } catch (MessagingException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

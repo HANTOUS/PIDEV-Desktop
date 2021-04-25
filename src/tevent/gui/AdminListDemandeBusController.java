@@ -5,6 +5,7 @@
  */
 package tevent.gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,13 +16,19 @@ import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javax.mail.MessagingException;
+import javax.swing.JOptionPane;
 import tevent.entities.DemandeBus;
 import tevent.services.DemandeBusServices;
 import static tevent.services.DemandeBusServices.SendMail;
@@ -84,14 +91,17 @@ public class AdminListDemandeBusController implements Initializable {
     private TextField villekey;
     @FXML
     private TextField nbkey;
+    @FXML
+    private Button refreshbtn;
+    @FXML
+    private Button retourbtn;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        accepter.setVisible(false);
-        refuser.setVisible(false);
+        
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNbparticipant.setCellValueFactory(new PropertyValueFactory<>("nb_participant"));
         colVilledepart.setCellValueFactory(new PropertyValueFactory<>("ville_depart"));
@@ -107,12 +117,35 @@ public class AdminListDemandeBusController implements Initializable {
 
     @FXML
     private void accepterDemande(ActionEvent event) throws MessagingException {
+        String prenom ="";
+        String nom ="";
+        String mail ="";       
+        String req1 ="select prenom,nom , email from utilisateur where id=?";
+                try {
+
+                   
+            int iduser = (tableDemandeBus.getSelectionModel().getSelectedItem()).getUtilisateur_id();
+            PreparedStatement ps1 = cnx.prepareStatement(req1);
+            ps1.setInt(1, iduser);
+            ResultSet rs1 = ps1.executeQuery();
+            while (rs1.next()) {
+                prenom=rs1.getString(1);
+                nom=rs1.getString(2);
+                mail=rs1.getString(3);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+           String message="Mr "+nom+prenom+"Vous êtes prié de bien vouloir vous présenter à l'agence pour l'évenement du  qui debute le et qui prendra fin le  pour la signature de la location du bus";
+
         dbs.AccepterDemande(tableDemandeBus.getSelectionModel().getSelectedItem().getId());
+                                                JOptionPane.showMessageDialog(null, " La demande a été bien confirmer , un email sera envoyé pour lui informé ");
+
         tableDemandeBus.setItems(dbs.readDemandeBus());
-         etat.setText("accepter");
-accepter.setVisible(false);
+        etat.setText("accepter");
+        accepter.setVisible(false);
         refuser.setVisible(false);
-        dbs.SendMail();
+        dbs.SendMail(message,"bus",mail);
     }
 
     @FXML
@@ -132,8 +165,14 @@ accepter.setVisible(false);
 
     @FXML
     private void selectDemande(ActionEvent event) {
-         accepter.setVisible(true);
+        if(tableDemandeBus.getSelectionModel().getSelectedItem().getEtat().equals("encours")){
+             accepter.setVisible(true);
         refuser.setVisible(true);
+        }else{
+            
+        accepter.setVisible(false);
+        refuser.setVisible(false); 
+        }
         String prenom ="";
         String nom ="";
         String mail ="";       
@@ -173,6 +212,32 @@ accepter.setVisible(false);
         String ville = villekey.getText();
         int nb=Integer.parseInt(nbkey.getText());
         tableDemandeBus.setItems(dbs.advancedSearchDemandeBus(nb, ville, ville));
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+        try {
+            Parent homePage = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            
+            Scene homePage_scene=new Scene(homePage);
+            
+            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            app_stage.setScene(homePage_scene);
+            
+            app_stage.show();
+            Stage stage = (Stage) retourbtn.getScene().getWindow(); 
+           
+        } catch (IOException ex) {
+             System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void Refresh(ActionEvent event) {
+        tableDemandeBus.setItems(dbs.readDemandeBus());
+        villekey.setText("");
+       nbkey.setText("");
     }
     
 }

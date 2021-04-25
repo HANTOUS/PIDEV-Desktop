@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -85,18 +86,20 @@ public class AddDemandeBusController implements Initializable {
       DemandeBusServices dbs = new DemandeBusServices();
       dbs.addDemandeBus(DB);
     
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("listdmdbus.fxml"));
-      
-        try 
-        {
-            Parent root = loader.load();
-            ListdmdbusController listController = loader.getController();
-            heuredepart.getScene().setRoot(root);
-
-        } 
-        catch (IOException ex) 
-        {
-            System.out.println(ex.getMessage());
+      try {
+            Parent homePage = FXMLLoader.load(getClass().getResource("listdmdbus.fxml"));
+            
+            Scene homePage_scene=new Scene(homePage);
+            
+            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            app_stage.setScene(homePage_scene);
+            
+            app_stage.show();
+            Stage stage = (Stage) addbtn.getScene().getWindow(); 
+           
+        } catch (IOException ex) {
+             System.out.println(ex.getMessage());
         }
        }
     }
@@ -104,15 +107,19 @@ public class AddDemandeBusController implements Initializable {
     @FXML
     private void GoBack(ActionEvent event) {
         try {
+            Parent homePage = FXMLLoader.load(getClass().getResource("Home.fxml"));
             
-            Parent root = FXMLLoader.load(getClass().getResource("Home.fxml")) ;
-            Scene scene = new Scene(root);
-            Stage primaryStage = new Stage();
-            primaryStage.setTitle("Home");
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            Scene homePage_scene=new Scene(homePage);
+            
+            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            app_stage.setScene(homePage_scene);
+            
+            app_stage.show();
+            Stage stage = (Stage) btnretour.getScene().getWindow(); 
+           
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+             System.out.println(ex.getMessage());
         }
     }
     

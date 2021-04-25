@@ -5,6 +5,7 @@
  */
 package tevent.gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,13 +16,21 @@ import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javax.mail.MessagingException;
+import javax.swing.JOptionPane;
 import tevent.entities.DemandeMateriel;
+import tevent.services.DemandeBusServices;
 import tevent.services.DemandeMaterielServices;
 import tevent.tools.DataSource;
 
@@ -65,6 +74,8 @@ public class AdminListDemandeMaterielController implements Initializable {
     private TableColumn<DemandeMateriel, Date> colDateFin;
     @FXML
     private TableColumn<DemandeMateriel, String> colEtat;
+        DemandeBusServices dbs= new DemandeBusServices();
+
     DemandeMaterielServices dms = new DemandeMaterielServices();
         private Connection cnx = DataSource.getInstance().getCnx();
     @FXML
@@ -77,6 +88,10 @@ public class AdminListDemandeMaterielController implements Initializable {
     private TextField qtekey;
     @FXML
     private TextField disponibilite;
+    @FXML
+    private Button retourbtn;
+    @FXML
+    private Button refreshbtn;
 
     /**
      * Initializes the controller class.
@@ -109,8 +124,14 @@ public class AdminListDemandeMaterielController implements Initializable {
 
     @FXML
     private void selectDemande(ActionEvent event) {
-        accepter.setVisible(true);
+        if(tableDemandeMateriel.getSelectionModel().getSelectedItem().getEtat().equals("encours")){
+             accepter.setVisible(true);
         refuser.setVisible(true);
+        }else{
+            
+        accepter.setVisible(false);
+        refuser.setVisible(false);        }
+
         String label ="";
         String prenom ="";
         String nom ="";
@@ -178,10 +199,61 @@ String req2 = "SELECT stock , qte_reserve FROM materiel where id=?";
     }
 
     @FXML
-    private void accepterDemande(ActionEvent event) {
+    private void accepterDemande(ActionEvent event) throws MessagingException {
+         int stock=0;
+        int diff=0;
+        int qte_reserve=0;
+        int qte=Integer.parseInt(quantite.getText());
+         String prenom ="";
+        String nom ="";
+        String mail ="";
+        String req2 = "SELECT stock , qte_reserve FROM materiel where id=?";
+       int idmateriel = tableDemandeMateriel.getSelectionModel().getSelectedItem().getMateriel_id();
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req2);
+            ps.setInt(1,idmateriel );
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                stock = rs.getInt(1);
+                qte_reserve = rs.getInt(2);
+                diff = stock - qte_reserve;
+                System.out.println(stock+""+qte_reserve+""+diff);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+               
+        String req1 ="select prenom,nom , email from utilisateur where id=?";
+                try {
+
+                   
+            int iduser = (tableDemandeMateriel.getSelectionModel().getSelectedItem()).getUtilisateur_id();
+            PreparedStatement ps1 = cnx.prepareStatement(req1);
+            ps1.setInt(1, iduser);
+            ResultSet rs1 = ps1.executeQuery();
+            while (rs1.next()) {
+                prenom=rs1.getString(1);
+                nom=rs1.getString(2);
+                mail=rs1.getString(3);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+           String message="Mr "+nom+prenom+"Vous êtes prié de bien vouloir vous présenter à l'agence pour l'évenement du  qui debute le et qui prendra fin le  pour la signature de la location du bus";
+           if(qte_reserve+qte<stock){
+               
          dms.AccepterDemande(tableDemandeMateriel.getSelectionModel().getSelectedItem().getId(),tableDemandeMateriel.getSelectionModel().getSelectedItem().getMateriel_id());
         tableDemandeMateriel.setItems(dms.readDemandeMateriel());
                     etat.setText("accepter");
+                    
+                                                dbs.SendMail(message,"Matériel",mail);
+            JOptionPane.showMessageDialog(null, " La demande a été accepter , un email sera envoyé à l'utilisateur");
+
+           }else{
+                       JOptionPane.showMessageDialog(null, " Il ne reste que"+diff+"vous ne pouvez pas l'accepter");
+
+           }
+
 accepter.setVisible(false);
         refuser.setVisible(false);
     }
@@ -200,6 +272,32 @@ accepter.setVisible(false);
         int qte =0+ Integer.parseInt(qtekey.getText());
         String etat = ""+etatkey.getText();
            tableDemandeMateriel.setItems(dms.advancedSearchDemandeMateriel(qte, etat));
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+        try {
+            Parent homePage = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            
+            Scene homePage_scene=new Scene(homePage);
+            
+            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            app_stage.setScene(homePage_scene);
+            
+            app_stage.show();
+            Stage stage = (Stage) retourbtn.getScene().getWindow(); 
+           
+        } catch (IOException ex) {
+             System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void Refresh(ActionEvent event) {
+        tableDemandeMateriel.setItems(dms.readDemandeMateriel());
+        etatkey.setText("");
+       qtekey.setText("");
     }
     
 }

@@ -5,6 +5,9 @@
  */
 package tevent.gui;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.DocumentException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Date;
@@ -16,7 +19,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -24,7 +32,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import tevent.entities.DemandeBus;
+import tevent.entities.DemandeChauffeur;
 import tevent.entities.Festival;
 import static tevent.gui.CrudFestivalController.ids;
 import tevent.services.DemandeBusServices;
@@ -56,8 +66,6 @@ public class ListdmdbusController implements Initializable {
     @FXML
     private TableView<DemandeBus> tableDemandeBus;
     @FXML
-    private Button btnsupprimer;
-    @FXML
     private Button btnupdate;
 
     
@@ -84,6 +92,10 @@ public class ListdmdbusController implements Initializable {
     private TextField recherchekey;
     @FXML
     private TextField recherchenb;
+    @FXML
+    private Button btnpdf;
+    @FXML
+    private Button retourbtn;
 
 
     /**
@@ -91,10 +103,14 @@ public class ListdmdbusController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        
+
         ObservableList<String> listville = FXCollections.observableArrayList("Ariana", "Béja", "Ben Arous", "Bizerte", "Gabes", "Gafsa", "Jendouba", "Kairouan", "Kasserine", "Kébili", "Kef", "Mahdia", "Manouba", "Mednine", "Monastir", "Nabeul", "Sfax", "Sidi Bouzid", "Siliana", "Sousse", "Tataouine", "Tozeur", "Tunis", "Zaghouan");
         villedepart.setItems(listville);
         villearrivee.setItems(listville);
 
+        btnpdf.setVisible(false);
         confirmer.setVisible(false);
         annuler.setVisible(false);
 
@@ -112,7 +128,6 @@ public class ListdmdbusController implements Initializable {
         //tableDemandeBus.getColumns().addAll(tabID,tabNb,tabVilleDep,tabVilleArr,tabHeureDep,tabHeureArr,tabEtat,tabJourLoc) ;
     }
 
-    @FXML
     private void supprimerDemande(ActionEvent event) {
         dbs.deleteDemandeBus(tableDemandeBus.getSelectionModel().getSelectedItem().getId());
         tableDemandeBus.getItems().removeAll(tableDemandeBus.getSelectionModel().getSelectedItem());
@@ -123,9 +138,23 @@ public class ListdmdbusController implements Initializable {
         confirmer.setVisible(true);
         annuler.setVisible(true);
         // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+if(     "accepter".equals(tableDemandeBus.getSelectionModel().getSelectedItem().getEtat())){
+    System.out.println("Tarek");
+    btnpdf.setVisible(true);
+}else{
+        btnpdf.setVisible(false);
 
-        if (tableDemandeBus.getSelectionModel().getSelectedItem() != null) {
-
+}
+        if (tableDemandeBus.getSelectionModel().getSelectedItem() != null & (tableDemandeBus.getSelectionModel().getSelectedItem().getEtat().equals("encours"))) {
+            btnupdate.setDisable(false);
+               nbparticipants.setDisable(false);
+            villedepart.setDisable(false);
+            villearrivee.setDisable(false);
+            heuredepart.setDisable(false);
+            heurearrivee.setDisable(false);
+            jourloc.setDisable(false);
+            confirmer.setDisable(false);
+            annuler.setDisable(false);
             id = ((tableDemandeBus.getSelectionModel().getSelectedItem()).getId());
 
             nbparticipants.setText(String.valueOf((tableDemandeBus.getSelectionModel().getSelectedItem()).getNb_participant()));
@@ -135,12 +164,23 @@ public class ListdmdbusController implements Initializable {
             heuredepart.setText(String.valueOf((tableDemandeBus.getSelectionModel().getSelectedItem()).getHeure_arrivee()));
             jourloc.setValue(((tableDemandeBus.getSelectionModel().getSelectedItem()).getJour_location()));
 
+        }else{
+            nbparticipants.setDisable(true);
+            villedepart.setDisable(true);
+            villearrivee.setDisable(true);
+            heuredepart.setDisable(true);
+            heurearrivee.setDisable(true);
+            jourloc.setDisable(true);
+            confirmer.setDisable(true);
+            annuler.setDisable(true);
         }
     }
 
     @FXML
     private void confirmUpdate(ActionEvent event) {
-                    id = ((tableDemandeBus.getSelectionModel().getSelectedItem()).getId());
+        if(isValidate()) {
+        
+        id = ((tableDemandeBus.getSelectionModel().getSelectedItem()).getId());
 
         int nb_participant = Integer.parseInt(nbparticipants.getText());
         String ville_depart = villedepart.getSelectionModel().getSelectedItem().toString();
@@ -162,8 +202,10 @@ public class ListdmdbusController implements Initializable {
             heurearrivee.setText("");
             heuredepart.setText("");
             jourloc.setValue(null);
-            
+                        }           
+
         confirmer.setVisible(false);
+
         annuler.setVisible(false);
     }
 
@@ -177,13 +219,11 @@ public class ListdmdbusController implements Initializable {
             jourloc.setValue(null);
     }
 
-    @FXML
     private void refuserDemande(ActionEvent event) {
         dbs.RefuserDemande(tableDemandeBus.getSelectionModel().getSelectedItem().getId());
         tableDemandeBus.setItems(dbs.getDemandeByUser(1));
     }
 
-    @FXML
     private void accepterDemande(ActionEvent event) {
          dbs.AccepterDemande(tableDemandeBus.getSelectionModel().getSelectedItem().getId());
         tableDemandeBus.setItems(dbs.getDemandeByUser(1));
@@ -199,5 +239,81 @@ public class ListdmdbusController implements Initializable {
 
         
         
+    }
+     private void showDialog(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText("Attention");
+        alert.setContentText(message);
+        alert.show();
+    }
+    //Remplissage des champs obligatoire
+
+    private boolean isValidate() {
+        boolean isValid = true;
+        String message = "";
+
+        //System.out.println("gui.EventController.ajouter()" + comboType.getValue());
+        if (nbparticipants.getText().isEmpty()) {
+            isValid = false;
+            message = "Entrer un nombre de participants";
+        } else if (villedepart.getValue() == null) {
+            isValid = false;
+            message = "Veuillez selectionnez une ville depart";
+        } else if (villearrivee.getValue() == null) {
+            isValid = false;
+            message = "Veuillez selectionnez une ville arrivee ";
+
+        } else if (villearrivee.getValue() == villedepart.getValue()) {
+            isValid = false;
+            message = "La ville depart doit être differente de la ville d'arrivée ";
+
+        }else if (heuredepart.getText().isEmpty()) {
+            isValid = false;
+            message = "Heure Depart réquis";
+        } else if (heurearrivee.getText().isEmpty()) {
+            isValid = false;
+            message = "Heure Arrivee requis";
+        } else if (jourloc.getValue()== null) {
+            isValid = false;
+            message = "Jour de location requis";
+        }
+        //else if (comboEtat.getValue() == null) {
+//            isValid = false;
+//            message = "Veuillez selectionnez type etat";
+//        }
+
+        if (!isValid) {
+            showDialog(message);
+        }
+
+        return isValid;
+
+    }
+    
+    
+    @FXML
+    private void getPDF(ActionEvent event) throws DocumentException, BadElementException, IOException {
+         DemandeBus db = tableDemandeBus.getSelectionModel().getSelectedItem();           
+
+                       dbs.PDF(db, "Bellalouna", "Tarek");
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+        try {
+            Parent homePage = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            
+            Scene homePage_scene=new Scene(homePage);
+            
+            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            app_stage.setScene(homePage_scene);
+            
+            app_stage.show();
+            Stage stage = (Stage) retourbtn.getScene().getWindow(); 
+           
+        } catch (IOException ex) {
+             System.out.println(ex.getMessage());
+        }
     }
 }

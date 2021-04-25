@@ -25,7 +25,7 @@ public class FxmlMain extends Application {
        
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("AdminListDemandeBus.fxml")) ;
+            Parent root = FXMLLoader.load(getClass().getResource("Home.fxml")) ;
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Ajouter Demande Bus");

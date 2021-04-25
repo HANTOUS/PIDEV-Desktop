@@ -15,11 +15,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import tevent.entities.DemandeChauffeur;
 import tevent.services.DemandeChauffeurServices;
 
@@ -38,6 +41,8 @@ public class AddDemandeChauffeurController implements Initializable {
     private TextField numpermis;
     @FXML
     private Button btn;
+    @FXML
+    private Button Retourbtn;
 
     /**
      * Initializes the controller class.
@@ -58,16 +63,21 @@ public class AddDemandeChauffeurController implements Initializable {
         DemandeChauffeurServices dcb = new DemandeChauffeurServices();
         dcb.addDemandeChauffeur(DC);
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("listdmdchauffeur.fxml"));
-      
-        
-            Parent root;
         try {
-            root = loader.load();
-            ListdmdchauffeurController listController = loader.getController();
-            numpermis.getScene().setRoot(root);
+            Parent homePage = FXMLLoader.load(getClass().getResource("listdmdchauffeur.fxml"));
+            
+            Scene homePage_scene=new Scene(homePage);
+            
+            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            app_stage.setScene(homePage_scene);
+            
+            app_stage.show();
+            Stage stage = (Stage) btn.getScene().getWindow(); 
+           
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());        }
+             System.out.println(ex.getMessage());
+        }
             
 
         }
@@ -110,6 +120,25 @@ public class AddDemandeChauffeurController implements Initializable {
 
         return isValid;
 
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+         try {
+            Parent homePage = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            
+            Scene homePage_scene=new Scene(homePage);
+            
+            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            app_stage.setScene(homePage_scene);
+            
+            app_stage.show();
+            Stage stage = (Stage) Retourbtn.getScene().getWindow(); 
+           
+        } catch (IOException ex) {
+             System.out.println(ex.getMessage());
+        }
     }
     
 }
