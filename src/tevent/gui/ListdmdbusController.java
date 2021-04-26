@@ -36,6 +36,7 @@ import javafx.stage.Stage;
 import tevent.entities.DemandeBus;
 import tevent.entities.DemandeChauffeur;
 import tevent.entities.Festival;
+import tevent.entities.Utilisateur;
 import tevent.services.DemandeBusServices;
 import tevent.services.FestivalServices;
 
@@ -96,7 +97,13 @@ public class ListdmdbusController implements Initializable {
     @FXML
     private Button retourbtn;
 
+    private Utilisateur user;
 
+    public void setUser(Utilisateur u) {
+        user = u;
+
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -104,7 +111,7 @@ public class ListdmdbusController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         
-
+        
         ObservableList<String> listville = FXCollections.observableArrayList("Ariana", "Béja", "Ben Arous", "Bizerte", "Gabes", "Gafsa", "Jendouba", "Kairouan", "Kasserine", "Kébili", "Kef", "Mahdia", "Manouba", "Mednine", "Monastir", "Nabeul", "Sfax", "Sidi Bouzid", "Siliana", "Sousse", "Tataouine", "Tozeur", "Tunis", "Zaghouan");
         villedepart.setItems(listville);
         villearrivee.setItems(listville);
@@ -300,7 +307,10 @@ if(     "accepter".equals(tableDemandeBus.getSelectionModel().getSelectedItem().
     @FXML
     private void retour(ActionEvent event) {
         try {
-            Parent homePage = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
+             HomeController dc = loader.getController();
+//             dc.setUser(user);
             
             Scene homePage_scene=new Scene(homePage);
             

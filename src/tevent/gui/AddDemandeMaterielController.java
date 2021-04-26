@@ -33,6 +33,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import tevent.entities.DemandeMateriel;
+import tevent.entities.Utilisateur;
 import tevent.services.DemandeMaterielServices;
 import tevent.tools.DataSource;
 
@@ -62,6 +63,12 @@ public class AddDemandeMaterielController implements Initializable {
     private TextField prix;
     @FXML
     private Button Retourbtn;
+    private Utilisateur user;
+
+    public void setUser(Utilisateur u) {
+        user = u;
+
+    }
     /**
      * Initializes the controller class.
      */
@@ -102,8 +109,11 @@ public class AddDemandeMaterielController implements Initializable {
         
         
         //message.setText(dms.addDemandeMateriel(DM,qte));
-       try {
-            Parent homePage = FXMLLoader.load(getClass().getResource("listdmdmateriel.fxml"));
+       try { 
+           FXMLLoader loader = new FXMLLoader();
+            Parent homePage = loader.load(getClass().getResource("listdmdmateriel.fxml"));
+             ListdmdmaterielController dc = loader.getController();
+//               dc.setUser(user);
             
             Scene homePage_scene=new Scene(homePage);
             
@@ -173,7 +183,10 @@ public class AddDemandeMaterielController implements Initializable {
     @FXML
     private void retour(ActionEvent event) {
          try {
-            Parent homePage = FXMLLoader.load(getClass().getResource("Home.fxml"));
+               FXMLLoader loader = new FXMLLoader();
+            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
+             HomeController dc = loader.getController();
+//               dc.setUser(user);
             
             Scene homePage_scene=new Scene(homePage);
             

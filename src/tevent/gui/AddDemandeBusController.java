@@ -30,6 +30,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import tevent.entities.DemandeBus;
+import tevent.entities.Utilisateur;
 import tevent.services.DemandeBusServices;
 
 /**
@@ -55,7 +56,13 @@ public class AddDemandeBusController implements Initializable {
     private Button addbtn;
     @FXML
     private Button btnretour;
+    
+    private Utilisateur user;
 
+    public void setUser(Utilisateur u) {
+        user = u;
+
+    }
     /**
      * Initializes the controller class.
      */
@@ -65,8 +72,8 @@ public class AddDemandeBusController implements Initializable {
                villedepart.setItems(listville);
                villearrivee.setItems(listville);
     }    
-
    
+ 
 
     @FXML
     private void addDemande(ActionEvent event) {
@@ -91,7 +98,10 @@ public class AddDemandeBusController implements Initializable {
         alert.show();
     
       try {
-            Parent homePage = FXMLLoader.load(getClass().getResource("listdmdbus.fxml"));
+             FXMLLoader loader = new FXMLLoader();
+            Parent homePage = loader.load(getClass().getResource("listdmdbus.fxml"));
+             ListdmdbusController dc = loader.getController();
+//               dc.setUser(user);
             
             Scene homePage_scene=new Scene(homePage);
             
@@ -111,7 +121,10 @@ public class AddDemandeBusController implements Initializable {
     @FXML
     private void GoBack(ActionEvent event) {
         try {
-            Parent homePage = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
+            HomeController dc = loader.getController();
+//            dc.setUser(user);
             
             Scene homePage_scene=new Scene(homePage);
             

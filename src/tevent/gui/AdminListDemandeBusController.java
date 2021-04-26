@@ -30,6 +30,7 @@ import javafx.stage.Stage;
 import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import tevent.entities.DemandeBus;
+import tevent.entities.Utilisateur;
 import tevent.services.DemandeBusServices;
 import static tevent.services.DemandeBusServices.SendMail;
 import tevent.services.DemandeChauffeurServices;
@@ -95,7 +96,12 @@ public class AdminListDemandeBusController implements Initializable {
     private Button refreshbtn;
     @FXML
     private Button retourbtn;
+    private Utilisateur user;
 
+    public void setUser(Utilisateur u) {
+        user = u;
+
+    }
     /**
      * Initializes the controller class.
      */
@@ -217,7 +223,10 @@ accepter.setVisible(false);
     @FXML
     private void retour(ActionEvent event) {
         try {
-            Parent homePage = FXMLLoader.load(getClass().getResource("Home.fxml"));
+               FXMLLoader loader = new FXMLLoader();
+            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
+             HomeController dc = loader.getController();
+//               dc.setUser(user);
             
             Scene homePage_scene=new Scene(homePage);
             
