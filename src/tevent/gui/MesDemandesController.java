@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+<<<<<<< HEAD
 
 package tevent.gui;
 
@@ -29,10 +30,33 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.File;
 
+=======
+package tevent.gui;
+
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.Initializable;
+import tevent.entities.DemandeBus;
+import tevent.entities.DemandeChauffeur;
+import tevent.entities.DemandeMateriel;
+import tevent.services.DemandeBusServices;
+import tevent.services.DemandeChauffeurServices;
+import tevent.services.DemandeMaterielServices;
+import tevent.tools.DataSource;
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
 
 /**
  * FXML Controller class
  *
+<<<<<<< HEAD
  * @author hanto
  */
 public class MesDemandesController implements Initializable {
@@ -43,12 +67,24 @@ public class MesDemandesController implements Initializable {
     private ImageView image;
 
     private Utilisateur user;
+=======
+ * @author DELL
+ */
+public class MesDemandesController implements Initializable {
+
+    private Connection cnx = DataSource.getInstance().getCnx();
+    DemandeBusServices dbs = new DemandeBusServices();
+    DemandeChauffeurServices dcs = new DemandeChauffeurServices();
+    DemandeMaterielServices dms = new DemandeMaterielServices();
+
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+<<<<<<< HEAD
     }    
     @FXML
     private void profile(MouseEvent event) throws IOException {
@@ -139,4 +175,27 @@ public class MesDemandesController implements Initializable {
     }
 
 
+=======
+        ObservableList<DemandeBus> list = dbs.getDemandeByUser(1);
+        ObservableList<DemandeChauffeur> list1 = dcs.getDemandeByUser(1);
+        ObservableList<DemandeMateriel> list2 = dms.getDemandeByUser(1);
+        List<String> EtatBus = new ArrayList<>();
+        for (DemandeBus db : list) {
+            System.out.println(db.getEtat());
+
+        }
+        List<String> EtatChauffeur = new ArrayList<>();
+        for (DemandeChauffeur dc: list1) {
+            System.out.println(dc.getEtat());
+
+        }
+        List<String> EtatMateriel = new ArrayList<>();
+        for (DemandeMateriel dm : list2) {
+            System.out.println(dm.getEtat());
+
+        }
+
+    }
+
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
 }

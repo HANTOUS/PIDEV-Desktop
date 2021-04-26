@@ -3,32 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tevent.gui.materiel;
+package tevent.gui.chauffBusEvent;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.*;
-import javafx.stage.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 /**
  *
  * @author al199
  */
-public class MaterielFXMain extends Application {
+public class chauffBusEventFXMain extends Application {
     
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ClientSideMateriel.fxml"));
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("chauffBusEventFXML.fxml"));
         
         Scene scene = new Scene(root);
         
-<<<<<<< HEAD
-        primaryStage.setTitle("Hello World!");
-=======
-        primaryStage.setTitle("Materiel");
->>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
+        primaryStage.setTitle("Gestion Chauff Bus Event");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #4e73df;" stylesheets="@../AffichageUsers.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.chauffBusEvent.ChauffBusEventFXMLController">
+    <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="42.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Logo-Off.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tableListMaterielId" layoutY="388.0" prefHeight="312.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="388.0">
+        <columns>
+          <TableColumn fx:id="col_table_idUser" prefWidth="75.0" text="Id Chauff" />
+            <TableColumn fx:id="col_table_idBus" prefWidth="116.00003051757812" text="Id Bus" />
+          <TableColumn fx:id="col_table_idEvent" prefWidth="96.0" text="Id Event" />
+            <TableColumn fx:id="col_table_hdep" prefWidth="147.0" text="Heure Départ" />
+            <TableColumn fx:id="col_table_harr" prefWidth="143.0" text="Heure Arrivé" />
+            <TableColumn fx:id="col_table_vdep" prefWidth="127.0" text="Ville Départ" />
+            <TableColumn fx:id="col_table_varr" prefWidth="128.0" text="Ville Arrivé" />
+        </columns>
+      </TableView>
+      <Accordion layoutX="85.0" layoutY="-86.0" />
+      <TextField fx:id="lbIdUser" layoutX="388.0" layoutY="41.0" />
+      <Button fx:id="btn_add" layoutX="560.0" layoutY="320.0" mnemonicParsing="false" onAction="#ajout" styleClass="btn" text="Ajouter" />
+      <Button fx:id="btn_update" layoutX="698.0" layoutY="320.0" mnemonicParsing="false" onAction="#update" styleClass="btn" text="Modifier" />
+      <Button fx:id="btn_delete" layoutX="849.0" layoutY="320.0" mnemonicParsing="false" onAction="#delete" styleClass="btn" text="Supprimer" />
+      <TextField fx:id="lbIdBus" layoutX="388.0" layoutY="108.0" />
+      <TextField fx:id="lbHeureDep" layoutX="893.0" layoutY="41.0" />
+      <Label layoutX="288.0" layoutY="46.0" text="Id Chauffeur :" />
+      <Label layoutX="288.0" layoutY="113.0" text="Id Bus :" />
+      <Label layoutX="287.0" layoutY="181.0" text="id Event :" />
+      <Label layoutX="775.0" layoutY="46.0" text="Heure Départ :" />
+      <Label layoutX="775.0" layoutY="113.0" text="Heure Arrivé :" />
+      <Button fx:id="btn_clear" layoutX="1127.0" layoutY="251.0" mnemonicParsing="false" onAction="#clear" text="Clear" />
+      <Label layoutX="774.0" layoutY="181.0" text="Ville Départ :" />
+      <TextField fx:id="lbIdEvent" layoutX="388.0" layoutY="176.0" />
+      <TextField fx:id="lbHeureArr" layoutX="893.0" layoutY="108.0" />
+      <Label layoutX="42.0" layoutY="282.0" prefHeight="53.0" prefWidth="272.0" text="Gestion Chauff Bus Event">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnretour" layoutX="42.0" layoutY="26.0" mnemonicParsing="false" onAction="#retour" style="-fx-background-color: #fd5056;" text="Retour" textFill="WHITE" />
+      <Label fx:id="lbUser" layoutX="1181.0" layoutY="16.0" stylesheets="@../AffichageUsers.css" text="Label" />
+      <TextField fx:id="lbVilleDep" layoutX="893.0" layoutY="176.0" />
+      <TextField fx:id="lbVilleArr" layoutX="893.0" layoutY="236.0" />
+      <Label layoutX="774.0" layoutY="241.0" text="Ville Arrivé :" />
+   </children>
+</AnchorPane>

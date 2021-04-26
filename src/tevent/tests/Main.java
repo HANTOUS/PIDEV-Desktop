@@ -53,9 +53,15 @@ import tevent.services.DemandeBusServices;
 //=======
 
 
+<<<<<<< HEAD
 public class Main {
     
     /*
+=======
+public class Main extends Application {
+    
+    
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
     public void start(Stage stage) throws Exception {
          FrontFestivalController F = new FrontFestivalController();
       Parent root = FXMLLoader.load(getClass().getResource("/tevent/gui/CrudSponsor.fxml"));
@@ -65,7 +71,11 @@ public class Main {
         stage.setScene(scene);
         stage.show();
     }
+<<<<<<< HEAD
 */
+=======
+
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
 
     public static void main(String[] args) throws SQLException, Exception {
         
@@ -98,6 +108,7 @@ public class Main {
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -117,6 +128,14 @@ public class Main {
         System.out.println("-----------------------------------------------------------------------------------------");
 /*
 =======
+=======
+
+
+
+       /* Utilisateur user1 = new Utilisateur(8, "Bellalouna", "Tarek", "tarek.bellalounkka@esprit.tn", "123456", "12345679", null, Date.valueOf("1998-12-04"), null, null);
+>>>>>>> gestionreclamationetfeedback
+        UtilisateurServices us = new UtilisateurServices();
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
       
         launch(args);  /*
         us.ajouterUtilisateur(user1);
@@ -124,7 +143,10 @@ public class Main {
    String message="Vous êtes prié de bien vouloir vous présenter à l'agence pour l'évenement du  qui debute le et qui prendra fin le  pour la signature de la location du bus";
 
 <<<<<<< HEAD (80eb306) - update master
+<<<<<<< HEAD
 >>>>>>> 49b744841f0456083378f395370d745b6b57670c
+=======
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
         //us.modifierUtilisateur(user);
         //us.supprimerUtilisateur(9);
         List<Utilisateur> users = us.afficherToutUtilisateur();
@@ -143,6 +165,7 @@ public class Main {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 <<<<<<< HEAD
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
         System.out.println("-----------------------------------------------------------------------------------------");
         Utilisateur u = us.afficherUtilisateur(3);
@@ -172,6 +195,8 @@ public class Main {
         for (Chauffeur chauf : chauffeurs) {
             System.out.println(chauf);
 =======
+=======
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
 
        //dcs.updateDemandeChauffeur(new DemandeChauffeur(1,11128163,LocalDate.of(2020, 1, 8),LocalDate.of(2021, 1, 8),"encours"), 2);
        System.out.println(dcs.advancedSearchDemandeChauffeur(0,LocalDate.of(2030,11,19)));
@@ -179,7 +204,10 @@ public class Main {
 
 =======
 >>>>>>> GestionDemandes1 (cd1ab00) - version 1.2
+<<<<<<< HEAD
 >>>>>>> 49b744841f0456083378f395370d745b6b57670c
+=======
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
         }
 
 >>>>>>> 1ae0156bd712d7385958fff9597e83ec433dfdeb

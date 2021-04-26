@@ -5,12 +5,18 @@
  */
 package tevent.interfaces;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
 import java.sql.SQLException;
 import javafx.collections.ObservableList;
 import tevent.entities.Sponsor;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
 
 /**
  *

@@ -33,10 +33,13 @@ public class SecurityServices {
             ps.setString(1, user.getNom());
             ps.setString(2, user.getPrenom());
             ps.setString(3, user.getEmail());
+<<<<<<< HEAD
 
            // String generatedSecuredPasswordHash = BCrypt.hashpw( user.getPassword(), BCrypt.gensalt(12));
             ps.setString(4,user.getPassword());
 /*
+=======
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
             String generatedSecuredPasswordHash = "";//BCrypt.hashpw( user.getPassword(), BCrypt.gensalt(12));
             ps.setString(4,generatedSecuredPasswordHash);
 */

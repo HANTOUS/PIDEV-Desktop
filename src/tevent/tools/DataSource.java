@@ -17,7 +17,7 @@ public class DataSource {
      
     public String url="jdbc:mysql://localhost:3306/teventdb1";
     public String user="root";
-    public String pwd="";
+    public String pwd="root";
     private Connection cnx;
     public static DataSource ct;
     
