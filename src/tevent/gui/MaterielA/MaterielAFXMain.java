@@ -27,7 +27,7 @@ public class MaterielAFXMain extends Application {
         
         Scene scene = new Scene(root);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Gestion Materiel");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
