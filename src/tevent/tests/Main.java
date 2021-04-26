@@ -17,7 +17,19 @@ import tevent.entities.Chauffeur;
 import tevent.entities.DemandeBus;
 import tevent.entities.DemandeChauffeur;
 import tevent.entities.DemandeMateriel;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import tevent.entities.Bus;
+import tevent.entities.ChauffBusEvent;
+import tevent.entities.Chauffeur;
+import tevent.gui.FrontFestivalController;
 import tevent.services.ChauffeurServices;
+
+import tevent.services.SecurityServices;
+
 import tevent.services.UtilisateurServices;
 import tevent.services.DemandeMaterielServices;
 import tevent.services.DemandeChauffeurServices;
@@ -27,10 +39,45 @@ import tevent.services.DemandeBusServices;
  *
  * @author hanto
  */
-public class Main {
+//<<<<<<< HEAD
+//public class Main {
+//    public static void main(String[] args) throws SQLException {
+//   String message="Vous êtes prié de bien vouloir vous présenter à l'agence pour l'évenement du  qui debute le et qui prendra fin le  pour la signature de la location du bus";
+//
+//=======
+
+
+public class Main extends Application {
+    
+    
+    public void start(Stage stage) throws Exception {
+         FrontFestivalController F = new FrontFestivalController();
+      Parent root = FXMLLoader.load(getClass().getResource("/tevent/gui/CrudSponsor.fxml"));
+       Scene scene = new Scene(root);
+       //Scene scene = new Scene(F.page());
+        
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
     public static void main(String[] args) throws SQLException {
+        Utilisateur user1 = new Utilisateur(10, "Bellalouna", "Tarek", "tarek.bellalounkka@esprit.tn", "123456", "12345689", null, Date.valueOf("1998-12-04"), null, null);
+        UtilisateurServices us = new UtilisateurServices();
+      
+        launch(args);  /*
+        us.ajouterUtilisateur(user1);
+        System.out.println("-----------------------------------------------------------------------------------------");
    String message="Vous êtes prié de bien vouloir vous présenter à l'agence pour l'évenement du  qui debute le et qui prendra fin le  pour la signature de la location du bus";
 
+<<<<<<< HEAD (80eb306) - update master
+        //us.modifierUtilisateur(user);
+        //us.supprimerUtilisateur(9);
+        List<Utilisateur> users = us.afficherToutUtilisateur();
+        for (Utilisateur user : users) {
+            System.out.println(user);
+=======
+>>>>>>> 1ae0156bd712d7385958fff9597e83ec433dfdeb
        DemandeBusServices dbs = new DemandeBusServices();
        DemandeChauffeurServices dcs = new DemandeChauffeurServices();
        DemandeMaterielServices dms = new DemandeMaterielServices();
@@ -40,12 +87,18 @@ public class Main {
             System.out.println("tarek");
         } catch (MessagingException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+<<<<<<< HEAD
         }
 
        //dcs.updateDemandeChauffeur(new DemandeChauffeur(1,11128163,LocalDate.of(2020, 1, 8),LocalDate.of(2021, 1, 8),"encours"), 2);
        System.out.println(dcs.advancedSearchDemandeChauffeur(0,LocalDate.of(2030,11,19)));
        //System.out.println(dms.MaterielName());
 
+=======
+>>>>>>> GestionDemandes1 (cd1ab00) - version 1.2
+        }
+
+>>>>>>> 1ae0156bd712d7385958fff9597e83ec433dfdeb
        /* List<DemandeBus> db = dbs.readDemandeBus();
         for (DemandeBus d : db) {
             System.out.println(d);
@@ -65,6 +118,7 @@ public class Main {
      //dms.AccepterDemande(20,1);
        //dbs.RefuserDemande(11);
         //Chauffeur c = new Chauffeur(12345679,Date.valueOf("2021-04-08"),Date.valueOf("2017-11-16"),Date.valueOf("2026-11-15"),8);
+
         
         //ChauffeurServices cc = new ChauffeurServices();
                 //dcs.SMS();
@@ -73,3 +127,27 @@ public class Main {
       //  cc.modifierChauffeur(c);
     }
 }
+
+       
+
+     /*  
+        Chauffeur c = new Chauffeur(12345679,Date.valueOf("2021-04-08"),Date.valueOf("2017-11-16"),Date.valueOf("2026-11-15"),8);
+        
+        ChauffeurServices cc = new ChauffeurServices();
+>>>>>>> 1ae0156bd712d7385958fff9597e83ec433dfdeb
+        
+        //ChauffeurServices cc = new ChauffeurServices();
+                //dcs.SMS();
+
+        //cc.ajouterChauffeur(c);
+<<<<<<< HEAD
+      //  cc.modifierChauffeur(c);
+    }
+}
+=======
+cc.modifierChauffeur(c);
+
+*/
+   
+      
+

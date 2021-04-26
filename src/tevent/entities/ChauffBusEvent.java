@@ -57,6 +57,7 @@ public class ChauffBusEvent {
     public void setId(int id) {
         this.id = id;
     }
+
     
     public int getIdUser() {
         return idUser;

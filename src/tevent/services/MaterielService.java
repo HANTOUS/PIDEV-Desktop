@@ -38,13 +38,28 @@ public class MaterielService {
     }
     
     public  void addMateriel (Materiel m){
-    String req ="INSERT INTO materiel (label, stock, qte_reserve, prix, dispo) VALUES ('"+m.getLabel()+"',"+m.getStock()+","+m.getQte_reserve()+","+m.getPrix()+","+m.getDispo()+") ";
-        try {
-            Statement st= cnx.createStatement() ;
-            st.executeUpdate(req);
-            System.out.println("Materiel Ajoutée !");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+//<<<<<<< HEAD
+//    String req ="INSERT INTO materiel (label, stock, qte_reserve, prix, dispo) VALUES ('"+m.getLabel()+"',"+m.getStock()+","+m.getQte_reserve()+","+m.getPrix()+","+m.getDispo()+") ";
+//        try {
+//            Statement st= cnx.createStatement() ;
+//            st.executeUpdate(req);
+//            System.out.println("Materiel Ajoutée !");
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//=======
+        if(m.getStock()<1 || m.getQte_reserve()<0 || m.getPrix()<1){
+                System.out.println("Vérifier vos donnés svp !");
+            }
+        else{
+            String req ="INSERT INTO materiel (label, stock, qte_reserve, prix, dispo) VALUES ('"+m.getLabel()+"',"+m.getStock()+","+m.getQte_reserve()+","+m.getPrix()+","+m.getDispo()+") ";
+                try {
+                    Statement st= cnx.createStatement() ;
+                    st.executeUpdate(req);
+                    System.out.println("Materiel Ajoutée !");
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+
         }
     }
     

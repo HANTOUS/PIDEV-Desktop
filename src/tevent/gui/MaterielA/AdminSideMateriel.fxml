@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #302b63;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.MaterielA.AdminSideMaterielController">
+    <children>
+      <AnchorPane layoutX="7.0" layoutY="7.0" prefHeight="700.0" prefWidth="250.0" style="-fx-background-color: #090031;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="50.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Logo-Off.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tableListMaterielId" layoutX="250.0" layoutY="388.0" prefHeight="312.0" prefWidth="1050.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="388.0">
+        <columns>
+          <TableColumn fx:id="col_table_id" prefWidth="75.0" text="Id" />
+            <TableColumn fx:id="col_table_label_id" prefWidth="116.00003051757812" text="Label" />
+          <TableColumn fx:id="col_table_stock_id" prefWidth="96.0" text="Stock" />
+            <TableColumn fx:id="col_table_qte_reserve_id" prefWidth="147.0" text="Qte Reserve" />
+            <TableColumn fx:id="col_table_prix_id" prefWidth="143.0" text="Prix" />
+            <TableColumn fx:id="col_table_dispo_id" prefWidth="75.0" text="Dispo" />
+        </columns>
+      </TableView>
+      <Accordion layoutX="85.0" layoutY="-86.0" />
+      <TextField fx:id="lb_id" layoutX="373.0" layoutY="41.0" />
+      <Button fx:id="btn_add" layoutX="560.0" layoutY="293.0" mnemonicParsing="false" onAction="#ajoutMateriel" text="Ajouter" />
+      <Button fx:id="btn_update" layoutX="698.0" layoutY="293.0" mnemonicParsing="false" onAction="#updateMateriel" text="Modifier" />
+      <Button fx:id="btn_delete" layoutX="849.0" layoutY="293.0" mnemonicParsing="false" onAction="#deleteMateriel" text="Supprimer" />
+      <TextField fx:id="lb_label" layoutX="373.0" layoutY="108.0" />
+      <TextField fx:id="lb_qte_reserve" layoutX="893.0" layoutY="41.0" />
+      <Label layoutX="288.0" layoutY="46.0" text="Id :" textFill="#fd5056" />
+      <Label layoutX="288.0" layoutY="113.0" text="Label :" textFill="#fd5056" />
+      <Label layoutX="287.0" layoutY="181.0" text="Stock :" textFill="#fd5056" />
+      <Label layoutX="775.0" layoutY="46.0" text="Qte Reserve :" textFill="#fd5056" />
+      <Label layoutX="775.0" layoutY="113.0" text="Prix :" textFill="#fd5056" />
+      <Button fx:id="btn_clear" layoutX="1127.0" layoutY="186.0" mnemonicParsing="false" onAction="#clear" text="Clear" />
+      <Label layoutX="774.0" layoutY="181.0" text="Dispo :" textFill="#fd5056" />
+      <TextField fx:id="lb_stock" layoutX="373.0" layoutY="176.0" />
+      <TextField fx:id="lb_prix" layoutX="893.0" layoutY="108.0" />
+      <ComboBox fx:id="cb_dispo" layoutX="893.0" layoutY="176.0" prefHeight="31.0" prefWidth="187.0" />
+   </children>
+</AnchorPane>
