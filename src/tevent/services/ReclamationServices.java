@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import tevent.entities.Jmu;
 import tevent.entities.Reclamation;
 import tevent.tools.DataSource;
 
@@ -27,12 +28,14 @@ import tevent.tools.DataSource;
 public class ReclamationServices {
     private Connection cnx = DataSource.getInstance().getCnx();
     
-    public void addreclamation(Reclamation r){
+    public void addreclamation(Reclamation r) throws Exception{
         String req = "INSERT INTO reclamation (user_id,sujet, contenu, etat) VALUES ('"+r.getId_user()+"','"+r.getSujet()+"','"+r.getContenu()+"','"+r.getEtat()+"')";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Reclamation ajoutée !");
+            Jmu.sendMail("mohamedsalim.jemai@esprit.tn", "reclamation", "bonjour votre réclamation a été bien reçue");
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -152,13 +155,15 @@ public class ReclamationServices {
        return list1; 
     }
     
-    public void traiteReclamation(int id){
+    public void traiteReclamation(int id) throws Exception{
         String req = "UPDATE reclamation SET etat= ? WHERE id = ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1,"traité");
            ps.setInt(2, id);
             ps.executeUpdate();
+            Jmu.sendMail("mohamedsalim.jemai@esprit.tn", "reclamation", "Bonjour votre réclamation a été bien traité");
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

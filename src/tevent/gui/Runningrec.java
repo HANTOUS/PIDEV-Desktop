@@ -28,7 +28,7 @@ public class Runningrec extends Application {
     public void start(Stage primaryStage) {
        
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("PasserReclamation.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("AjouterFeedback.fxml"));
             
             Scene scene = new Scene(root);
             

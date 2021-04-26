@@ -81,7 +81,7 @@ public class ListeReclamationController implements Initializable {
     }
 
     @FXML
-    private void traitr(ActionEvent event) {
+    private void traitr(ActionEvent event) throws Exception {
                 ObservableList<Reclamation> list1 = FXCollections.observableArrayList();
                 
          rs.traiteReclamation(tabler.getSelectionModel().getSelectedItem().getId());

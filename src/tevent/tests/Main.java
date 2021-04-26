@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 import tevent.entities.Chauffeur;
 import tevent.entities.Feedback;
+import tevent.entities.Jmu;
 import tevent.entities.Reclamation;
 import tevent.services.ChauffeurServices;
 import tevent.services.FeedbackServices;
@@ -23,7 +24,7 @@ import tevent.services.UtilisateurServices;
  */
 public class Main {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, Exception {
         
         ReclamationServices rs = new ReclamationServices();
         

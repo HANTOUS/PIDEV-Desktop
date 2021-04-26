@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -46,7 +47,7 @@ public class PasserReclamationController implements Initializable {
     }    
 
     @FXML
-    private void saveReclamation(ActionEvent event) {
+    private void saveReclamation(ActionEvent event) throws Exception {
         
         
         String sujet = rcsujet.getText();
@@ -66,6 +67,41 @@ public class PasserReclamationController implements Initializable {
             System.out.println(ex.getMessage());
         }
         
+    }
+    
+    private void showDialog(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText("Attention");
+        alert.setContentText(message);
+        alert.show();
+    }
+    //Remplissage des champs obligatoire
+
+    private boolean isValidate() {
+        boolean isValid = true;
+        String message = "";
+
+        //System.out.println("gui.EventController.ajouter()" + comboType.getValue());
+        if (rcsujet.getText().isEmpty()) {
+            isValid = false;
+            message = "Veuillez entrer un sujet a votre reclamation !";
+        
+        } else if (rccontenu.getText().isEmpty()) {
+            isValid = false;
+            message = "Veuillez ajouter un contenu a votre reclamation ! ";
+
+        } 
+        //else if (comboEtat.getValue() == null) {
+//            isValid = false;
+//            message = "Veuillez selectionnez type etat";
+//        }
+
+        if (!isValid) {
+            showDialog(message);
+        }
+
+        return isValid;
+
     }
     
     
