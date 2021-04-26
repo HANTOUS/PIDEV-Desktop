@@ -45,7 +45,7 @@ public class UtilisateurServices implements IserviceUtilisateur {
     }
 
     public String modifierUtilisateur(Utilisateur user) {
-        String req = "update utilisateur set nom=?, prenom= ? , email= ?, cin= ?, date_naissance= ? where id = ?";
+        String req = "update utilisateur set nom=?, prenom= ? , email= ?, cin= ?, date_naissance= ?,image=? where id = ?";
 
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
@@ -55,7 +55,8 @@ public class UtilisateurServices implements IserviceUtilisateur {
             ps.setString(3, user.getEmail());
             ps.setString(4, user.getCin());
             ps.setDate(5, (Date) user.getDateNaissance());
-            ps.setInt(6, user.getId());
+            ps.setString(6, user.getImage());
+            ps.setInt(7, user.getId());
             ps.executeUpdate();
             return "Utilisateur modifié avec succés";
         } catch (SQLException e) {
@@ -268,6 +269,34 @@ public class UtilisateurServices implements IserviceUtilisateur {
         return "Utilisateur n'existe pas";
     }
 
+    public Utilisateur getUserById(int id) {
+        try {
+            PreparedStatement st = cnx.prepareStatement("select * from utilisateur where id=?");
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            Utilisateur user = new Utilisateur();
+            if (rs.next()) {
+                user.setId(rs.getInt("id"));
+                user.setNom(rs.getString("nom"));
+                user.setPrenom(rs.getString("prenom"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setCin(rs.getString("cin"));
+                user.setDateNaissance((Date) rs.getDate("date_naissance"));
+                user.setRoles(rs.getString("roles"));
+                user.setActivation_token(rs.getString("activation_token"));
+                user.setReset_token(rs.getString("reset_token"));
+                user.setImage(rs.getString("image"));
+                return user;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+
+        return null;
+    }
+
     public Utilisateur getUserByMail(String email) {
         try {
             PreparedStatement st = cnx.prepareStatement("select * from utilisateur where email=?");
@@ -295,5 +324,41 @@ public class UtilisateurServices implements IserviceUtilisateur {
 
         return null;
     }
+
+    public String getCodebyId(int id) {
+        try {
+            PreparedStatement st = cnx.prepareStatement("select * from utilisateur where id=?");
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            //rs.beforeFirst();
+            if (rs.next()) {
+                return rs.getString("reset_token");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+        return "Utilisateur n'existe pas";
+
+    }
+
+    public String getActivationbyId(int id) {
+        try {
+            PreparedStatement st = cnx.prepareStatement("select * from utilisateur where id=?");
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            //rs.beforeFirst();
+            if (rs.next()) {
+                return rs.getString("activation_token");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        }
+        return "Utilisateur n'existe pas";
+
+    }
+
+
 
 }

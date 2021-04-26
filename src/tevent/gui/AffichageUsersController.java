@@ -36,6 +36,18 @@ import javafx.scene.layout.VBox;
 import java.time.LocalDate;
 import java.sql.Date;
 import javafx.scene.control.Label;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import tevent.services.SecurityServices;
+
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 
 /**
@@ -67,6 +79,8 @@ public class AffichageUsersController implements Initializable {
     private TableView<Utilisateur> UserTable;
     @FXML
     private Label lbUser;
+
+    private Utilisateur user;
 
     ObservableList<Utilisateur> usersL = FXCollections.observableArrayList();
 
@@ -110,6 +124,7 @@ public class AffichageUsersController implements Initializable {
 
                         FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
                         FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
+                        FontAwesomeIconView blockIcon = new FontAwesomeIconView(FontAwesomeIcon.BAN);
 
                         deleteIcon.setStyle(
                                 " -fx-cursor: hand ;"
@@ -120,6 +135,11 @@ public class AffichageUsersController implements Initializable {
                                 " -fx-cursor: hand ;"
                                 + "-glyph-size:28px;"
                                 + "-fx-fill:#00E676;"
+                        );
+                        blockIcon.setStyle(
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#cc3300;"
                         );
                         deleteIcon.setOnMouseClicked((MouseEvent event) -> {
                             Utilisateur user = UserTable.getSelectionModel().getSelectedItem();
@@ -153,14 +173,25 @@ public class AffichageUsersController implements Initializable {
                             stage.show();
                             
 
-                           
-
+                        });
+                        
+                        blockIcon.setOnMouseClicked((MouseEvent event) -> {
+                            Utilisateur user = UserTable.getSelectionModel().getSelectedItem();
+                            SecurityServices ss = new SecurityServices();
+                            ss.desactivation(user.getId());
+                            envoyerEmail(user);
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Erreur");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Utilisateur a étè banni");
+                            alert.showAndWait();
                         });
 
-                        HBox managebtn = new HBox(editIcon, deleteIcon);
+                        HBox managebtn = new HBox(editIcon, deleteIcon,blockIcon);
                         managebtn.setStyle("-fx-alignment:center");
                         HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
                         HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
+                        HBox.setMargin(blockIcon, new Insets(2, 3, 0, 2));
 
                         setGraphic(managebtn);
 
@@ -199,8 +230,9 @@ public class AffichageUsersController implements Initializable {
             stage.show();
     }
 
-    public void setUser(String nom,String prenom) {
-        lbUser.setText(nom+" "+prenom);
+    public void setUser(Utilisateur u) {
+        user = u;
+        lbUser.setText(u.getNom()+" "+u.getPrenom());
 
     }
 
@@ -214,5 +246,57 @@ public class AffichageUsersController implements Initializable {
             stage.initStyle(StageStyle.UTILITY);
             stage.show();
     }
+
+    @FXML
+    private void back(ActionEvent event) throws IOException {
+             FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("Dashboard.fxml"));
+                loader.load();
+                
+                DashboardController dc = loader.getController();
+                dc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
+    }
+    
+    public static void envoyerEmail(Utilisateur u)  {
+        SecurityServices us = new SecurityServices();
+         String username = "tevents98@gmail.com";
+         String password = "TEvents2021";
+        //Random r = new Random();
+        //String codem = UUID.randomUUID().toString();
+        
+        // Etape 1 : Création de la session
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable","true");
+        props.put("mail.smtp.host","smtp.gmail.com");
+        props.put("mail.smtp.port","587");
+        Session session = Session.getInstance(props,
+        new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(username, password);
+        }
+        });
+        try {
+        
+        // Etape 2 : Création de l'objet Message
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(u.getEmail()));
+        message.setSubject("Banne");
+        message.setText("Bonjour "+ u.getPrenom() +",  Vous avez ete banni par l'administrateur. veuillez copier le code ci-dessous pour activer: "+u.getActivation_token());
+        // Etape 3 : Envoyer le message
+        Transport.send(message);
+        //us.forgetPassword(u.getId(),codem);
+        System.out.println("Message_envoye");
+        } catch (MessagingException e) {
+        throw new RuntimeException(e);
+        } }
 
 }

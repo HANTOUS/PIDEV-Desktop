@@ -86,7 +86,7 @@ public class ModifierUserController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Alerte");
             alert.setHeaderText(null);
-            alert.setContentText("!!!  Vous devez entrer votre numéro telephonique !!!");
+            alert.setContentText("!!!  Vous devez entrer votre numéro de carte d'identité  !!!");
             alert.showAndWait();
         } else {
             Utilisateur u = new Utilisateur();

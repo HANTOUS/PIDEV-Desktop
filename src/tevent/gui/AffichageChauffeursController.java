@@ -204,17 +204,17 @@ public class AffichageChauffeursController implements Initializable {
     }
     @FXML
     private void getAddView(MouseEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("AjoutChauffeur.fxml"));
-            Scene scene = new Scene(parent);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UTILITY);
-            stage.show();
+               
+        Parent parent = FXMLLoader.load(getClass().getResource("AjoutUser.fxml"));
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UTILITY);
+        stage.show();
     }
 
-    public void setUser(String nom,String prenom) {
-        lbUser.setText(nom+" "+prenom);
-
+    public void setUser(String nom) {
+        lbUser.setText(nom);
     }
 
     @FXML

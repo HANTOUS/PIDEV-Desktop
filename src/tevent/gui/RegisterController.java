@@ -26,6 +26,14 @@ import tevent.entities.Utilisateur;
 import tevent.services.SecurityServices;
 import tevent.services.UtilisateurServices;
 
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 /**
  * FXML Controller class
  *
@@ -113,10 +121,12 @@ public class RegisterController implements Initializable {
             u.setCin(txtCin.getText());
             u.setDateNaissance(Date.valueOf(dateN.getValue()));
             //u.setPhoto(file.toURI().toString());
-            //u.setDateNaissance(Date.valueOf("1998-12-04"));
             SecurityServices sc = new SecurityServices();
             String res = sc.register(u);
             if(res.equals("Utilisateur ajouté avec succés")){
+                //sc.desactivation(u.getId());
+                UtilisateurServices uc = new UtilisateurServices();
+                envoyerEmail(uc.getUserByMail(u.getEmail()));
                 FXMLLoader loader = new FXMLLoader();
                 txtNom.getScene().getWindow().hide();
                 Stage prStage = new Stage();
@@ -150,5 +160,40 @@ public class RegisterController implements Initializable {
         prStage.setResizable(false);
         prStage.show();
     }
+    
+     public static void envoyerEmail(Utilisateur u)  {
+        SecurityServices us = new SecurityServices();
+         String username = "tevents98@gmail.com";
+         String password = "TEvents2021";
+        //Random r = new Random();
+        //String codem = UUID.randomUUID().toString();
+        
+        // Etape 1 : Création de la session
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable","true");
+        props.put("mail.smtp.host","smtp.gmail.com");
+        props.put("mail.smtp.port","587");
+        Session session = Session.getInstance(props,
+        new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(username, password);
+        }
+        });
+        try {
+        
+        // Etape 2 : Création de l'objet Message
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(u.getEmail()));
+        message.setSubject("Activation Compte");
+        message.setText("Bonjour "+ u.getPrenom() +",  Vous avez crée un compte dans notre site Tunisia Events. veuillez copier le code ci-dessous pour l'activer: "+u.getActivation_token());
+        // Etape 3 : Envoyer le message
+        Transport.send(message);
+        //us.forgetPassword(u.getId(),codem);
+        System.out.println("Message_envoye");
+        } catch (MessagingException e) {
+        throw new RuntimeException(e);
+        } }
 
 }
