@@ -79,9 +79,9 @@
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="ARROW_LEFT" size="25" stroke="#2e2ed7" text="" wrappingWidth="32.0" />
                </graphic>
-               <cursor>
+<!--               <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor>
+               </cursor>-->
             </Button>
          </children>
       </Pane>
@@ -102,17 +102,17 @@
          <graphic>
             <FontAwesomeIconView fill="#149e1e" glyphName="CHECK" size="40" stroke="#2e2ed7" />
          </graphic>
-         <cursor>
+<!--         <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor>
+         </cursor>-->
       </Button>
       <Button fx:id="refuser" layoutX="144.0" layoutY="411.0" mnemonicParsing="false" onAction="#refuserDemande" prefHeight="48.0" prefWidth="6.0" style="-fx-background-color: #4e73df;">
          <graphic>
             <FontAwesomeIconView fill="#ff0202" glyphName="TIMES" size="40" stroke="#2e2ed7" wrappingWidth="32.376953125" />
          </graphic>
-         <cursor>
+<!--         <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor>
+         </cursor>-->
       </Button>
       <Button layoutX="720.0" layoutY="400.0" mnemonicParsing="false" onAction="#supprimerDemande" prefHeight="38.0" prefWidth="41.0" style="-fx-background-color: #f2f3f5;" textFill="WHITE">
          <font>
@@ -121,9 +121,9 @@
          <graphic>
             <FontAwesomeIconView fill="RED" glyphName="TRASH" size="40" />
          </graphic>
-         <cursor>
+<!--         <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor>
+         </cursor>-->
       </Button>
       <Button layoutX="660.0" layoutY="405.0" mnemonicParsing="false" onAction="#selectDemande" prefHeight="28.0" prefWidth="16.0" style="-fx-background-color: #f2f3f5;" textFill="WHITE">
          <font>
@@ -132,25 +132,25 @@
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="MOUSE_POINTER" size="30" stroke="#2e2ed7" />
          </graphic>
-         <cursor>
+<!--         <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor>
+         </cursor>-->
       </Button>
       <Button layoutX="673.0" layoutY="34.0" mnemonicParsing="false" onAction="#rechercher" style="-fx-background-color: #f2f3f5;" textFill="#e4e4e4">
          <graphic>
             <FontAwesomeIconView fill="#4e73df" glyphName="SEARCH" size="40" stroke="#2e2ed7" text="" />
          </graphic>
-         <cursor>
+<!--         <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor>
+         </cursor>-->
       </Button>
       <Button fx:id="refreshbtn" layoutX="341.0" layoutY="34.0" mnemonicParsing="false" onAction="#Refresh" style="-fx-background-color: #f2f3f5;">
          <graphic>
             <FontAwesomeIconView fill="GREEN" glyphName="REFRESH" size="40" stroke="#0e0f0e" />
          </graphic>
-         <cursor>
+<!--         <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor>
+         </cursor>-->
       </Button>
    </children>
 </AnchorPane>
