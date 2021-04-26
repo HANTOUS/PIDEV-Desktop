@@ -37,7 +37,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import tevent.entities.DemandeMateriel;
-import tevent.entities.DemandeMateriel;
 import tevent.entities.Utilisateur;
 import tevent.services.DemandeMaterielServices;
 import tevent.tools.DataSource;
@@ -47,23 +46,22 @@ import tevent.tools.DataSource;
  *
  * @author DELL
  */
-public class ListdmdmaterielController implements Initializable {
+public class ListDemandeMaterielController implements Initializable {
 
     @FXML
     private TableView<DemandeMateriel> tableDemandeMateriel;
     @FXML
     private TableColumn<DemandeMateriel, Integer> colID;
     @FXML
-    private TableColumn<DemandeMateriel, Integer> colMateriel;
+    private TableColumn<DemandeMateriel,Integer> colMateriel;
     @FXML
-    private TableColumn<DemandeMateriel, Integer> colQuantite;
+    private TableColumn<DemandeMateriel, String> colQuantite;
     @FXML
     private TableColumn<DemandeMateriel, Date> colDateDebut;
     @FXML
     private TableColumn<DemandeMateriel, Date> colDateFin;
     @FXML
     private TableColumn<DemandeMateriel, String> colEtat;
-    private Connection cnx = DataSource.getInstance().getCnx();
     @FXML
     private TextField quantite;
     @FXML
@@ -73,43 +71,42 @@ public class ListdmdmaterielController implements Initializable {
     @FXML
     private DatePicker datefin;
     @FXML
+    private Button confirmer;
+    @FXML
     private Button annuler;
     @FXML
-    private Button confirmer;
-    
-    private Utilisateur user;
-
-    public void setUser(Utilisateur u) {
-        user = u;
-
-    }
-    
-    /**
-     * Initializes the controller class.
-     */
-    int id=0 ;
-        DemandeMaterielServices dms= new DemandeMaterielServices();
+    private Button retourbtn;
     @FXML
     private TextField etatkey;
     @FXML
     private TextField qtekey;
     @FXML
     private Button btnpdf;
+    private Connection cnx = DataSource.getInstance().getCnx();
+            DemandeMaterielServices dms= new DemandeMaterielServices();
+            int id=0;
     @FXML
-    private Button retourbtn;
-    @FXML
-    private Button tarek;
+    private Button loadd;
+    private Utilisateur user;
 
-        
+    public void setUser(Utilisateur u) {
+        user = u;
 
+    }
+    /**
+     * Initializes the controller class.
+     */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {       
-        ObservableList<String> Materiel = FXCollections.observableArrayList(dms.MaterielName());
+    public void initialize(URL url, ResourceBundle rb) {
+    btnpdf.setVisible(false);
+ObservableList<String> Materiel = FXCollections.observableArrayList(dms.MaterielName());
                materiel.setItems(Materiel);
         
-        
-        ObservableList <DemandeMateriel> DemandeMaterielList = (ObservableList<DemandeMateriel>) dms.readDemandeMateriel();
-                List<String> label = new ArrayList<>();
+        System.out.println("tarek");
+        ObservableList <DemandeMateriel> DemandeMaterielList = (ObservableList<DemandeMateriel>) dms.getDemandeByUser(1);
+                System.out.println("tarek1");
+      
+        List<String> label = new ArrayList<>();
                String req ="select label from materiel where id=?";
                                for (DemandeMateriel d : DemandeMaterielList) {
 System.out.println(d.getMateriel_id());
@@ -122,12 +119,11 @@ System.out.println(d.getMateriel_id());
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+                   System.out.println("erreur");
         }
                
             
         }
-                               
-         btnpdf.setVisible(false);
          confirmer.setVisible(false);
         annuler.setVisible(false);
          colID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -135,6 +131,7 @@ System.out.println(d.getMateriel_id());
 
          colMateriel.setCellValueFactory(new PropertyValueFactory<>("materiel_id"));
                colQuantite.setCellValueFactory(new PropertyValueFactory<>("qte"));
+
                colDateDebut.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
                colDateFin.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
                colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
@@ -143,9 +140,13 @@ System.out.println(d.getMateriel_id());
        
                 
                                System.out.println(label);
+                                       System.out.println("tarek3");
+
                 tableDemandeMateriel.setItems(DemandeMaterielList);
-                tableDemandeMateriel.getColumns().addAll(colID,colMateriel,colQuantite,colDateDebut,colDateFin,colEtat) ;
-                   }    
+                        System.out.println("tarek4");
+
+    
+    }    
 
     @FXML
     private void annulerUpdate(ActionEvent event) {
@@ -196,7 +197,7 @@ System.out.println(d.getMateriel_id());
             annuler.setDisable(false);
             id = ((tableDemandeMateriel.getSelectionModel().getSelectedItem()).getId());
 
-            quantite.setText(String.valueOf((tableDemandeMateriel.getSelectionModel().getSelectedItem()).getQte()));
+            quantite.setText(""+String.valueOf((tableDemandeMateriel.getSelectionModel().getSelectedItem()).getQte()));
             materiel.setValue(String.valueOf((label)));
             datedebut.setValue(((tableDemandeMateriel.getSelectionModel().getSelectedItem()).getDate_debut()));
             datefin.setValue(((tableDemandeMateriel.getSelectionModel().getSelectedItem()).getDate_fin()));
@@ -328,10 +329,11 @@ System.out.println(d.getMateriel_id());
     @FXML
     private void retour(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader();
+              FXMLLoader loader = new FXMLLoader();
             Parent homePage = loader.load(getClass().getResource("Home.fxml"));
              HomeController dc = loader.getController();
 //               dc.setUser(user);
+            
             Scene homePage_scene=new Scene(homePage);
             
             Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -345,5 +347,54 @@ System.out.println(d.getMateriel_id());
              System.out.println(ex.getMessage());
         }
     }
- 
+
+    @FXML
+    private void loading(ActionEvent event) {
+         ObservableList<String> Materiel = FXCollections.observableArrayList(dms.MaterielName());
+               materiel.setItems(Materiel);
+        
+        System.out.println("tarek");
+        ObservableList <DemandeMateriel> DemandeMaterielList = (ObservableList<DemandeMateriel>) dms.getDemandeByUser(1);
+                System.out.println("tarek1");
+      
+        List<String> label = new ArrayList<>();
+               String req ="select label from materiel where id=?";
+                               for (DemandeMateriel d : DemandeMaterielList) {
+System.out.println(d.getMateriel_id());
+               try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1, d.getMateriel_id());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                label.add(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+                   System.out.println("erreur");
+        }
+               
+            
+        }
+         confirmer.setVisible(false);
+        annuler.setVisible(false);
+         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
+               
+
+         colMateriel.setCellValueFactory(new PropertyValueFactory<>("materiel_id"));
+               colQuantite.setCellValueFactory(new PropertyValueFactory<>("qte"));
+
+               colDateDebut.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+               colDateFin.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
+               colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
+               
+               
+       
+                
+                               System.out.println(label);
+                                       System.out.println("tarek3");
+
+                tableDemandeMateriel.setItems(DemandeMaterielList);
+                        System.out.println("tarek4");
+
+    }
 }

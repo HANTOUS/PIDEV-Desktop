@@ -10,6 +10,13 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
+import tevent.entities.Chauffeur;
+import tevent.entities.DemandeBus;
+import tevent.entities.DemandeChauffeur;
+import tevent.entities.DemandeMateriel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,6 +39,12 @@ import tevent.services.DemandeBusServices;
  *
  * @author hanto
  */
+//<<<<<<< HEAD
+//public class Main {
+//    public static void main(String[] args) throws SQLException {
+//   String message="Vous êtes prié de bien vouloir vous présenter à l'agence pour l'évenement du  qui debute le et qui prendra fin le  pour la signature de la location du bus";
+//
+//=======
 
 
 public class Main extends Application {
@@ -64,6 +77,7 @@ public class Main extends Application {
         for (Utilisateur user : users) {
             System.out.println(user);
 =======
+>>>>>>> 1ae0156bd712d7385958fff9597e83ec433dfdeb
        DemandeBusServices dbs = new DemandeBusServices();
        DemandeChauffeurServices dcs = new DemandeChauffeurServices();
        DemandeMaterielServices dms = new DemandeMaterielServices();
@@ -73,9 +87,18 @@ public class Main extends Application {
             System.out.println("tarek");
         } catch (MessagingException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+<<<<<<< HEAD
+        }
+
+       //dcs.updateDemandeChauffeur(new DemandeChauffeur(1,11128163,LocalDate.of(2020, 1, 8),LocalDate.of(2021, 1, 8),"encours"), 2);
+       System.out.println(dcs.advancedSearchDemandeChauffeur(0,LocalDate.of(2030,11,19)));
+       //System.out.println(dms.MaterielName());
+
+=======
 >>>>>>> GestionDemandes1 (cd1ab00) - version 1.2
         }
 
+>>>>>>> 1ae0156bd712d7385958fff9597e83ec433dfdeb
        /* List<DemandeBus> db = dbs.readDemandeBus();
         for (DemandeBus d : db) {
             System.out.println(d);
@@ -95,6 +118,7 @@ public class Main extends Application {
      //dms.AccepterDemande(20,1);
        //dbs.RefuserDemande(11);
         //Chauffeur c = new Chauffeur(12345679,Date.valueOf("2021-04-08"),Date.valueOf("2017-11-16"),Date.valueOf("2026-11-15"),8);
+
         
         //ChauffeurServices cc = new ChauffeurServices();
                 //dcs.SMS();
@@ -110,8 +134,17 @@ public class Main extends Application {
         Chauffeur c = new Chauffeur(12345679,Date.valueOf("2021-04-08"),Date.valueOf("2017-11-16"),Date.valueOf("2026-11-15"),8);
         
         ChauffeurServices cc = new ChauffeurServices();
+>>>>>>> 1ae0156bd712d7385958fff9597e83ec433dfdeb
         
+        //ChauffeurServices cc = new ChauffeurServices();
+                //dcs.SMS();
+
         //cc.ajouterChauffeur(c);
+<<<<<<< HEAD
+      //  cc.modifierChauffeur(c);
+    }
+}
+=======
 cc.modifierChauffeur(c);
 
 */
