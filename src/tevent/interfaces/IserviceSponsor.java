@@ -3,12 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tevent.services;
+package tevent.interfaces;
+
+import java.sql.SQLException;
+import javafx.collections.ObservableList;
+import tevent.entities.Sponsor;
+
 
 /**
  *
  * @author skand
  */
 public interface IserviceSponsor {
+    
+    public void AjouterSponsor(Sponsor S);
+    public ObservableList <Sponsor > AfficherSponsor()throws SQLException;
+    public void SupprimerSponsor(int id );
+    public void ModifierSponsor(Sponsor  S);
     
 }
