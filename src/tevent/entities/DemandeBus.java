@@ -5,6 +5,7 @@
  */
 package tevent.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -21,14 +22,14 @@ public class DemandeBus {
     private String ville_arrivee;
     private String heure_depart;
     private String heure_arrivee;
-    private String etat;
-    private Date jour_location;
+    private String etat="encours";
+    private LocalDate jour_location;
 
     public DemandeBus() {
     }
 
     //constructeur pour ajouter dans la base de données sans id 
-    public DemandeBus(int utilisateur_id, int nb_participant, String ville_depart, String ville_arrivee, String heure_depart, String heure_arrivee, String etat, Date jour_location) {
+    public DemandeBus(int utilisateur_id, int nb_participant, String ville_depart, String ville_arrivee, String heure_depart, String heure_arrivee, String etat, LocalDate jour_location) {
         this.utilisateur_id = utilisateur_id;
         this.nb_participant = nb_participant;
         this.ville_depart = ville_depart;
@@ -40,7 +41,7 @@ public class DemandeBus {
     }
 
     //constructeur pour recuperer de la base de données 
-    public DemandeBus(int id, int utilisateur_id, int nb_participant, String ville_depart, String ville_arrivee, String heure_depart, String heure_arrivee, String etat, Date jour_location) {
+    public DemandeBus(int id, int utilisateur_id, int nb_participant, String ville_depart, String ville_arrivee, String heure_depart, String heure_arrivee, String etat, LocalDate jour_location) {
         this.id = id;
         this.utilisateur_id = utilisateur_id;
         this.nb_participant = nb_participant;
@@ -126,11 +127,11 @@ public class DemandeBus {
         this.etat = etat;
     }
 
-    public Date getJour_location() {
+    public LocalDate getJour_location() {
         return jour_location;
     }
 
-    public void setJour_location(Date jour_location) {
+    public void setJour_location(LocalDate jour_location) {
         this.jour_location = jour_location;
     }
 

@@ -14,6 +14,8 @@ import java.util.Objects;
  * @author al199
  */
 public class ChauffBusEvent {
+    
+    private int id;
     private int idUser;
     private int idBus;
     private int idEvent;
@@ -23,6 +25,17 @@ public class ChauffBusEvent {
     private String villeArrive;
 
     public ChauffBusEvent() {
+    }
+
+    public ChauffBusEvent(int id, int idUser, int idBus, int idEvent, int heureDepart, int heureArrive, String villeDepart, String villeArrive) {
+        this.id = id;
+        this.idUser = idUser;
+        this.idBus = idBus;
+        this.idEvent = idEvent;
+        this.heureDepart = heureDepart;
+        this.heureArrive = heureArrive;
+        this.villeDepart = villeDepart;
+        this.villeArrive = villeArrive;
     }
 
     
@@ -36,6 +49,15 @@ public class ChauffBusEvent {
         this.villeDepart = villeDepart;
         this.villeArrive = villeArrive;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     
     public int getIdUser() {
         return idUser;

@@ -39,7 +39,19 @@ public class Event {
 
     public Event() {
     }
+    
+    public Event(String nomevent) {
+        this.nomevent = nomevent;
+    }
+    
+    
+    
+    
 
+    /*public Event(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+*/
     public int getId() {
         return id;
     }

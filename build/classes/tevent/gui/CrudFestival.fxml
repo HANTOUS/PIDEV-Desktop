@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="734.0" prefWidth="978.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="projetpidev.CrudFestivalController">
+<AnchorPane id="AnchorPane" prefHeight="734.0" prefWidth="978.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="tevent.gui.CrudFestivalController">
    <children>
       <TextField fx:id="artiste" layoutX="109.0" layoutY="317.0" />
       <TextField fx:id="nb_inv" layoutX="109.0" layoutY="367.0" />
