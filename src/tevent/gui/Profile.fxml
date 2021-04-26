@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@Profile.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.ProfileController">
+   <left>
+      <VBox prefHeight="200.0" prefWidth="340.0" spacing="50.0" styleClass="primary-color" stylesheets="@Profile.css" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="30.0" prefWidth="105.0" spacing="10.0">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+               <children>
+                  <ImageView fx:id="image" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/profile.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lbUser" text="User" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="237.0" prefWidth="340.0" spacing="15.0">
+               <children>
+                  <HBox fx:id="profile" alignment="CENTER" prefHeight="45.0" prefWidth="200.0">
+                     <children>
+                        <FontAwesomeIconView fill="WHITE" glyphName="USER" size="20" />
+                        <Label prefHeight="20.0" prefWidth="209.0" text="Profile" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="Password" alignment="CENTER" onMouseClicked="#password" prefHeight="45.0" prefWidth="200.0">
+                     <children>
+                        <FontAwesomeIconView fill="WHITE" glyphName="LOCK" size="20" />
+                        <Label prefHeight="20.0" prefWidth="209.0" text="Confidentialité" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="Demandes" alignment="CENTER" onMouseClicked="#demandes" prefHeight="45.0" prefWidth="200.0">
+                     <children>
+                        <FontAwesomeIconView fill="WHITE" glyphName="LIST_ALT" size="20" />
+                        <Label prefHeight="20.0" prefWidth="209.0" text="Mes Demandes" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="Reclamations" alignment="CENTER" onMouseClicked="#reclamations" prefHeight="45.0" prefWidth="200.0">
+                     <children>
+                        <FontAwesomeIconView fill="WHITE" glyphName="EXCLAMATION_TRIANGLE" size="20" />
+                        <Label prefHeight="20.0" prefWidth="209.0" text="Mes Reclamations" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" onMouseClicked="#exit" prefHeight="45.0" prefWidth="200.0">
+                     <children>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="20" />
+                        <Label prefHeight="20.0" prefWidth="209.0" text="Se Déconnecter" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" styleClass="secondary-color" stylesheets="@Profile.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="17.0" prefWidth="666.0" text="Paramètres généraux du compte" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <VBox prefHeight="368.0" prefWidth="560.0" spacing="30.0">
+               <children>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <ImageView fx:id="NewImage" fitHeight="135.0" fitWidth="200.0" onDragDropped="#handleDrop" onDragOver="#handleDrag" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/profile.png" />
+                                 </image></ImageView>
+                              <Label fx:id="pathpicture" textFill="#f8f5f5" />
+                              <JFXButton fx:id="btnChanger" onAction="#uploadpicture" prefHeight="25.0" prefWidth="103.0" text="Changer Image" textFill="WHITE" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="560.0" spacing="60.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="115.0" text="Nom" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="12.0" />
+                           </HBox.margin>
+                        </Label>
+                        <JFXTextField fx:id="txtNom" focusColor="#fd5056" prefHeight="25.0" prefWidth="417.0" unFocusColor="#090031" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="560.0" spacing="50.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="115.0" text="Prenom" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="12.0" />
+                           </HBox.margin>
+                        </Label>
+                        <JFXTextField fx:id="txtPrenom" focusColor="#fd5056" prefHeight="25.0" prefWidth="417.0" unFocusColor="#090031" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="560.0" spacing="50.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="115.0" text="CIN" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="12.0" />
+                           </HBox.margin>
+                        </Label>
+                        <JFXTextField fx:id="txtCin" focusColor="#fd5056" prefHeight="25.0" prefWidth="417.0" unFocusColor="#090031" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="560.0" spacing="50.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="115.0" text="Email" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="12.0" />
+                           </HBox.margin>
+                        </Label>
+                        <JFXTextField fx:id="txtEmail" focusColor="#fd5056" prefHeight="25.0" prefWidth="417.0" unFocusColor="#090031" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="560.0" spacing="50.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="115.0" text="Date Naissance" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="12.0" />
+                           </HBox.margin>
+                        </Label>
+                        <JFXDatePicker fx:id="dateN" defaultColor="#fd5056" prefHeight="25.0" prefWidth="416.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <JFXButton fx:id="btnModifier" alignment="CENTER" onAction="#modifier" prefHeight="30.0" prefWidth="155.0" text="Modifier Profile" textFill="WHITE" />
+            <HBox>
+               <children>
+                  <Hyperlink onAction="#desactiver" prefHeight="23.0" prefWidth="157.0" text="Désactiver mon compte" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="12.0" />
+                     </HBox.margin>
+                  </Hyperlink>
+                  <JFXButton fx:id="btnQr" onAction="#QrCodeGenerate" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: green;" text="Generer QRCode" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="250.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>

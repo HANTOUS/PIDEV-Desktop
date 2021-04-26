@@ -69,7 +69,18 @@ public class SecurityServices {
 
     public void resetPassword(int id, String pass) {
         try {
-            String req = "UPDATE utilisateur SET password = '"+ pass +"' WHERE id = "+ id ;
+            String req = "UPDATE utilisateur SET password = '"+ pass +"', reset_token= null WHERE id = "+ id ;
+            Statement st = cnx.createStatement();
+            st.executeUpdate(req);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void forgetPassword(int id, String token) {
+        try {
+            String req = "UPDATE utilisateur SET reset_token = '"+ token +"' WHERE id = "+ id ;
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
         } catch (SQLException e) {
@@ -107,6 +118,19 @@ public class SecurityServices {
             //ps.setInt(2, id);
            // ps.executeUpdate(req);
            // System.out.println(req);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+    
+
+
+    public void changerPassword(int id, String pass ) {
+        try {
+            String req = "UPDATE utilisateur SET password = '"+ pass +"' WHERE id = "+ id ;
+            Statement st = cnx.createStatement();
+            st.executeUpdate(req);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

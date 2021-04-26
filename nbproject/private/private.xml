@@ -3,7 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/hanto/Desktop/Esprit/3eme/PI/PIDEV-Desktop/src/tevent/gui/LoginController.java</file>
+            <file>file:/C:/Users/hanto/Desktop/Esprit/3eme/PI/PIDEV-Desktop/src/tevent/gui/EmailController.java</file>
+            <file>file:/C:/Users/hanto/Desktop/Esprit/3eme/PI/PIDEV-Desktop/src/tevent/gui/DashboardController.java</file>
+            <file>file:/C:/Users/hanto/Desktop/Esprit/3eme/PI/PIDEV-Desktop/src/tevent/gui/ResetPasswordController.java</file>
+            <file>file:/C:/Users/hanto/Desktop/Esprit/3eme/PI/PIDEV-Desktop/src/tevent/gui/ForgetPasswordController.java</file>
+            <file>file:/C:/Users/hanto/Desktop/Esprit/3eme/PI/PIDEV-Desktop/src/tevent/services/UtilisateurServices.java</file>
             <file>file:/C:/Users/hanto/Desktop/Esprit/3eme/PI/PIDEV-Desktop/src/tevent/gui/AffichageUsersController.java</file>
+            <file>file:/C:/Users/hanto/Desktop/Esprit/3eme/PI/PIDEV-Desktop/src/tevent/services/ActivationCompteController.java</file>
         </group>
     </open-files>
 </project-private>

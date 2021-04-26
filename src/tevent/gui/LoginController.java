@@ -24,9 +24,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import tevent.services.UtilisateurServices;
 import tevent.entities.Utilisateur;
-/*import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;*/
+
 
 /**
  * FXML Controller class
@@ -75,39 +73,58 @@ public class LoginController implements Initializable {
             UtilisateurServices us = new UtilisateurServices();
             String role = us.getRolebyEmail(email);
             Utilisateur user = us.getUserByMail(email);
-            if (role.equals("[\"ROLE_USER\"]")||role.equals("[\"ROLE_CHAUFFEUR\"]")) {
+             System.out.println( user.getActivation_token()==  null);
+            if( user.getActivation_token()==  null){
+                if (role.equals("[\"ROLE_USER\"]")||role.equals("[\"ROLE_CHAUFFEUR\"]")) {
 
-                /*FXMLLoader loader = new FXMLLoader();
-                login.getScene().getWindow().hide();
-                Stage prStage = new Stage();
-                loader.setLocation(getClass().getResource("Dashboard.fxml"));
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-                prStage.setScene(scene);
-                prStage.setResizable(false);
-                prStage.show();*/
-                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Félicitation");
-                alert.setHeaderText(null);
-                alert.setContentText("!!! Vous ete maintenant connecté en tant que USER !!!");
-                alert.showAndWait();
+                    /*FXMLLoader loader = new FXMLLoader();
+                    login.getScene().getWindow().hide();
+                    Stage prStage = new Stage();
+                    loader.setLocation(getClass().getResource("Home.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    prStage.setScene(scene);
+                    prStage.setResizable(false);
+                    prStage.show();*/
+                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Félicitation");
+                    alert.setHeaderText(null);
+                    alert.setContentText("!!! Vous ete maintenant connecté en tant que USER !!!");
+                    alert.showAndWait();
 
-            } else if (role.equals("[\"ROLE_ADMIN\"]")){
+                } else if (role.equals("[\"ROLE_ADMIN\"]")){
+                    FXMLLoader loader = new FXMLLoader();
+                    login.getScene().getWindow().hide();
+                    Stage prStage = new Stage();
+                    loader.setLocation(getClass().getResource("Dashboard.fxml"));
+                    loader.load();
+
+                    DashboardController dc = loader.getController();
+                    dc.setUser(user);
+                    Parent root = loader.getRoot();
+                    Scene scene = new Scene(root);
+                    prStage.setScene(scene);
+                    prStage.setResizable(false);
+                    prStage.show();
+
+                } 
+           }
+            else{
                 FXMLLoader loader = new FXMLLoader();
                 login.getScene().getWindow().hide();
                 Stage prStage = new Stage();
-                loader.setLocation(getClass().getResource("AffichageUsers.fxml"));
+                loader.setLocation(getClass().getResource("ActivationCompte.fxml"));
                 loader.load();
                 
-                AffichageUsersController auc = loader.getController();
-                auc.setUser(user.getNom(),user.getPrenom());
+                ActivationCompteController ac = loader.getController();
+                ac.setUser(user);
                 Parent root = loader.getRoot();
                 Scene scene = new Scene(root);
                 prStage.setScene(scene);
                 prStage.setResizable(false);
                 prStage.show();
                 
-            } 
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Alerte");
@@ -118,7 +135,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void MotpassOubliee(ActionEvent event) throws /*MessagingException, */IOException {
+    private void MotpassOubliee(ActionEvent event) throws IOException {
         
         FXMLLoader loader = new FXMLLoader();
         login.getScene().getWindow().hide();

@@ -20,7 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import tevent.entities.Chauffeur;
 import tevent.services.ChauffeurServices;
-import javafx.scene.control.Alert;
+
 import java.time.LocalDate;
 
 /**
