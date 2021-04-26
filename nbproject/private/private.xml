@@ -5,6 +5,11 @@
         <group>
             <file>file:/C:/Salim/PI/PIDEV-Desktop/src/academiccalendar/ui/main/FXMLDocumentController.java</file>
             <file>file:/C:/Salim/PI/PIDEV-Desktop/src/tevent/gui/MaterielA/AdminSideMaterielController.java</file>
+            <file>file:/C:/Salim/PI/PIDEV-Desktop/src/tevent/gui/AjouterFeedbackController.java</file>
+            <file>file:/C:/Salim/PI/PIDEV-Desktop/src/tevent/tests/Main.java</file>
+            <file>file:/C:/Salim/PI/PIDEV-Desktop/src/tevent/gui/Runningrec.java</file>
+            <file>file:/C:/Salim/PI/PIDEV-Desktop/src/tevent/gui/PasserReclamationController.java</file>
+            <file>file:/C:/Salim/PI/PIDEV-Desktop/src/tevent/entities/Jmu.java</file>
         </group>
     </open-files>
 </project-private>
