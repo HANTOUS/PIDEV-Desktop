@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fd5056;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.EmailController">
+     <children>
+        <AnchorPane fx:id="login" layoutX="397.0" layoutY="77.0" prefHeight="309.0" prefWidth="326.0" style="-fx-background-color: #090031;" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="397.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="77.0">
+            <children>
+                <JFXTextField fx:id="txtEmail" focusColor="#18b56e" layoutX="53.0" layoutY="142.0" prefHeight="25.0" prefWidth="237.0" promptText="Email" unFocusColor="#fd5056" />
+                <JFXButton fx:id="btnEnvoyer" layoutX="53.0" layoutY="219.0" onAction="#envoyer" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: #fd5056;" text="Envoyer" textAlignment="CENTER" textFill="WHITE" />
+                <Label layoutX="82.0" layoutY="43.0" text="Mot de passe oublié?" textFill="#fffbfb">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="463.0" prefWidth="367.0" style="-fx-background-color: #cc686b;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <ImageView fitHeight="463.0" fitWidth="404.0" opacity="0.58" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/banner1.png" />
+               </image>
+                </ImageView>
+                <Label layoutX="13.0" layoutY="93.0" prefHeight="146.0" prefWidth="326.0" text="&gt;Entrez l'e-mail associé à votre &#10;compte et nous vous enverrons &#10;un e-mail avec des instructions &#10;pour réinitialiser votre mot de &#10;passe" textFill="#f8f7f7" AnchorPane.bottomAnchor="224.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="93.0">
+                    <font>
+                        <Font name="Berlin Sans FB" size="24.0" />
+                    </font>
+                </Label>
+                <Label layoutX="14.0" layoutY="253.0" prefHeight="50.0" prefWidth="249.0" text="Explorez la vie d'aventure &#10;où vous voulez" textAlignment="JUSTIFY" textFill="#fffdfd" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="253.0">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+            <JFXButton layoutX="13.0" layoutY="320.0" onAction="#Login" prefHeight="25.0" prefWidth="98.0" style="-fx-background-color: #fd5056;" text="Se Connecter" textFill="WHITE" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

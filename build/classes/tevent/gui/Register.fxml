@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="454.0" prefWidth="747.0" style="-fx-background-color: #fd5056;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.RegisterController">
+     <children>
+        <AnchorPane fx:id="register" layoutX="394.0" layoutY="17.0" prefHeight="426.0" prefWidth="326.0" style="-fx-background-color: #090031;">
+            <children>
+                <JFXTextField fx:id="txtNom" focusColor="#18b56e" layoutX="53.0" layoutY="58.0" prefHeight="25.0" prefWidth="237.0" promptText="Nom" unFocusColor="#fd5056" />
+                <JFXTextField fx:id="txtPrenom" focusColor="#18b56e" layoutX="53.0" layoutY="101.0" prefHeight="25.0" prefWidth="237.0" promptText="Prenom" unFocusColor="#fd5056" />
+                <JFXTextField fx:id="txtCin" focusColor="#18b56e" layoutX="53.0" layoutY="142.0" prefHeight="25.0" prefWidth="237.0" promptText="CIN" unFocusColor="#fd5056" />
+                <JFXTextField fx:id="txtEmail" focusColor="#18b56e" layoutX="53.0" layoutY="184.0" prefHeight="25.0" prefWidth="237.0" promptText="Email" unFocusColor="#fd5056" />
+                <JFXPasswordField fx:id="txtPwd" focusColor="#18b56e" layoutX="53.0" layoutY="228.0" prefHeight="25.0" prefWidth="237.0" promptText="Mot de Passe" unFocusColor="#fd5056" />
+                <JFXPasswordField fx:id="txtConfPwd" focusColor="#18b56e" layoutX="53.0" layoutY="275.0" prefHeight="25.0" prefWidth="237.0" promptText="Réecrivez Mot de Passe" unFocusColor="#fd5056" />
+                <JFXDatePicker fx:id="dateN" defaultColor="#fd5056" layoutX="53.0" layoutY="314.0" prefHeight="25.0" prefWidth="237.0" promptText="Date de naissance" />
+                <JFXButton fx:id="btnRegister" layoutX="53.0" layoutY="375.0" onAction="#Register" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: #fd5056;" text="S'inscrire" textAlignment="CENTER" textFill="WHITE" />
+                <Label layoutX="107.0" layoutY="26.0" text="S'inscrire" textFill="#fffbfb">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+
+            </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="463.0" prefWidth="367.0" style="-fx-background-color: #fd5056;">
+            <children>
+                <ImageView fitHeight="438.0" fitWidth="365.0" layoutX="14.0" layoutY="19.0" opacity="0.58" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/offer6.jpg" />
+               </image>
+                </ImageView>
+                <Label layoutX="26.0" layoutY="152.0" text="Bienvenue dans Tunisia Events" textFill="#f8f7f7">
+                    <font>
+                        <Font name="Berlin Sans FB" size="27.0" />
+                    </font>
+                </Label>
+                <Label layoutX="26.0" layoutY="207.0" text="Explorez la vie d'aventure &#10;où vous voulez" textAlignment="JUSTIFY" textFill="#fffdfd">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+            <JFXButton layoutX="26.0" layoutY="276.0" onAction="#Login" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: #fd5056;" text="Se Connecter" textFill="WHITE" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
