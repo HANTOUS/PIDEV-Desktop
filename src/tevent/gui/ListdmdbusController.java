@@ -111,7 +111,7 @@ public class ListdmdbusController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         
-        
+        int idUser = user.getId();
         ObservableList<String> listville = FXCollections.observableArrayList("Ariana", "Béja", "Ben Arous", "Bizerte", "Gabes", "Gafsa", "Jendouba", "Kairouan", "Kasserine", "Kébili", "Kef", "Mahdia", "Manouba", "Mednine", "Monastir", "Nabeul", "Sfax", "Sidi Bouzid", "Siliana", "Sousse", "Tataouine", "Tozeur", "Tunis", "Zaghouan");
         villedepart.setItems(listville);
         villearrivee.setItems(listville);
@@ -129,7 +129,7 @@ public class ListdmdbusController implements Initializable {
         tabEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
         tabJourLoc.setCellValueFactory(new PropertyValueFactory<>("jour_location"));
 
-        ObservableList<DemandeBus> DemandeBusList = dbs.getDemandeByUser(1);
+        ObservableList<DemandeBus> DemandeBusList = dbs.getDemandeByUser(idUser);
         tableDemandeBus.setItems(DemandeBusList);
         //tableDemandeBus.getColumns().addAll(tabID,tabNb,tabVilleDep,tabVilleArr,tabHeureDep,tabHeureArr,tabEtat,tabJourLoc) ;
     }
@@ -196,11 +196,11 @@ if(     "accepter".equals(tableDemandeBus.getSelectionModel().getSelectedItem().
         String etat =tableDemandeBus.getSelectionModel().getSelectedItem().getEtat() ;
         LocalDate jour_location = jourloc.getValue();
         
-
-        DemandeBus DB = new DemandeBus(1, nb_participant, ville_depart, ville_arrivee, heure_depart, heure_arrivee, etat, jour_location);
+         int  idUser = user.getId();
+        DemandeBus DB = new DemandeBus(idUser, nb_participant, ville_depart, ville_arrivee, heure_depart, heure_arrivee, etat, jour_location);
         dbs.updateDemandeBus(DB,id);
 
-        tableDemandeBus.setItems(dbs.getDemandeByUser(1));
+        tableDemandeBus.setItems(dbs.getDemandeByUser(idUser));
         
         nbparticipants.setText("");
             villedepart.setValue("");
@@ -300,29 +300,31 @@ if(     "accepter".equals(tableDemandeBus.getSelectionModel().getSelectedItem().
     @FXML
     private void getPDF(ActionEvent event) throws DocumentException, BadElementException, IOException {
          DemandeBus db = tableDemandeBus.getSelectionModel().getSelectedItem();           
-
-                       dbs.PDF(db, "Bellalouna", "Tarek");
+         String nom = user.getNom();
+         String prenom = user.getPrenom();
+                       dbs.PDF(db, nom  , prenom);
     }
 
     @FXML
     private void retour(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
-             HomeController dc = loader.getController();
-//             dc.setUser(user);
-            
-            Scene homePage_scene=new Scene(homePage);
-            
-            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            app_stage.setScene(homePage_scene);
-            
-            app_stage.show();
-            Stage stage = (Stage) retourbtn.getScene().getWindow(); 
+       try {
+             FXMLLoader loader = new FXMLLoader();
+        retourbtn.getScene().getWindow().hide();
+        Stage prStage = new Stage();
+        loader.setLocation(getClass().getResource("Home.fxml"));
+        loader.load();
+                     HomeController dc = loader.getController();
+        dc.setUser(user);
+       // dc.setFields(user.getNom(),user.getPrenom(),user.getCin(),user.getEmail(),(Date)user.getDateNaissance(),user.getImage());
+        Parent root = loader.getRoot();        
+        Scene scene = new Scene(root);
+        prStage.setScene(scene);
+        prStage.setResizable(false);
+        prStage.show();
            
         } catch (IOException ex) {
              System.out.println(ex.getMessage());
         }
+        
     }
 }

@@ -100,14 +100,12 @@ public class AdminListDemandeBusController implements Initializable {
 
     public void setUser(Utilisateur u) {
         user = u;
-
     }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNbparticipant.setCellValueFactory(new PropertyValueFactory<>("nb_participant"));
         colVilledepart.setCellValueFactory(new PropertyValueFactory<>("ville_depart"));

@@ -1,3 +1,30 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/DashboardController.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/entities/DemandeBus.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/ListdmdmaterielController.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/materiel/MaterielFXMain.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/ProfileController.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/entities/DemandeChauffeur.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/services/SecurityServices.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/academiccalendar/ui/main/FXMLDocumentController.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/interfaces/IserviceSponsor.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/ListdmdbusController.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/services/ChauffBusEventService.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/entities/Utilisateur.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/services/FestivalServices.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/ListdmdchauffeurController.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/MesDemandesController.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/tests/Main.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/AdminListDemandeMaterielController.java</file>
+        </group>
+    </open-files>
+</project-private>
+=======
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
@@ -18,3 +45,4 @@
         </group>
     </open-files>
 </project-private>
+>>>>>>> 31d6bbc097e48142e007987a8ff9ad63a8175a80

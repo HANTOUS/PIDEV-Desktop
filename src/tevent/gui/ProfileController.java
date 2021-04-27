@@ -49,6 +49,7 @@ import javax.imageio.ImageIO;
 import javafx.embed.swing.SwingFXUtils;
 import java.awt.image.BufferedImage;
 //qr
+
 import java.util.HashMap;
 import java.util.Map;
 /*import com.google.zxing.BarcodeFormat;
