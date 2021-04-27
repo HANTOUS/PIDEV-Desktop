@@ -21,7 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import tevent.entities.Reclamation;
 import tevent.services.ReclamationServices;
-
+import tevent.entities.Utilisateur;
 /**
  * FXML Controller class
  *
@@ -38,6 +38,13 @@ public class PasserReclamationController implements Initializable {
     @FXML
     private TextField rcidu;
 
+
+  private Utilisateur user;
+
+ public void setUser(Utilisateur u) {
+        user = u;
+
+    }
     /**
      * Initializes the controller class.
      */
@@ -58,14 +65,18 @@ public class PasserReclamationController implements Initializable {
         ReclamationServices rc = new ReclamationServices();
         rc.addreclamation(r);
         
-       try {
+        rcsujet.setText("");
+        rccontenu.setText("");
+        rcidu.setText("");
+        
+       /*try {
             Parent root = FXMLLoader.load(getClass().getResource("HomeAdmin.fxml"));
             Stage window = (Stage) rcsujet.getScene().getWindow();
             window.setScene(new Scene(root));
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        }
+        }*/
         
     }
     
@@ -103,6 +114,26 @@ public class PasserReclamationController implements Initializable {
         return isValid;
 
     }
-    
+     @FXML
+    private void retour(ActionEvent event) {
+        try {
+             FXMLLoader loader = new FXMLLoader();
+        rcidu.getScene().getWindow().hide();
+        Stage prStage = new Stage();
+        loader.setLocation(getClass().getResource("HomeFront.fxml"));
+        loader.load();
+                                  HomeFrontController dc = loader.getController();
+        dc.setUser(user);
+       // dc.setFields(user.getNom(),user.getPrenom(),user.getCin(),user.getEmail(),(Date)user.getDateNaissance(),user.getImage());
+        Parent root = loader.getRoot();        
+        Scene scene = new Scene(root);
+        prStage.setScene(scene);
+        prStage.setResizable(false);
+        prStage.show();
+           
+        } catch (IOException ex) {
+             System.out.println(ex.getMessage());
+        }
+    }
     
 }

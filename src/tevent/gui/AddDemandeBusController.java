@@ -63,6 +63,7 @@ public class AddDemandeBusController implements Initializable {
         user = u;
 
     }
+    int idUser = 0;
     /**
      * Initializes the controller class.
      */
@@ -88,8 +89,8 @@ public class AddDemandeBusController implements Initializable {
     Instant instant = Instant.from(jour_location.atStartOfDay(ZoneId.systemDefault()));
     Date date = Date.from(instant);
     System.out.println(jour_location + "\n" + instant + "\n" + date);
-
-      DemandeBus DB = new DemandeBus(1,nb_participant,ville_depart,ville_arrivee,heure_depart,heure_arrivee,"encours",jour_location);
+    idUser=user.getId();
+      DemandeBus DB = new DemandeBus(idUser,nb_participant,ville_depart,ville_arrivee,heure_depart,heure_arrivee,"encours",jour_location);
       DemandeBusServices dbs = new DemandeBusServices();
       dbs.addDemandeBus(DB);
        Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -97,47 +98,53 @@ public class AddDemandeBusController implements Initializable {
         alert.setContentText("Vous recevez un email dans quelques heures ");
         alert.show();
     
-      try {
+         try {
+
              FXMLLoader loader = new FXMLLoader();
-            Parent homePage = loader.load(getClass().getResource("listdmdbus.fxml"));
-             ListdmdbusController dc = loader.getController();
-//               dc.setUser(user);
-            
-            Scene homePage_scene=new Scene(homePage);
-            
-            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            app_stage.setScene(homePage_scene);
-            
-            app_stage.show();
-            Stage stage = (Stage) addbtn.getScene().getWindow(); 
+        addbtn.getScene().getWindow().hide();
+        Stage prStage = new Stage();
+        loader.setLocation(getClass().getResource("listdmdbus.fxml"));
+        loader.load();
+       
+        ListdmdbusController dc = loader.getController();
+        dc.setUser(user);
+       // dc.setFields(user.getNom(),user.getPrenom(),user.getCin(),user.getEmail(),(Date)user.getDateNaissance(),user.getImage());
+        Parent root = loader.getRoot();        
+        Scene scene = new Scene(root);
+        prStage.setScene(scene);
+        prStage.setResizable(false);
+        prStage.show();
            
         } catch (IOException ex) {
              System.out.println(ex.getMessage());
         }
+      
        }
     }
 
     @FXML
     private void GoBack(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
-            HomeController dc = loader.getController();
-//            dc.setUser(user);
-            
-            Scene homePage_scene=new Scene(homePage);
-            
-            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            app_stage.setScene(homePage_scene);
-            
-            app_stage.show();
-            Stage stage = (Stage) btnretour.getScene().getWindow(); 
+
+             FXMLLoader loader = new FXMLLoader();
+        btnretour.getScene().getWindow().hide();
+        Stage prStage = new Stage();
+        loader.setLocation(getClass().getResource("PasserDemandeFront.fxml"));
+        loader.load();
+       
+         PasserDemandeFrontController dc = loader.getController();
+        dc.setUser(user);
+       // dc.setFields(user.getNom(),user.getPrenom(),user.getCin(),user.getEmail(),(Date)user.getDateNaissance(),user.getImage());
+        Parent root = loader.getRoot();        
+        Scene scene = new Scene(root);
+        prStage.setScene(scene);
+        prStage.setResizable(false);
+        prStage.show();
            
         } catch (IOException ex) {
              System.out.println(ex.getMessage());
         }
+      
     }
     
     private void showDialog(String message) {

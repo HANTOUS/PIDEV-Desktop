@@ -5,6 +5,7 @@
  */
 package tevent.gui;
 
+import static com.itextpdf.text.pdf.PdfName.rb;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,24 +36,27 @@ public class ListDemandesController implements Initializable {
     private Button btnAdc;
     @FXML
     private Button btnAdm;
-     @FXML
-    private Label lbUser;
+    
     private Utilisateur user;
     public void setUser(Utilisateur u) {
         user = u;
-       //  lbUser.setText(u.getNom()+" "+u.getPrenom());
+
     }
+    
+     
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+   @Override
+   public void initialize(URL url, ResourceBundle rb) {
+       // TODO
+   }    
 
     @FXML
     private void retour(ActionEvent event) {
         try { 
+
+
             
            FXMLLoader loader = new FXMLLoader();
         btnAdb.getScene().getWindow().hide();
@@ -99,6 +103,7 @@ public class ListDemandesController implements Initializable {
     @FXML
     private void AllerVersListDemandeBusAdmin(ActionEvent event) {
         try {
+
              FXMLLoader loader = new FXMLLoader();
         btnAdb.getScene().getWindow().hide();
         Stage prStage = new Stage();
@@ -121,6 +126,7 @@ public class ListDemandesController implements Initializable {
     @FXML
     private void AllerVersListDemandeChauffeurAdmin(ActionEvent event) {
         try {
+
              FXMLLoader loader = new FXMLLoader();
         btnAdb.getScene().getWindow().hide();
         Stage prStage = new Stage();
@@ -140,3 +146,5 @@ public class ListDemandesController implements Initializable {
         }
     }
 }
+
+    

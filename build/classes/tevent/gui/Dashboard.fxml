@@ -56,22 +56,22 @@
                   <FontAwesomeIconView fill="#4e73df" glyphName="FIRE" size="45" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnFest" contentDisplay="TOP" onAction="#getFestivalView" prefHeight="152.0" prefWidth="255.0" style="-fx-background-color: #F3F3F3;" text="Gestion Festival" textFill="#4e73df" GridPane.columnIndex="2">
+            <JFXButton fx:id="btnFest" contentDisplay="TOP"  onAction="#getFestivalView" prefHeight="152.0" prefWidth="255.0" style="-fx-background-color: #F3F3F3;" text="Gestion Festival" textFill="#4e73df" GridPane.columnIndex="2">
                <graphic>
                   <FontAwesomeIconView fill="#4e73df" glyphName="MICROPHONE" size="45" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnLog" contentDisplay="TOP" prefHeight="142.0" prefWidth="233.0" style="-fx-background-color: #F3F3F3;" text="Gestion Logistiques" textFill="#4e73df" GridPane.rowIndex="1">
+            <JFXButton fx:id="btnLog" contentDisplay="TOP" onAction="#getLogistique" prefHeight="142.0" prefWidth="233.0" style="-fx-background-color: #F3F3F3;" text="Gestion Logistiques" textFill="#4e73df" GridPane.rowIndex="1">
                <graphic>
                   <FontAwesomeIconView fill="#4e73df" glyphName="BUS" size="45" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnDemandes" contentDisplay="TOP" onAction="#getDemandesView" prefHeight="142.0" prefWidth="233.0" style="-fx-background-color: #F3F3F3;" text="Gestion Demandes" textFill="#4e73df" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <JFXButton fx:id="btnDemandes" contentDisplay="TOP" onAction="#getDemandesView"  prefHeight="142.0" prefWidth="233.0" style="-fx-background-color: #F3F3F3;" text="Gestion Demandes" textFill="#4e73df" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <graphic>
                   <FontAwesomeIconView fill="#4e73df" glyphName="LIST_ALT" size="45" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnRec" contentDisplay="TOP" prefHeight="151.0" prefWidth="232.0" style="-fx-background-color: #F3F3F3;" text="Gestion Reclamation" textFill="#4e73df" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <JFXButton fx:id="btnRec" contentDisplay="TOP" prefHeight="151.0" onAction="#getRecFeedView" prefWidth="232.0" style="-fx-background-color: #F3F3F3;" text="Gestion Reclamation" textFill="#4e73df" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <graphic>
                   <FontAwesomeIconView fill="#4e73df" glyphName="WARNING" size="45" />
                </graphic>

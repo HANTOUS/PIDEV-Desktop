@@ -43,6 +43,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import tevent.entities.Utilisateur;
+import tevent.gui.DashboardLogistiqueFXMLController;
 import tevent.gui.HomeController;
 
 
@@ -231,7 +232,7 @@ public class AdminSideMaterielController implements Initializable {
     public void senMailWarning(Materiel m){
       
       // Mention the Recipient's email address
-        String to = "alaaeddine.benali@esprit.tn";
+        String to = "tevents98@gmail.com";
         // Mention the Sender's email address
         String from = "tevents98@gmail.com";
         // Mention the SMTP server address. Below Gmail's SMTP server is being used to send email
@@ -280,25 +281,21 @@ public class AdminSideMaterielController implements Initializable {
     }
 
     @FXML
-    private void retour(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
-            //HomeController dc = loader.getController();
-//            dc.setUser(user);
-            
-            Scene homePage_scene=new Scene(homePage);
-            
-            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            app_stage.setScene(homePage_scene);
-            
-            app_stage.show();
-            Stage stage = (Stage) btnretour.getScene().getWindow(); 
-           
-        } catch (IOException ex) {
-             System.out.println(ex.getMessage());
-        }
+    private void retour(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("/tevent/gui/DashboardLogistiqueFXML.fxml"));
+                loader.load();
+                
+                DashboardLogistiqueFXMLController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
+
     }
     
 }

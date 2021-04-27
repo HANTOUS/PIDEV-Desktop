@@ -96,7 +96,11 @@ public class AddDemandeMaterielController implements Initializable {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }        DemandeMateriel DM = new DemandeMateriel(1,idm,"6","encours",date_debut,date_fin);
+            
+        }   
+            int idUser=user.getId();
+
+           DemandeMateriel DM = new DemandeMateriel(idUser,idm,"6","encours",date_debut,date_fin);
 
            if(dms.addDemandeMateriel(DM,qte).equals("DemandeMateriel Ajoutée !")){
                Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -109,24 +113,25 @@ public class AddDemandeMaterielController implements Initializable {
         
         
         //message.setText(dms.addDemandeMateriel(DM,qte));
-       try { 
-           FXMLLoader loader = new FXMLLoader();
-            Parent homePage = loader.load(getClass().getResource("listdmdmateriel.fxml"));
-             ListdmdmaterielController dc = loader.getController();
-//               dc.setUser(user);
-            
-            Scene homePage_scene=new Scene(homePage);
-            
-            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            app_stage.setScene(homePage_scene);
-            
-            app_stage.show();
-            Stage stage = (Stage) btnadd.getScene().getWindow(); 
+        try {
+             FXMLLoader loader = new FXMLLoader();
+        btnadd.getScene().getWindow().hide();
+        Stage prStage = new Stage();
+        loader.setLocation(getClass().getResource("listdmdmateriel.fxml"));
+        loader.load();
+                             ListdmdmaterielController dc = loader.getController();
+        dc.setUser(user);
+       // dc.setFields(user.getNom(),user.getPrenom(),user.getCin(),user.getEmail(),(Date)user.getDateNaissance(),user.getImage());
+        Parent root = loader.getRoot();        
+        Scene scene = new Scene(root);
+        prStage.setScene(scene);
+        prStage.setResizable(false);
+        prStage.show();
            
         } catch (IOException ex) {
              System.out.println(ex.getMessage());
         }
+       
                   }else{
                Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setHeaderText("Demande Matériel ");
@@ -182,20 +187,20 @@ public class AddDemandeMaterielController implements Initializable {
 
     @FXML
     private void retour(ActionEvent event) {
-         try {
-               FXMLLoader loader = new FXMLLoader();
-            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
-             HomeController dc = loader.getController();
-//               dc.setUser(user);
-            
-            Scene homePage_scene=new Scene(homePage);
-            
-            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            app_stage.setScene(homePage_scene);
-            
-            app_stage.show();
-            Stage stage = (Stage) Retourbtn.getScene().getWindow(); 
+        try {
+             FXMLLoader loader = new FXMLLoader();
+        Retourbtn.getScene().getWindow().hide();
+        Stage prStage = new Stage();
+        loader.setLocation(getClass().getResource("PasserDemandeFront.fxml"));
+        loader.load();
+        PasserDemandeFrontController dc = loader.getController();
+        dc.setUser(user);
+       // dc.setFields(user.getNom(),user.getPrenom(),user.getCin(),user.getEmail(),(Date)user.getDateNaissance(),user.getImage());
+        Parent root = loader.getRoot();        
+        Scene scene = new Scene(root);
+        prStage.setScene(scene);
+        prStage.setResizable(false);
+        prStage.show();
            
         } catch (IOException ex) {
              System.out.println(ex.getMessage());

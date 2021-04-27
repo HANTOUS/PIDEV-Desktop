@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-
 package tevent.gui;
 
 import java.net.URL;
@@ -53,7 +52,6 @@ public class MesDemandesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
     }    
     @FXML
     private void profile(MouseEvent event) throws IOException {
@@ -143,5 +141,25 @@ public class MesDemandesController implements Initializable {
 
     }
 
+//
+//        ObservableList<DemandeBus> list = dbs.getDemandeByUser(1);
+//        ObservableList<DemandeChauffeur> list1 = dcs.getDemandeByUser(1);
+//        ObservableList<DemandeMateriel> list2 = dms.getDemandeByUser(1);
+//        List<String> EtatBus = new ArrayList<>();
+//        for (DemandeBus db : list) {
+//            System.out.println(db.getEtat());
+//
+//        }
+//        List<String> EtatChauffeur = new ArrayList<>();
+//        for (DemandeChauffeur dc: list1) {
+//            System.out.println(dc.getEtat());
+//
+//        }
+//        List<String> EtatMateriel = new ArrayList<>();
+//        for (DemandeMateriel dm : list2) {
+//            System.out.println(dm.getEtat());
+//
+//        }
 
-}
+    }
+

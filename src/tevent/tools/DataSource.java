@@ -23,7 +23,6 @@ public class DataSource {
     
     private DataSource(){
        try{
-           
         cnx = DriverManager.getConnection(url,user,pwd);
         System.out.println("Connexion établieeee");
         

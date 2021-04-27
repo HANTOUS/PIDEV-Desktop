@@ -52,10 +52,10 @@ public class HomeFrontController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
                 lbUser.getScene().getWindow().hide();
                 Stage prStage = new Stage();
-                loader.setLocation(getClass().getResource("ListDemandes.fxml"));
+                loader.setLocation(getClass().getResource("PasserDemandeFront.fxml"));
                 loader.load();
                 
-                ListDemandesController auc = loader.getController();
+                PasserDemandeFrontController auc = loader.getController();
                 auc.setUser(user);
                 Parent root = loader.getRoot();
                 Scene scene = new Scene(root);
@@ -120,11 +120,11 @@ public class HomeFrontController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
                 lbUser.getScene().getWindow().hide();
                 Stage prStage = new Stage();
-               // loader.setLocation(getClass().getResource("/academiccalendar/ui/main/FXMLDocument.fxml"));
+                loader.setLocation(getClass().getResource("PasserReclamation.fxml"));
                 loader.load();
                 
-               // FXMLDocumentController auc = loader.getController();
-                //auc.setUser(user);
+               PasserReclamationController auc = loader.getController();
+               auc.setUser(user);
                 Parent root = loader.getRoot();
                 Scene scene = new Scene(root);
                 prStage.setScene(scene);

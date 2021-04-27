@@ -5,6 +5,7 @@
  */
 package tevent.gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,13 +13,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import tevent.entities.Bus;
+import tevent.gui.busA.AdminSideBusController;
 import tevent.services.BusService;
 
 /**
@@ -52,6 +58,8 @@ public class ClientSideBusController implements Initializable {
     private TableColumn<Bus, String> col_table_panne_id= new TableColumn<>("panne");
     @FXML
     private Button btn_search;
+    @FXML
+    private Button btnRetour;
 
 
     void selectedModele(ActionEvent event){
@@ -131,6 +139,21 @@ public class ClientSideBusController implements Initializable {
         col_table_panne_id.setCellValueFactory(new PropertyValueFactory<>("panne"));
         
         tableListBusId.setItems(listBus);
+    }
+
+    @FXML
+    private void retour(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("/tevent/gui/FrontLogistique.fxml"));
+                loader.load();
+                
+                FrontLogistiqueController auc = loader.getController();
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
     }
     
 }

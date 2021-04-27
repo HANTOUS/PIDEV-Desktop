@@ -50,6 +50,7 @@ public class AddDemandeChauffeurController implements Initializable {
         user = u;
 
     }
+    int idUser = 0;
     /**
      * Initializes the controller class.
      */
@@ -64,8 +65,8 @@ public class AddDemandeChauffeurController implements Initializable {
         int  num_permis = Integer.parseInt(numpermis.getText());
            LocalDate date_permis = datepermis.getValue();
            LocalDate date_expiration = dateexpiration.getValue();
-
-        DemandeChauffeur DC = new DemandeChauffeur(1,num_permis,date_permis,date_expiration,"encours");
+idUser = user.getId();
+        DemandeChauffeur DC = new DemandeChauffeur(idUser,num_permis,date_permis,date_expiration,"encours");
         DemandeChauffeurServices dcb = new DemandeChauffeurServices();
         dcb.addDemandeChauffeur(DC);
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -73,25 +74,25 @@ public class AddDemandeChauffeurController implements Initializable {
         alert.setContentText("Vous recevez un email dans quelques heures ");
         alert.show();
                         //dcs.SMS();
-
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            Parent homePage = loader.load(getClass().getResource("listdmdchauffeur.fxml"));
-             ListdmdchauffeurController dc = loader.getController();
-//               dc.setUser(user);
-            
-            Scene homePage_scene=new Scene(homePage);
-            
-            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            app_stage.setScene(homePage_scene);
-            
-            app_stage.show();
-            Stage stage = (Stage) btn.getScene().getWindow(); 
+                        try {
+             FXMLLoader loader = new FXMLLoader();
+        btn.getScene().getWindow().hide();
+        Stage prStage = new Stage();
+        loader.setLocation(getClass().getResource("listdmdchauffeur.fxml"));
+        loader.load();
+        ListdmdchauffeurController dc = loader.getController();
+        dc.setUser(user);
+       // dc.setFields(user.getNom(),user.getPrenom(),user.getCin(),user.getEmail(),(Date)user.getDateNaissance(),user.getImage());
+        Parent root = loader.getRoot();        
+        Scene scene = new Scene(root);
+        prStage.setScene(scene);
+        prStage.setResizable(false);
+        prStage.show();
            
         } catch (IOException ex) {
              System.out.println(ex.getMessage());
         }
+       
             
 
         }
@@ -138,24 +139,25 @@ public class AddDemandeChauffeurController implements Initializable {
 
     @FXML
     private void retour(ActionEvent event) {
-         try {
-              FXMLLoader loader = new FXMLLoader();
-            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
-             HomeController dc = loader.getController();
-//               dc.setUser(user);
-            
-            Scene homePage_scene=new Scene(homePage);
-            
-            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            app_stage.setScene(homePage_scene);
-            
-            app_stage.show();
-            Stage stage = (Stage) Retourbtn.getScene().getWindow(); 
+           try {
+             FXMLLoader loader = new FXMLLoader();
+        Retourbtn.getScene().getWindow().hide();
+        Stage prStage = new Stage();
+        loader.setLocation(getClass().getResource("PasserDemandeFront.fxml"));
+        loader.load();
+                     PasserDemandeFrontController dc = loader.getController();
+        dc.setUser(user);
+       // dc.setFields(user.getNom(),user.getPrenom(),user.getCin(),user.getEmail(),(Date)user.getDateNaissance(),user.getImage());
+        Parent root = loader.getRoot();        
+        Scene scene = new Scene(root);
+        prStage.setScene(scene);
+        prStage.setResizable(false);
+        prStage.show();
            
         } catch (IOException ex) {
              System.out.println(ex.getMessage());
         }
+        
     }
     
 }
