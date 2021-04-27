@@ -54,14 +54,18 @@ public class AjouterFeedbackController implements Initializable {
         FeedbackServices fc = new FeedbackServices();
         fc.addFeedback(f);
         
-        try {
+        pid.setText("");
+        not.setText("");
+        rem.setText("");
+       
+        /*try {
             Parent root = FXMLLoader.load(getClass().getResource("HomeAdmin.fxml"));
             Stage window = (Stage) rem.getScene().getWindow();
             window.setScene(new Scene(root));
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        }
+        }*/
     }
     
 }

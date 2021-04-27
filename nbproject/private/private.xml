@@ -3,16 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/chauffBusEvent/chauffBusEventFXMain.java</file>
-            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/tools/DataSource.java</file>
-            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/busA/AdminSideBusController.java</file>
-            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/chauffBusEvent/ChauffBusEventFXMLController.java</file>
-            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/Dashboard.fxml</file>
-            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/MaterielA/AdminSideMaterielController.java</file>
-            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/MaterielA/AdminSideMateriel.fxml</file>
-            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/services/BusService.java</file>
-            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/ListDemandeMaterielController.java</file>
-            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/busA/BusAFXMain.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/ListeReclamationController.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/materiel/ClientSideMateriel.fxml</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/ClientSideBusController.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/materiel/MaterielFXMain.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/ListeReclamationFrontController.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/ClientSideMaterielController.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/bus/ClientSideBus.fxml</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/PasserReclamationController.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/ListeReclamationFront.fxml</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/MainFXML.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/ListeReclamationFront.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/AjouterFeedbackController.java</file>
         </group>
     </open-files>
 </project-private>
