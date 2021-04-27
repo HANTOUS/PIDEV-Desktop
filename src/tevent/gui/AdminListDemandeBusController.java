@@ -100,14 +100,12 @@ public class AdminListDemandeBusController implements Initializable {
 
     public void setUser(Utilisateur u) {
         user = u;
-
     }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNbparticipant.setCellValueFactory(new PropertyValueFactory<>("nb_participant"));
         colVilledepart.setCellValueFactory(new PropertyValueFactory<>("ville_depart"));
@@ -224,18 +222,18 @@ accepter.setVisible(false);
     private void retour(ActionEvent event) {
         try {
                FXMLLoader loader = new FXMLLoader();
-            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
-             HomeController dc = loader.getController();
-//               dc.setUser(user);
-            
-            Scene homePage_scene=new Scene(homePage);
-            
-            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            app_stage.setScene(homePage_scene);
-            
-            app_stage.show();
-            Stage stage = (Stage) retourbtn.getScene().getWindow(); 
+                nbkey.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("ListDemandes.fxml"));
+                loader.load();
+                
+                ListDemandesController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
            
         } catch (IOException ex) {
              System.out.println(ex.getMessage());

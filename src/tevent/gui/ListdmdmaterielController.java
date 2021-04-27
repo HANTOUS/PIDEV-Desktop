@@ -100,15 +100,18 @@ public class ListdmdmaterielController implements Initializable {
     @FXML
     private Button tarek;
 
-        
+         int idUser = user.getId();
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {       
+    public void initialize(URL url, ResourceBundle rb) {   
+        
+                int idUser = user.getId();
+
         ObservableList<String> Materiel = FXCollections.observableArrayList(dms.MaterielName());
                materiel.setItems(Materiel);
         
         
-        ObservableList <DemandeMateriel> DemandeMaterielList = (ObservableList<DemandeMateriel>) dms.readDemandeMateriel();
+        ObservableList <DemandeMateriel> DemandeMaterielList = (ObservableList<DemandeMateriel>) dms.getDemandeByUser(idUser);
                 List<String> label = new ArrayList<>();
                String req ="select label from materiel where id=?";
                                for (DemandeMateriel d : DemandeMaterielList) {
@@ -215,7 +218,8 @@ System.out.println(d.getMateriel_id());
     @FXML
     private void confirmerUpdate(ActionEvent event) {
         if( isValidate() ){
-            
+                    int idUser = user.getId();
+
         id = ((tableDemandeMateriel.getSelectionModel().getSelectedItem()).getId());
 
         int qte = Integer.parseInt(quantite.getText());
@@ -236,12 +240,13 @@ System.out.println(d.getMateriel_id());
             System.out.println(ex.getMessage());
         }
 
-        DemandeMateriel DM = new DemandeMateriel(1,idm,"6","encours",date_debut,date_fin);
+        DemandeMateriel DM = new DemandeMateriel( idUser ,idm,"6","encours",date_debut,date_fin);
 
         dms.updateDemandeMateriel(DM,qte,id);
         }
+               // int idUser = user.getId();
 
-        tableDemandeMateriel.setItems(dms.getDemandeByUser(1));
+        tableDemandeMateriel.setItems(dms.getDemandeByUser( idUser ));
         
         quantite.setText("");
             materiel.setValue("");
@@ -322,24 +327,27 @@ System.out.println(d.getMateriel_id());
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-               dms.PDF(db, label, "Bellalouna", "Tarek");
+               String nom = user.getNom();
+         String prenom = user.getPrenom();
+               dms.PDF(db, label, nom, prenom);
     }
 
     @FXML
     private void retour(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
-             HomeController dc = loader.getController();
-//               dc.setUser(user);
-            Scene homePage_scene=new Scene(homePage);
-            
-            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            app_stage.setScene(homePage_scene);
-            
-            app_stage.show();
-            Stage stage = (Stage) retourbtn.getScene().getWindow(); 
+             FXMLLoader loader = new FXMLLoader();
+        retourbtn.getScene().getWindow().hide();
+        Stage prStage = new Stage();
+        loader.setLocation(getClass().getResource("Home.fxml"));
+        loader.load();
+                     HomeController dc = loader.getController();
+        dc.setUser(user);
+       // dc.setFields(user.getNom(),user.getPrenom(),user.getCin(),user.getEmail(),(Date)user.getDateNaissance(),user.getImage());
+        Parent root = loader.getRoot();        
+        Scene scene = new Scene(root);
+        prStage.setScene(scene);
+        prStage.setResizable(false);
+        prStage.show();
            
         } catch (IOException ex) {
              System.out.println(ex.getMessage());

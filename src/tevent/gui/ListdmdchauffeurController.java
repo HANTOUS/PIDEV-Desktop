@@ -87,6 +87,8 @@ public class ListdmdchauffeurController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+               int idUser = user.getId();
+
             btnpdf.setVisible(false);
              confirmer.setVisible(false);
         annuler.setVisible(false);
@@ -96,7 +98,7 @@ public class ListdmdchauffeurController implements Initializable {
                colDateExpiration.setCellValueFactory(new PropertyValueFactory<>("date_expiration"));
                colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
                
-                ObservableList <DemandeChauffeur> DemandeChauffeurList = (ObservableList<DemandeChauffeur>) dcs.getDemandeByUser(1);
+                ObservableList <DemandeChauffeur> DemandeChauffeurList = (ObservableList<DemandeChauffeur>) dcs.getDemandeByUser(idUser);
                 tableDemandeChauffeur.setItems(DemandeChauffeurList);
                 tableDemandeChauffeur.getColumns().addAll(colID,colNumPermis,colDatePermis,colDateExpiration,colEtat) ;
 
@@ -114,12 +116,14 @@ public class ListdmdchauffeurController implements Initializable {
         LocalDate date_expiration = dateexpiration.getValue();
         String etat =tableDemandeChauffeur.getSelectionModel().getSelectedItem().getEtat() ;
 
+        int idUser = user.getId();
 
-        DemandeChauffeur DC = new DemandeChauffeur(1, num_permis, date_permis, date_expiration, etat);
+        DemandeChauffeur DC = new DemandeChauffeur(idUser, num_permis, date_permis, date_expiration, etat);
         dcs.updateDemandeChauffeur(DC,id);
                     }
+        int idUser = user.getId();
 
-        tableDemandeChauffeur.setItems(dcs.getDemandeByUser(1));
+        tableDemandeChauffeur.setItems(dcs.getDemandeByUser(idUser));
         
         numpermis.setText("");
         datepermis.setValue(null);
@@ -224,30 +228,32 @@ public class ListdmdchauffeurController implements Initializable {
     @FXML
     private void getPDF(ActionEvent event) throws DocumentException, BadElementException, IOException {
                            DemandeChauffeur dc = tableDemandeChauffeur.getSelectionModel().getSelectedItem();           
-
-                       dcs.PDF(dc, "Bellalouna", "Tarek");
+                           String nom = user.getNom();
+         String prenom = user.getPrenom();
+                       dcs.PDF(dc, nom , prenom);
 
     }
 
     @FXML
     private void retour(ActionEvent event) {
-        try {
-           FXMLLoader loader = new FXMLLoader();
-            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
-             HomeController dc = loader.getController();
-//               dc.setUser(user);
-            
-            Scene homePage_scene=new Scene(homePage);
-            
-            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            app_stage.setScene(homePage_scene);
-            
-            app_stage.show();
-            Stage stage = (Stage) retourbtn.getScene().getWindow(); 
+      try {
+             FXMLLoader loader = new FXMLLoader();
+        retourbtn.getScene().getWindow().hide();
+        Stage prStage = new Stage();
+        loader.setLocation(getClass().getResource("Home.fxml"));
+        loader.load();
+                     HomeController dc = loader.getController();
+        dc.setUser(user);
+       // dc.setFields(user.getNom(),user.getPrenom(),user.getCin(),user.getEmail(),(Date)user.getDateNaissance(),user.getImage());
+        Parent root = loader.getRoot();        
+        Scene scene = new Scene(root);
+        prStage.setScene(scene);
+        prStage.setResizable(false);
+        prStage.show();
            
         } catch (IOException ex) {
              System.out.println(ex.getMessage());
         }
+       
     }
 }

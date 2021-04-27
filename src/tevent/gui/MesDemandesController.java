@@ -30,29 +30,11 @@ import javafx.scene.image.ImageView;
 import java.io.File;
 
 
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.Initializable;
-import tevent.entities.DemandeBus;
-import tevent.entities.DemandeChauffeur;
-import tevent.entities.DemandeMateriel;
-import tevent.services.DemandeBusServices;
-import tevent.services.DemandeChauffeurServices;
-import tevent.services.DemandeMaterielServices;
-import tevent.tools.DataSource;
 
 /**
  * FXML Controller class
  *
-<<<<<<< HEAD
+
  * @author hanto
  */
 public class MesDemandesController implements Initializable {
@@ -180,5 +162,4 @@ public class MesDemandesController implements Initializable {
 //        }
 
     }
-
 

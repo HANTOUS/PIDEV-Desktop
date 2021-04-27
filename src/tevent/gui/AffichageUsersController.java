@@ -68,7 +68,7 @@ public class AffichageUsersController implements Initializable {
     @FXML
     private TableColumn<Utilisateur, String> colEmail;
     @FXML
-    private TableColumn<Utilisateur, String> colDate;
+    private TableColumn<Utilisateur, Date> colDate;
     @FXML
     private TableColumn<Utilisateur, String> colRole;
     @FXML
@@ -102,8 +102,10 @@ public class AffichageUsersController implements Initializable {
         colPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         colCin.setCellValueFactory(new PropertyValueFactory<>("cin"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        colDate.setCellValueFactory(new PropertyValueFactory<>("date_naissance"));
+        colDate.setCellValueFactory(new PropertyValueFactory<Utilisateur, Date>("date_naissance"));
         colRole.setCellValueFactory(new PropertyValueFactory<>("roles"));
+            colCompte.setCellValueFactory(new PropertyValueFactory<>("activation_token"));
+
         if(new PropertyValueFactory<>("activation_token") == null)
             colCompte.setCellValueFactory(new PropertyValueFactory<>("Ativé"));
         else

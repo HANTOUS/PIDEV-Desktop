@@ -15,7 +15,7 @@ import academiccalendar.data.model.Model;
 import academiccalendar.ui.addfestival.AddfestivalController;
 import com.jfoenix.controls.*;
 import com.jfoenix.effects.JFXDepthManager;
-
+import tevent.entities.Utilisateur;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -50,6 +50,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
 
 
 import javafx.scene.control.ScrollPane;
@@ -78,6 +79,8 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import tevent.entities.Festival;
 import tevent.services.FestivalServices;
+import tevent.gui.DashboardController;
+import tevent.gui.CrudSponsorController;
 
 
 public class FXMLDocumentController implements Initializable {
@@ -98,7 +101,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private JFXListView<String> monthSelect;   
     
-
+ private Utilisateur user;
     
     
     // Check Boxes for filtering
@@ -1220,15 +1223,40 @@ public class FXMLDocumentController implements Initializable {
             
     }
 
-
-    @FXML
-    private void backDash(ActionEvent event) throws IOException {
-        
-        Parent root = FXMLLoader.load(getClass().getResource("/formateur/Home.fxml")); 
-                 Scene scene = new Scene(root);
-              //   pidevfinal.PidevFinal.parentWindow.setScene(scene);
-        
+@FXML
+    private void getSponsorView(ActionEvent event) throws IOException {
+             FXMLLoader loader = new FXMLLoader();
+                monthLabel.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("/tevent/gui/CrudSponsor.fxml"));
+                loader.load();
+                
+                CrudSponsorController dc = loader.getController();
+                dc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
     }
+
+@FXML
+    private void backDash(ActionEvent event) throws IOException {
+             FXMLLoader loader = new FXMLLoader();
+                monthLabel.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("/tevent/gui/Dashboard.fxml"));
+                loader.load();
+                
+                DashboardController dc = loader.getController();
+                dc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
+    }
+
 
     private void showCalendarGlobal(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
@@ -1253,7 +1281,12 @@ public class FXMLDocumentController implements Initializable {
                
     
     }
+ public void setUser(Utilisateur u) {
+        user = u;
+        //lbUser.setText(u.getNom()+" "+u.getPrenom());
 
+    }
+    
     @FXML
     private void REFRESH(ActionEvent event) {
          repaintView();

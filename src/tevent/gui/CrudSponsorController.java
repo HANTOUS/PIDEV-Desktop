@@ -38,7 +38,8 @@ import tevent.entities.Sponsor;
 import tevent.entities.Sponsor;
 import tevent.entities.Sponsor;
 import tevent.services.SponsorServices;
-
+import tevent.entities.Utilisateur;
+import javafx.scene.Parent;
 
 /**
  * FXML Controller class
@@ -74,7 +75,7 @@ public class CrudSponsorController implements Initializable {
      public static  int ids;
     @FXML
     private VBox vboxmodifier;
-    
+     private Utilisateur user;
 
     /**
      * Initializes the controller class.
@@ -227,10 +228,35 @@ public class CrudSponsorController implements Initializable {
         confirmer.setVisible(false);
             annuler.setVisible(false);
     }
-
+public void setUser(Utilisateur u) {
+        user = u;
+       // lbUser.setText(u.getNom()+" "+u.getPrenom());
 
     }
 
+@FXML
+    private void retour(ActionEvent event) {
+     try {
+                FXMLLoader loader = new FXMLLoader();
+                annuler.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("/academiccalendar/ui/main/FXMLDocument.fxml"));
+                loader.load();
+                
+                FXMLDocumentController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
+           
+        } catch (IOException ex) {
+             System.out.println(ex.getMessage());
+      }
+
+    }
+}
 
    
 
