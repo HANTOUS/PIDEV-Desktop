@@ -10,7 +10,7 @@ package tevent.entities;
  * @author hanto
  */
 public class Feedback {
-      private int id;
+    private int id;
     private int participf_id;
     private int note; 
     private String remarque;
@@ -21,6 +21,13 @@ public class Feedback {
         this.note = note;
         this.remarque = remarque;
     }
+
+    public Feedback(int participf_id, int note, String remarque) {
+        this.participf_id = participf_id;
+        this.note = note;
+        this.remarque = remarque;
+    }
+    
 
     public int getId() {
         return id;

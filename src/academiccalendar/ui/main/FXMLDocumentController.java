@@ -50,6 +50,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+
+
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -435,17 +437,18 @@ public class FXMLDocumentController implements Initializable {
                     
                     // Add an event label with the given description
                     Label eventLbl = new Label(descript); 
+                    
 //                    eventLbl.setGraphic(imgView);
                     eventLbl.getStyleClass().add("event-label");
                     
                     // Save the term ID in accessible text
-                    eventLbl.setAccessibleText(Integer.toString(termID));
+                    /*eventLbl.setAccessibleText(Integer.toString(termID));
                     System.out.println(eventLbl.getAccessibleText());
                     
                     eventLbl.addEventHandler(MouseEvent.MOUSE_PRESSED, (e)->{
                         editEvent((VBox)eventLbl.getParent(), eventLbl.getText(), eventLbl.getAccessibleText());
                         
-                    });
+                    });*/
                     
                     
                     

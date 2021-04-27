@@ -16,13 +16,29 @@ public class Reclamation {
     private String contenu;
     private String etat="En cours";
 
+    public Reclamation(int user_id, String sujet, String contenu) {
+        this.user_id = user_id;
+        this.sujet = sujet;
+        this.contenu = contenu;
+    }
+    
+    
+
     public Reclamation(int id, int user_id, String sujet, String contenu) {
         this.id = id;
         this.user_id = user_id;
         this.sujet = sujet;
         this.contenu = contenu;
+    
     }
-
+    
+    public Reclamation(int id, int user_id, String sujet, String contenu, String etat) {
+        this.id = id;
+        this.user_id = user_id;
+        this.sujet = sujet;
+        this.contenu = contenu;
+        this.etat = etat;
+    }
    
     
     

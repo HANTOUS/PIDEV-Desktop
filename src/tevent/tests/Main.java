@@ -26,10 +26,16 @@ import tevent.entities.Bus;
 import tevent.entities.ChauffBusEvent;
 import tevent.entities.Chauffeur;
 import tevent.gui.FrontFestivalController;
+
+import tevent.entities.Feedback;
+import tevent.entities.Jmu;
+import tevent.entities.Reclamation;
 import tevent.services.ChauffeurServices;
 
 import tevent.services.SecurityServices;
 
+import tevent.services.FeedbackServices;
+import tevent.services.ReclamationServices;
 import tevent.services.UtilisateurServices;
 import tevent.services.DemandeMaterielServices;
 import tevent.services.DemandeChauffeurServices;
@@ -61,8 +67,42 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) throws SQLException {
-        Utilisateur user1 = new Utilisateur(10, "Bellalouna", "Tarek", "tarek.bellalounkka@esprit.tn", "123456", "12345689", null, Date.valueOf("1998-12-04"), null, null);
+    public static void main(String[] args) throws SQLException, Exception {
+        
+        ReclamationServices rs = new ReclamationServices();
+        
+        //rs.addreclamation(new Reclamation(2,"randonné ","Abcense de chef randonné"));
+        //rs.delreclamation(new Reclamation(13,2, "", ""));
+        //rs.updatereclamation(new Reclamation(8,2, "festivalll", "festival non completttt"));
+        //System.out.println(rs.readReclamation());
+        //System.out.println(rs.readReclamationByID(2));
+        //System.out.println(rs.readReclamationBySubject("festival"));
+        //System.out.println(rs.reclamationTraité());
+        //System.out.println(rs.reclamationEncours());
+        //rs.traiteReclamation(5);
+
+        
+
+        
+        
+              FeedbackServices fs = new FeedbackServices();
+        //fs.addFeedback(new Feedback(5,5,4,"Bonne organisation de festival de sousse "));
+              //fs.delFeddback(new Feedback(13, 0,0, ""));
+           //System.out.println(fs.bestFeedback());
+             //System.out.println(fs.readFeedback());
+             //System.out.println(fs.readFeedbackByID(10));
+             //System.out.println(fs.readFeedbackByNote(5));
+             //System.out.println(fs.moyNoteEvent(2));     
+             
+
+
+
+
+
+
+
+       /* Utilisateur user1 = new Utilisateur(8, "Bellalouna", "Tarek", "tarek.bellalounkka@esprit.tn", "123456", "12345679", null, Date.valueOf("1998-12-04"), null, null);
+>>>>>>> gestionreclamationetfeedback
         UtilisateurServices us = new UtilisateurServices();
       
         launch(args);  /*
@@ -132,12 +172,25 @@ public class Main extends Application {
 
      /*  
         Chauffeur c = new Chauffeur(12345679,Date.valueOf("2021-04-08"),Date.valueOf("2017-11-16"),Date.valueOf("2026-11-15"),8);
+=======
+        //Chauffeur c = new Chauffeur(12345679,Date.valueOf("2021-04-08"),Date.valueOf("2017-11-16"),Date.valueOf("2026-11-15"),8);
+>>>>>>> gestionreclamationetfeedback
         
+<<<<<<< HEAD
         ChauffeurServices cc = new ChauffeurServices();
 >>>>>>> 1ae0156bd712d7385958fff9597e83ec433dfdeb
+=======
+        //ChauffeurServices cc = new ChauffeurServices();
+>>>>>>> gestionreclamationetfeedback
         
+<<<<<<< HEAD
         //ChauffeurServices cc = new ChauffeurServices();
                 //dcs.SMS();
+=======
+        //cc.ajouterChauffeur(c);
+        //cc.modifierChauffeur(c);
+    }
+>>>>>>> gestionreclamationetfeedback
 
         //cc.ajouterChauffeur(c);
 <<<<<<< HEAD
