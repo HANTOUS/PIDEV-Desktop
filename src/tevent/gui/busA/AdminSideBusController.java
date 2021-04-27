@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -88,6 +89,12 @@ public class AdminSideBusController implements Initializable {
 
     }
     
+    private void showDialog(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText("Attention!");
+        alert.setContentText(message);
+        alert.show();
+    }
     
     public void loadBus(){
         List<Bus> lsBus = bs.listBus();
@@ -145,6 +152,10 @@ public class AdminSideBusController implements Initializable {
     
     @FXML
     private void ajoutBus(ActionEvent event) {
+        if(lb_fab.getText().toString() == "" || cb_modele.getValue() == "" || Integer.parseInt(lb_nbre_place.getText().toString())<=1 ){
+            this.showDialog("Ajout Réfusé, svp vérifer vos données");
+        }
+        else{
         b.setFabriquant(lb_fab.getText());
         b.setModele(cb_modele.getValue());
         b.setNbPlace(Integer.parseInt(lb_nbre_place.getText()));
@@ -153,6 +164,7 @@ public class AdminSideBusController implements Initializable {
         tableListBusId.getItems().clear();
         clear(event);
         loadBus();
+        }
     }
     
     @FXML

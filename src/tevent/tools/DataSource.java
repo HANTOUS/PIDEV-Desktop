@@ -17,13 +17,12 @@ public class DataSource {
      
     public String url="jdbc:mysql://localhost:3306/teventdb";
     public String user="root";
-    public String pwd="root";
+    public String pwd="";
     private Connection cnx;
     public static DataSource ct;
     
     private DataSource(){
        try{
-           
         cnx = DriverManager.getConnection(url,user,pwd);
         System.out.println("Connexion établieeee");
         
