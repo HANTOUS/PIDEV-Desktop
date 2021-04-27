@@ -71,7 +71,18 @@ public class FrontLogistiqueController implements Initializable {
     }
 
     @FXML
-    private void retour(ActionEvent event) {
+    private void retour(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("HomeFront.fxml"));
+                loader.load();
+                
+                HomeFrontController auc = loader.getController();
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
     }
     
 }
