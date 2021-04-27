@@ -27,12 +27,13 @@ import java.time.LocalDate;
 import java.sql.Date;
 import tevent.entities.Utilisateur;
 import academiccalendar.ui.main.FXMLDocumentController;
+import java.sql.SQLException;
 /**
  * FXML Controller class
  *
  * @author hanto
  */
-public class DashboardController implements Initializable {
+public class HomeFrontController implements Initializable {
    @FXML
     private Label lbUser;
     
@@ -45,22 +46,7 @@ public class DashboardController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void getUsersView(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-                lbUser.getScene().getWindow().hide();
-                Stage prStage = new Stage();
-                loader.setLocation(getClass().getResource("UserChauf.fxml"));
-                loader.load();
-                
-                UserChaufController auc = loader.getController();
-                auc.setUser(user);
-                Parent root = loader.getRoot();
-                Scene scene = new Scene(root);
-                prStage.setScene(scene);
-                prStage.setResizable(false);
-                prStage.show();
-    }
+
     @FXML
     private void getDemandesView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -78,14 +64,49 @@ public class DashboardController implements Initializable {
                 prStage.show();
     }
     @FXML
-    private void getFestivalView(ActionEvent event) throws IOException {
+    private void getFestivalView(ActionEvent event) throws IOException,SQLException {
         FXMLLoader loader = new FXMLLoader();
                 lbUser.getScene().getWindow().hide();
                 Stage prStage = new Stage();
-                loader.setLocation(getClass().getResource("/academiccalendar/ui/main/FXMLDocument.fxml"));
+                loader.setLocation(getClass().getResource("FrontFestival.fxml"));
                 loader.load();
                 
-                FXMLDocumentController auc = loader.getController();
+                FrontFestivalController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                FrontFestivalController F = new FrontFestivalController();
+
+                Scene scene = new Scene(F.page());
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
+    }
+
+    @FXML
+    private void getCampView(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("AffichageCampingFXML.fxml"));
+                loader.load();
+                
+                AffichageCampingFXMLController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
+    }
+    @FXML
+    private void getRandView(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("AffichageRandonneeFXML.fxml"));
+                loader.load();
+                
+                AffichageRandonneeFXMLController auc = loader.getController();
                 auc.setUser(user);
                 Parent root = loader.getRoot();
                 Scene scene = new Scene(root);
@@ -95,24 +116,7 @@ public class DashboardController implements Initializable {
     }
 
     @FXML
-    private void getCampRandView(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-                lbUser.getScene().getWindow().hide();
-                Stage prStage = new Stage();
-                loader.setLocation(getClass().getResource("AffichageEventFXML.fxml"));
-                loader.load();
-                
-                AffichageEventFXMLController auc = loader.getController();
-                auc.setUser(user);
-                Parent root = loader.getRoot();
-                Scene scene = new Scene(root);
-                prStage.setScene(scene);
-                prStage.setResizable(false);
-                prStage.show();
-    }
-
-    @FXML
-    private void getRecFeedView(ActionEvent event) throws IOException {
+    private void getRecView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
                 lbUser.getScene().getWindow().hide();
                 Stage prStage = new Stage();
@@ -127,7 +131,22 @@ public class DashboardController implements Initializable {
                 prStage.setResizable(false);
                 prStage.show();
     }
-
+    @FXML
+    private void getLogView(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("ListDemandes.fxml"));
+                loader.load();
+                
+                ListDemandesController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
+    }
     @FXML
     private void exit(MouseEvent event) throws IOException {
             lbUser.getScene().getWindow().hide();
@@ -145,7 +164,7 @@ public class DashboardController implements Initializable {
 
     }
     
-    @FXML
+   @FXML
     private void profile(MouseEvent event) throws IOException {
            FXMLLoader loader = new FXMLLoader();
         lbUser.getScene().getWindow().hide();

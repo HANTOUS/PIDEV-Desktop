@@ -30,6 +30,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import tevent.entities.Randonnee;
 import tevent.services.RandonneeServices;
+import tevent.entities.Utilisateur;
 /**
  * FXML Controller class
  *
@@ -61,7 +62,7 @@ public class AffichageRandonneeFXMLController implements Initializable {
     private Button annuler;
     @FXML
     private TableColumn<?, ?> idc;
-
+    private Utilisateur user;
     /**
      * Initializes the controller class.
      */
@@ -77,7 +78,11 @@ public class AffichageRandonneeFXMLController implements Initializable {
         
         afficher();
     }    
+    public void setUser(Utilisateur u) {
+           user = u;
+          // lbUser.setText(u.getNom()+" "+u.getPrenom());
 
+       }
     @FXML
     private void supprandonnee(ActionEvent event) {
         rs.SupprimerRandonnee(tabviewid.getSelectionModel().getSelectedItem().getId());
@@ -119,16 +124,21 @@ public class AffichageRandonneeFXMLController implements Initializable {
         
     }
 
-    @FXML
-    private void retourmenu(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("menuGestioneventFXML.fxml"));
-            Stage window = (Stage) menu.getScene().getWindow();
-            window.setScene(new Scene(root));
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+     @FXML
+    private void retourmenu(ActionEvent event) throws IOException{
+           FXMLLoader loader = new FXMLLoader();
+                annuler.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("HomeFront.fxml"));
+                loader.load();
+                
+                HomeFrontController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
         
     }
 

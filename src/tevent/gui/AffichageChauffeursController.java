@@ -28,6 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import tevent.entities.Chauffeur;
+import tevent.entities.Utilisateur;
 import tevent.services.ChauffeurServices;
 import javafx.util.Callback;
 import jdk.nashorn.internal.objects.annotations.Property;
@@ -37,7 +38,7 @@ import javafx.scene.layout.VBox;
 import java.time.LocalDate;
 import java.sql.Date;
 import javafx.scene.control.Label;
-
+import javafx.event.ActionEvent;
 
 /**
  * FXML Controller class
@@ -75,7 +76,7 @@ public class AffichageChauffeursController implements Initializable {
     private TableView<Chauffeur> UserTable;
     @FXML
     private Label lbUser;
-
+ private Utilisateur user;
     ObservableList<Chauffeur> chaffeursL = FXCollections.observableArrayList();
     /**
      * Initializes the controller class.
@@ -213,8 +214,10 @@ public class AffichageChauffeursController implements Initializable {
         stage.show();
     }
 
-    public void setUser(String nom) {
-        lbUser.setText(nom);
+     public void setUser(Utilisateur u) {
+        user = u;
+       // lbUser.setText(u.getNom()+" "+u.getPrenom());
+
     }
 
     @FXML
@@ -226,5 +229,22 @@ public class AffichageChauffeursController implements Initializable {
             stage.setScene(scene);
             stage.initStyle(StageStyle.UTILITY);
             stage.show();
+    }
+
+    @FXML
+    private void back(ActionEvent event) throws IOException {
+             FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("UserChauf.fxml"));
+                loader.load();
+                
+                UserChaufController dc = loader.getController();
+                dc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
     }
 }

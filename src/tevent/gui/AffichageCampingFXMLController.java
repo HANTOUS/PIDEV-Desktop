@@ -26,7 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import tevent.entities.Camping;
 import tevent.services.CampingServices;
-
+import tevent.entities.Utilisateur;
 /**
  * FXML Controller class
  *
@@ -58,7 +58,7 @@ public class AffichageCampingFXMLController implements Initializable {
     private Button Confirmer;
     @FXML
     private TableColumn<?, ?> idc;
-
+    private Utilisateur user;
     
     /**
      * Initializes the controller class.
@@ -82,7 +82,11 @@ public class AffichageCampingFXMLController implements Initializable {
         cs.SupprimerCamping(tabviewid.getSelectionModel().getSelectedItem().getId());
         tabviewid.getItems().removeAll(tabviewid.getSelectionModel().getSelectedItem());
     }
- 
+    public void setUser(Utilisateur u) {
+           user = u;
+          // lbUser.setText(u.getNom()+" "+u.getPrenom());
+
+       }
       private void afficher(){
         
         tabviewid.setItems(cs.ListAttestation());
@@ -100,15 +104,20 @@ public class AffichageCampingFXMLController implements Initializable {
     }
 
     @FXML
-    private void retourmenu(ActionEvent event) {
-         try {
-            Parent root = FXMLLoader.load(getClass().getResource("menuGestioneventFXML.fxml"));
-            Stage window = (Stage) menu.getScene().getWindow();
-            window.setScene(new Scene(root));
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+    private void retourmenu(ActionEvent event) throws IOException{
+           FXMLLoader loader = new FXMLLoader();
+                Confirmer.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("HomeFront.fxml"));
+                loader.load();
+                
+                HomeFrontController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
         
     }
 

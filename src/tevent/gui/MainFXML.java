@@ -24,11 +24,11 @@ public class MainFXML extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException ,SQLException{
        
-       // Parent root = FXMLLoader.load(getClass().getResource("FrontFestival.fxml"));
-        FrontFestivalController F = new FrontFestivalController();
-
-        Scene scene = new Scene(F.page());
-        
+       Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+       /* FrontFestivalController F = new FrontFestivalController();
+       Scene scene = new Scene(root);
+        Scene scene = new Scene(F.page());*/
+         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
          primaryStage.show();
        /* primaryStage.initStyle(StageStyle.TRANSPARENT);

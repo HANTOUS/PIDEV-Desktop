@@ -77,20 +77,19 @@ public class LoginController implements Initializable {
             if( user.getActivation_token()==  null){
                 if (role.equals("[\"ROLE_USER\"]")||role.equals("[\"ROLE_CHAUFFEUR\"]")) {
 
-                    /*FXMLLoader loader = new FXMLLoader();
+                    FXMLLoader loader = new FXMLLoader();
                     login.getScene().getWindow().hide();
                     Stage prStage = new Stage();
-                    loader.setLocation(getClass().getResource("Home.fxml"));
-                    Parent root = loader.load();
+                    loader.setLocation(getClass().getResource("HomeFront.fxml"));
+                    loader.load();
+
+                    HomeFrontController dc = loader.getController();
+                    dc.setUser(user);
+                    Parent root = loader.getRoot();
                     Scene scene = new Scene(root);
                     prStage.setScene(scene);
                     prStage.setResizable(false);
-                    prStage.show();*/
-                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Félicitation");
-                    alert.setHeaderText(null);
-                    alert.setContentText("!!! Vous ete maintenant connecté en tant que USER !!!");
-                    alert.showAndWait();
+                    prStage.show();
 
                 } else if (role.equals("[\"ROLE_ADMIN\"]")){
                     FXMLLoader loader = new FXMLLoader();

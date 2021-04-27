@@ -35,6 +35,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.stage.StageStyle;
 import tevent.entities.Utilisateur;
+import java.io.IOException;
 /**
  * FXML Controller class
  *
@@ -68,7 +69,7 @@ private Utilisateur user;
        // lbUser.setText(u.getNom()+" "+u.getPrenom());
 
     }
-    public static AnchorPane createPromotion(Festival j,Festival b)  {
+    public static AnchorPane createPromotion(Festival j,Festival b,Utilisateur user)  {
         
         FestivalServices pService = new FestivalServices();
         AnchorPane card2 = new AnchorPane();
@@ -135,7 +136,27 @@ private Utilisateur user;
             HBox test = new HBox();
             ImageView pour  = new ImageView();
             
-            
+            btnBack.setOnAction(new EventHandler<ActionEvent>() {
+             @Override public void handle(ActionEvent e) {
+                            FXMLLoader loader = new FXMLLoader();
+                card2.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("HomeFront.fxml"));
+                try{
+                loader.load();
+                }
+                catch(IOException ex){
+                    System.out.println(ex.getMessage());
+                }
+                HomeFrontController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
+                }
+            });
             
             Pane footer = new Pane();
             JFXButton feed = new JFXButton("Feedback");
@@ -367,12 +388,15 @@ private Utilisateur user;
         //filtrePourc.setOnAction(event);
         pagination.setPageFactory((pageIndex) -> {
 
-            return new VBox(createPromotion(list.get(pageIndex),list.get(pageIndex+1)));
+            return new VBox(createPromotion(list.get(pageIndex),list.get(pageIndex+1),user));
         });
         VBox vBox = new VBox(pagination);
         
        
        return vBox;
     }
+
+
+    
 
 }

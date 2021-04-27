@@ -254,10 +254,10 @@ public class AffichageUsersController implements Initializable {
              FXMLLoader loader = new FXMLLoader();
                 lbUser.getScene().getWindow().hide();
                 Stage prStage = new Stage();
-                loader.setLocation(getClass().getResource("Dashboard.fxml"));
+                loader.setLocation(getClass().getResource("UserChauf.fxml"));
                 loader.load();
                 
-                DashboardController dc = loader.getController();
+                UserChaufController dc = loader.getController();
                 dc.setUser(user);
                 Parent root = loader.getRoot();
                 Scene scene = new Scene(root);
