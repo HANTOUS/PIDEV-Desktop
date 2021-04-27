@@ -22,6 +22,22 @@ public class Randonnee extends Event{
     public Randonnee() {
     }
 
+    public Randonnee(String typerand, int id, String nomevent) {
+        super(id, nomevent);
+        this.typerand = typerand;
+    }
+
+    public Randonnee(String typerand, String nomevent) {
+        super(nomevent);
+        this.typerand = typerand;
+    }
+
+    public Randonnee(String typerand, String nomevent, Date datedebut, Date datefin, String heuredebut, String heurefin, String lieu, int nbmaxparticipant, String type, String description, float tarif, float lat, float lng) {
+        super(nomevent, datedebut, datefin, heuredebut, heurefin, lieu, nbmaxparticipant, type, description, tarif, lat, lng);
+        this.typerand = typerand;
+    }
+
+   
     public String getTyperand() {
         return typerand;
     }

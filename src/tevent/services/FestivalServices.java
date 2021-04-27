@@ -5,11 +5,8 @@
  */
 package tevent.services;
 
-<<<<<<< HEAD
+
 //import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
-=======
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
->>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

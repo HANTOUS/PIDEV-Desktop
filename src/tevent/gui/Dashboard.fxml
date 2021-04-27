@@ -51,7 +51,7 @@
                   <FontAwesomeIconView fill="#4e73df" glyphName="USER" size="45" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnCamp" contentDisplay="TOP" prefHeight="150.0" prefWidth="233.0" style="-fx-background-color: #F3F3F3;" text="Gestion Camping et Randonné" textFill="#4e73df" GridPane.columnIndex="1">
+            <JFXButton fx:id="btnCamp" contentDisplay="TOP" onAction="#getCampRandView" prefHeight="150.0" prefWidth="233.0" style="-fx-background-color: #F3F3F3;" text="Gestion Camping et Randonné" textFill="#4e73df" GridPane.columnIndex="1">
                <graphic>
                   <FontAwesomeIconView fill="#4e73df" glyphName="FIRE" size="45" />
                </graphic>

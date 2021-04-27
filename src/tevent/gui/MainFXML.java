@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.stage.Stage;
+import java.sql.SQLException;
 
 /**
  *
@@ -21,11 +22,12 @@ public class MainFXML extends Application {
   //  private double yOffset = 0; 
     //BorderPane private p;
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException ,SQLException{
        
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        
-        Scene scene = new Scene(root);
+       // Parent root = FXMLLoader.load(getClass().getResource("FrontFestival.fxml"));
+        FrontFestivalController F = new FrontFestivalController();
+
+        Scene scene = new Scene(F.page());
         
         primaryStage.setScene(scene);
          primaryStage.show();

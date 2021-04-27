@@ -1,1 +1,0 @@
-pidevzied.CampingServices

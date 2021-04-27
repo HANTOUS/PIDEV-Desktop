@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="suppbutt" prefHeight="562.0" prefWidth="998.0" style="-fx-background-color: #4e73df;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.AffichageEventFXMLController">
+   <children>
+      <TableView fx:id="tabviewid" layoutY="95.0" prefHeight="373.0" prefWidth="998.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="28.0" text="ID" visible="false" />
+          <TableColumn fx:id="nom" prefWidth="112.0" text="Nom" />
+            <TableColumn fx:id="datdebut" prefWidth="83.0" text="Date Début" />
+            <TableColumn fx:id="datfin" prefWidth="86.0" text="Date fin" />
+            <TableColumn fx:id="heurdeb" prefWidth="69.0" text="Heurdéb" />
+            <TableColumn fx:id="heurfin" prefWidth="66.0" text="Heurfin" />
+            <TableColumn fx:id="lieu" minWidth="2.0" prefWidth="55.0" text="Lieu" />
+            <TableColumn fx:id="nbrpart" prefWidth="71.0" text="participant" />
+            <TableColumn fx:id="type" minWidth="0.0" prefWidth="66.0" text="Type" />
+            <TableColumn fx:id="dsc" minWidth="0.0" prefWidth="103.0" text="dsc" />
+            <TableColumn fx:id="tarif" minWidth="1.0" prefWidth="55.0" text="Tarif" />
+            <TableColumn fx:id="lat" minWidth="0.0" prefWidth="117.0" text="Lat" />
+            <TableColumn fx:id="lng" minWidth="0.0" prefWidth="114.0" text="Lng" />
+        </columns>
+      </TableView>
+      <Button fx:id="supbut" layoutX="353.0" layoutY="492.0" mnemonicParsing="false" onAction="#suppevent" text="Supprimer" />
+      <TextField fx:id="tfrechnom" layoutX="214.0" layoutY="26.0" />
+      <Label layoutX="73.0" layoutY="30.0" text="Recherche par nom :" />
+      <Button fx:id="entrerid" layoutX="425.0" layoutY="26.0" mnemonicParsing="false" onAction="#rechercheeventparnom" text="entrer" />
+      <Button fx:id="dashboard" layoutX="623.0" layoutY="26.0" mnemonicParsing="false" onAction="#gotodashboard" text="Tableau de Bord" />
+      <Button fx:id="retour" layoutX="237.0" layoutY="492.0" mnemonicParsing="false" onAction="#back" text="Retour" />
+   </children>
+</AnchorPane>

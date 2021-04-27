@@ -33,7 +33,6 @@
             </Label>
             <FontAwesomeIconView fx:id="logout" fill="WHITE" glyphName="SIGN_OUT" layoutX="743.0" layoutY="62.0" onMouseClicked="#exit" size="20" />
             <Label layoutX="89.0" layoutY="83.0" text="Admin" textFill="WHITE" />
-            <JFXButton layoutX="373.0" layoutY="89.0" />
          </children>
       </Pane>
       <GridPane hgap="5.0" layoutX="45.0" layoutY="205.0" prefHeight="292.0" prefWidth="706.0" vgap="5.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="205.0">
@@ -52,12 +51,12 @@
                   <FontAwesomeIconView fill="#4e73df" glyphName="USER" size="45" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnCamp" contentDisplay="TOP" prefHeight="150.0" prefWidth="233.0" style="-fx-background-color: #F3F3F3;" text="Gestion Camping et Randonné" textFill="#4e73df" GridPane.columnIndex="1">
+            <JFXButton fx:id="btnCamp" contentDisplay="TOP" onAction="#getCampRandView" prefHeight="150.0" prefWidth="233.0" style="-fx-background-color: #F3F3F3;" text="Gestion Camping et Randonné" textFill="#4e73df" GridPane.columnIndex="1">
                <graphic>
                   <FontAwesomeIconView fill="#4e73df" glyphName="FIRE" size="45" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnFest" contentDisplay="TOP" prefHeight="152.0" prefWidth="255.0" style="-fx-background-color: #F3F3F3;" text="Gestion Festival" textFill="#4e73df" GridPane.columnIndex="2">
+            <JFXButton fx:id="btnFest" contentDisplay="TOP" onAction="#getFestivalView" prefHeight="152.0" prefWidth="255.0" style="-fx-background-color: #F3F3F3;" text="Gestion Festival" textFill="#4e73df" GridPane.columnIndex="2">
                <graphic>
                   <FontAwesomeIconView fill="#4e73df" glyphName="MICROPHONE" size="45" />
                </graphic>
@@ -67,7 +66,7 @@
                   <FontAwesomeIconView fill="#4e73df" glyphName="BUS" size="45" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnDemandes" contentDisplay="TOP" onAction="#getUsersView" prefHeight="142.0" prefWidth="233.0" style="-fx-background-color: #F3F3F3;" text="Gestion Demandes" textFill="#4e73df" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <JFXButton fx:id="btnDemandes" contentDisplay="TOP" onAction="#getDemandesView" prefHeight="142.0" prefWidth="233.0" style="-fx-background-color: #F3F3F3;" text="Gestion Demandes" textFill="#4e73df" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <graphic>
                   <FontAwesomeIconView fill="#4e73df" glyphName="LIST_ALT" size="45" />
                </graphic>

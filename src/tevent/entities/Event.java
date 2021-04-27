@@ -12,14 +12,14 @@ import java.util.Date;
  * @author maale
  */
 public class Event {
-   protected int id;
-   protected  String nomevent;
-   protected  Date datedebut,datefin;
-   protected  String heuredebut,heurefin;
-   protected  String lieu;
-   protected  int nbmaxparticipant;
-   protected String type,description;
-   protected  float tarif,lat,lng;
+    private int id;
+    private String nomevent;
+    private Date datedebut,datefin;
+    private String heuredebut,heurefin;
+    private String lieu;
+    private int nbmaxparticipant;
+    private String type,description;
+    private float tarif,lat,lng;
 
     public Event(int id, String nomevent, Date datedebut, Date datefin, String heuredebut, String heurefin, String lieu, int nbmaxparticipant, String type, String description, float tarif, float lat, float lng) {
         this.id = id;
@@ -37,21 +37,38 @@ public class Event {
         this.lng = lng;
     }
 
-    public Event() {
+    public Event(int id, String nomevent) {
+        this.id = id;
+        this.nomevent = nomevent;
     }
-    
+
+    public Event(int id) {
+        this.id = id;
+        
+    }
+
     public Event(String nomevent) {
         this.nomevent = nomevent;
     }
-    
-    
-    
-    
 
-    /*public Event(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       public Event( String nomevent, Date datedebut, Date datefin, String heuredebut, String heurefin, String lieu, int nbmaxparticipant, String type, String description, float tarif, float lat, float lng) {
+        
+        this.nomevent = nomevent;
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.heuredebut = heuredebut;
+        this.heurefin = heurefin;
+        this.lieu = lieu;
+        this.nbmaxparticipant = nbmaxparticipant;
+        this.type = type;
+        this.description = description;
+        this.tarif = tarif;
+        this.lat = lat;
+        this.lng = lng;
     }
-*/
+    public Event() {
+    }
+
     public int getId() {
         return id;
     }
@@ -163,4 +180,3 @@ public class Event {
     
     
 }
-

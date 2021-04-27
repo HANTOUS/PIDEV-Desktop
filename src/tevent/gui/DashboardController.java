@@ -26,7 +26,7 @@ import javafx.stage.StageStyle;
 import java.time.LocalDate;
 import java.sql.Date;
 import tevent.entities.Utilisateur;
-
+import academiccalendar.ui.main.FXMLDocumentController;
 /**
  * FXML Controller class
  *
@@ -55,6 +55,72 @@ public class DashboardController implements Initializable {
                 
                 AffichageUsersController auc = loader.getController();
                 auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
+    }
+    @FXML
+    private void getDemandesView(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("ListDemandes.fxml"));
+                loader.load();
+                
+                ListDemandesController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
+    }
+    @FXML
+    private void getFestivalView(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("/academiccalendar/ui/main/FXMLDocument.fxml"));
+                loader.load();
+                
+                FXMLDocumentController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
+    }
+
+    @FXML
+    private void getCampRandView(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("AffichageEventFXML.fxml"));
+                loader.load();
+                
+                AffichageEventFXMLController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
+    }
+
+    @FXML
+    private void getRecFeedView(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+               // loader.setLocation(getClass().getResource("/academiccalendar/ui/main/FXMLDocument.fxml"));
+                loader.load();
+                
+               // FXMLDocumentController auc = loader.getController();
+                //auc.setUser(user);
                 Parent root = loader.getRoot();
                 Scene scene = new Scene(root);
                 prStage.setScene(scene);

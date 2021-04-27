@@ -283,19 +283,19 @@ accepter.setVisible(false);
     @FXML
     private void retour(ActionEvent event) {
         try {
-               FXMLLoader loader = new FXMLLoader();
-            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
-             HomeController dc = loader.getController();
-//               dc.setUser(user);
-            
-            Scene homePage_scene=new Scene(homePage);
-            
-            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            app_stage.setScene(homePage_scene);
-            
-            app_stage.show();
-            Stage stage = (Stage) retourbtn.getScene().getWindow(); 
+                FXMLLoader loader = new FXMLLoader();
+                materiel.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("ListDemandes.fxml"));
+                loader.load();
+                
+                ListDemandesController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
            
         } catch (IOException ex) {
              System.out.println(ex.getMessage());

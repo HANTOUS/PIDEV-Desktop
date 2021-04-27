@@ -331,7 +331,7 @@ System.out.println(d.getMateriel_id());
             FXMLLoader loader = new FXMLLoader();
             Parent homePage = loader.load(getClass().getResource("Home.fxml"));
              HomeController dc = loader.getController();
-//               dc.setUser(user);
+//              dc.setUser(user);
             Scene homePage_scene=new Scene(homePage);
             
             Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();

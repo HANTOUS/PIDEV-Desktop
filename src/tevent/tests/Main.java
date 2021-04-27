@@ -23,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tevent.entities.Bus;
+import tevent.entities.Event;
 import tevent.entities.ChauffBusEvent;
 import tevent.entities.Chauffeur;
 import tevent.gui.FrontFestivalController;
@@ -31,6 +32,7 @@ import tevent.entities.Feedback;
 import tevent.entities.Jmu;
 import tevent.entities.Reclamation;
 import tevent.services.ChauffeurServices;
+import tevent.services.EventServices;
 
 import tevent.services.SecurityServices;
 
@@ -40,7 +42,7 @@ import tevent.services.UtilisateurServices;
 import tevent.services.DemandeMaterielServices;
 import tevent.services.DemandeChauffeurServices;
 import tevent.services.DemandeBusServices;
-
+import javafx.collections.ObservableList;
 /**
  *
  * @author hanto
@@ -53,7 +55,6 @@ import tevent.services.DemandeBusServices;
 //=======
 
 
-<<<<<<< HEAD
 public class Main {
     
     /*
@@ -73,9 +74,7 @@ public class Main extends Application {
     }
 <<<<<<< HEAD
 */
-=======
 
->>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
 
     public static void main(String[] args) throws SQLException, Exception {
         
@@ -107,8 +106,6 @@ public class Main extends Application {
 
 
 
-
-<<<<<<< HEAD
 
 
 
@@ -237,6 +234,12 @@ public class Main extends Application {
 
         //cc.ajouterChauffeur(c);
       //  cc.modifierChauffeur(c);
+EventServices es=new EventServices();
+      ObservableList <Event> EventList = null;
+        EventList = es.ReadEvent();
+for (Event d : EventList) {
+            System.out.println(d);
+        }
     }
 }
 
