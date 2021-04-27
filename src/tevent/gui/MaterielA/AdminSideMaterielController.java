@@ -232,7 +232,7 @@ public class AdminSideMaterielController implements Initializable {
     public void senMailWarning(Materiel m){
       
       // Mention the Recipient's email address
-        String to = "alaaeddine.benali@esprit.tn";
+        String to = "tevents98@gmail.com";
         // Mention the Sender's email address
         String from = "tevents98@gmail.com";
         // Mention the SMTP server address. Below Gmail's SMTP server is being used to send email
