@@ -52,7 +52,7 @@ public class Main extends Application {
     
     public void start(Stage stage) throws Exception {
          FrontFestivalController F = new FrontFestivalController();
-      Parent root = FXMLLoader.load(getClass().getResource("/tevent/gui/CrudSponsor.fxml"));
+      Parent root = FXMLLoader.load(getClass().getResource("/academiccalender.ui.main/FXMLDocument.fxml"));
        Scene scene = new Scene(root);
        //Scene scene = new Scene(F.page());
         
