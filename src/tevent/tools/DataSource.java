@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class DataSource {
      
-    public String url="jdbc:mysql://localhost:3306/teventdb1";
+    public String url="jdbc:mysql://localhost:3306/teventdb";
     public String user="root";
     public String pwd="";
     private Connection cnx;
@@ -23,7 +23,6 @@ public class DataSource {
     
     private DataSource(){
        try{
-           
         cnx = DriverManager.getConnection(url,user,pwd);
         System.out.println("Connexion établieeee");
         

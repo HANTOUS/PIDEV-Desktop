@@ -27,6 +27,7 @@ import java.time.LocalDate;
 import java.sql.Date;
 import tevent.entities.Utilisateur;
 import academiccalendar.ui.main.FXMLDocumentController;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 /**
  * FXML Controller class
  *
@@ -37,6 +38,20 @@ public class DashboardController implements Initializable {
     private Label lbUser;
     
     private Utilisateur user;
+    @FXML
+    private FontAwesomeIconView logout;
+    @FXML
+    private JFXButton btnUsers;
+    @FXML
+    private JFXButton btnCamp;
+    @FXML
+    private JFXButton btnFest;
+    @FXML
+    private JFXButton btnLog;
+    @FXML
+    private JFXButton btnDemandes;
+    @FXML
+    private JFXButton btnRec;
     /**
      * Initializes the controller class.
      */
@@ -116,10 +131,10 @@ public class DashboardController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
                 lbUser.getScene().getWindow().hide();
                 Stage prStage = new Stage();
-               // loader.setLocation(getClass().getResource("/academiccalendar/ui/main/FXMLDocument.fxml"));
+                loader.setLocation(getClass().getResource("HomeAdmin.fxml"));
                 loader.load();
                 
-               // FXMLDocumentController auc = loader.getController();
+                HomeAdminController auc = loader.getController();
                 //auc.setUser(user);
                 Parent root = loader.getRoot();
                 Scene scene = new Scene(root);
@@ -160,6 +175,23 @@ public class DashboardController implements Initializable {
         prStage.setScene(scene);
         prStage.setResizable(false);
         prStage.show();
+    }
+
+    @FXML
+    private void getLogistique(ActionEvent event) throws IOException {
+                FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("DashboardLogistiqueFXML.fxml"));
+                loader.load();
+                
+                DashboardLogistiqueFXMLController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
     }
  
 }

@@ -58,14 +58,18 @@ public class PasserReclamationController implements Initializable {
         ReclamationServices rc = new ReclamationServices();
         rc.addreclamation(r);
         
-       try {
+        rcsujet.setText("");
+        rccontenu.setText("");
+        rcidu.setText("");
+        
+       /*try {
             Parent root = FXMLLoader.load(getClass().getResource("HomeAdmin.fxml"));
             Stage window = (Stage) rcsujet.getScene().getWindow();
             window.setScene(new Scene(root));
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        }
+        }*/
         
     }
     

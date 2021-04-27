@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
@@ -23,3 +24,25 @@
         </group>
     </open-files>
 </project-private>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/ListeReclamationController.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/materiel/ClientSideMateriel.fxml</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/ClientSideBusController.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/materiel/MaterielFXMain.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/ListeReclamationFrontController.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/ClientSideMaterielController.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/bus/ClientSideBus.fxml</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/PasserReclamationController.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/ListeReclamationFront.fxml</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/MainFXML.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/ListeReclamationFront.java</file>
+            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/AjouterFeedbackController.java</file>
+        </group>
+    </open-files>
+</project-private>
+>>>>>>> 31d6bbc097e48142e007987a8ff9ad63a8175a80

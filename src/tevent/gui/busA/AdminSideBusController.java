@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -28,6 +29,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import tevent.entities.Bus;
 import tevent.entities.Utilisateur;
+import tevent.gui.DashboardLogistiqueFXMLController;
 import tevent.services.BusService;
 
 /**
@@ -88,6 +90,12 @@ public class AdminSideBusController implements Initializable {
 
     }
     
+    private void showDialog(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText("Attention!");
+        alert.setContentText(message);
+        alert.show();
+    }
     
     public void loadBus(){
         List<Bus> lsBus = bs.listBus();
@@ -145,6 +153,10 @@ public class AdminSideBusController implements Initializable {
     
     @FXML
     private void ajoutBus(ActionEvent event) {
+        /*if(lb_fab.getText().toString() == "" || cb_modele.getValue() == "" || Integer.parseInt(lb_nbre_place.getText().toString())<=1 ){
+            this.showDialog("Ajout Réfusé, svp vérifer vos données");
+        }
+        else{*/
         b.setFabriquant(lb_fab.getText());
         b.setModele(cb_modele.getValue());
         b.setNbPlace(Integer.parseInt(lb_nbre_place.getText()));
@@ -153,6 +165,7 @@ public class AdminSideBusController implements Initializable {
         tableListBusId.getItems().clear();
         clear(event);
         loadBus();
+        //}
     }
     
     @FXML
@@ -199,25 +212,20 @@ public class AdminSideBusController implements Initializable {
     }
 
     @FXML
-    private void retour(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
-            //HomeController dc = loader.getController();
-//            dc.setUser(user);
-            
-            Scene homePage_scene=new Scene(homePage);
-            
-            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            
-            app_stage.setScene(homePage_scene);
-            
-            app_stage.show();
-            Stage stage = (Stage) btnretour.getScene().getWindow(); 
-           
-        } catch (IOException ex) {
-             System.out.println(ex.getMessage());
-        }
+    private void retour(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("/tevent/gui/DashboardLogistiqueFXML.fxml"));
+                loader.load();
+                
+                DashboardLogistiqueFXMLController auc = loader.getController();
+                auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
     }
     
 }

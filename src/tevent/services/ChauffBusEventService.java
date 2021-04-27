@@ -41,14 +41,13 @@ public class ChauffBusEventService {
 //            list.add(new ChauffBusEvent(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getString(7),rs.getString(8)));
             //list.add(new ChauffBusEvent(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getString(6),rs.getString(7)));
 
-            list.add(new ChauffBusEvent(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getString(7),rs.getString(8)));
+            list.add(new ChauffBusEvent(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getString(6),rs.getString(7)));
 
             //list.add(new ChauffBusEvent(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getString(6),rs.getString(7)));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-         System.out.println(list);
         return list;
     }
     

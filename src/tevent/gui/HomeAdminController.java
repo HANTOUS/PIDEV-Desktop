@@ -17,7 +17,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import tevent.entities.Utilisateur;
 
 /**
  * FXML Controller class
@@ -26,10 +29,19 @@ import javafx.stage.Stage;
  */
 public class HomeAdminController implements Initializable {
 
-    @FXML
     private Button gr;
-    @FXML
     private Button gf;
+    @FXML
+    private Label lbUser;
+    @FXML
+    private Button btnReclamation;
+    @FXML
+    private Button btnFeedback;
+    
+    
+    private Utilisateur user;
+    @FXML
+    private Button btnRetour;
 
     /**
      * Initializes the controller class.
@@ -38,31 +50,68 @@ public class HomeAdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
     }    
-
-    @FXML
-    private void gestReclamation(ActionEvent event) {
     
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("ListeReclamation.fxml"));
-            Stage window = (Stage) gr.getScene().getWindow();
-            window.setScene(new Scene(root));
+    public void setUser(Utilisateur u) {
+        user = u;
+        //lbUser.setText(u.getNom()+" "+u.getPrenom());
 
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
     }
 
     @FXML
-    private void gestFeedback(ActionEvent event) {
-        
-         try {
-            Parent root = FXMLLoader.load(getClass().getResource("ListeFeedback.fxml"));
-            Stage window = (Stage) gf.getScene().getWindow();
-            window.setScene(new Scene(root));
+    private void gestReclamation(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("/tevent/gui/ListeReclamation.fxml"));
+                loader.load();
+                
+                ListeReclamationController auc = loader.getController();
+                //auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
+    }
 
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+    @FXML
+    private void gestFeedback(ActionEvent event) throws IOException {
+        
+         FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("/tevent/gui/ListeFeedback.fxml"));
+                loader.load();
+                
+                ListeFeedbackController auc = loader.getController();
+                //auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
+        
+    }
+
+    @FXML
+    private void profile(MouseEvent event) {
+    }
+
+    @FXML
+    private void getDashboard(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+                lbUser.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("/tevent/gui/Dashboard.fxml"));
+                loader.load();
+                
+                DashboardController auc = loader.getController();
+                //auc.setUser(user);
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
         
     }
     
