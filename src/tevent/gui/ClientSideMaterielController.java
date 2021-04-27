@@ -50,6 +50,8 @@ public class ClientSideMaterielController implements Initializable {
     private MaterielService ms = new MaterielService();
     @FXML
     private TableColumn<Materiel, String> col_table_label_id;
+    @FXML
+    private Button btnRetour;
 
     /**
      * Initializes the controller class.
@@ -85,6 +87,10 @@ public class ClientSideMaterielController implements Initializable {
         for(int i=0;i<lsMateriel.size();i++)
             listMateriel.add(lsMateriel.get(i));
         tableListBusId.setItems(listMateriel);
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
     }
     
 }

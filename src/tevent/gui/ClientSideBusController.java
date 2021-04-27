@@ -52,6 +52,8 @@ public class ClientSideBusController implements Initializable {
     private TableColumn<Bus, String> col_table_panne_id= new TableColumn<>("panne");
     @FXML
     private Button btn_search;
+    @FXML
+    private Button btnRetour;
 
 
     void selectedModele(ActionEvent event){
@@ -131,6 +133,10 @@ public class ClientSideBusController implements Initializable {
         col_table_panne_id.setCellValueFactory(new PropertyValueFactory<>("panne"));
         
         tableListBusId.setItems(listBus);
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
     }
     
 }
