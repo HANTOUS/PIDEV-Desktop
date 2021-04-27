@@ -1,1 +1,0 @@
-tevent.service.SponsorServices

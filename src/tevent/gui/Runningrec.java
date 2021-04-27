@@ -28,11 +28,11 @@ public class Runningrec extends Application {
     public void start(Stage primaryStage) {
        
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("AjouterFeedback.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("HomeAdmin.fxml"));
             
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("HOME");
+            primaryStage.setTitle("Gestion Réclamation & feedback");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {

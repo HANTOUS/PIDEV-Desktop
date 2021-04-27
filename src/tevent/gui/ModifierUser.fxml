@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.ModifierUserController">
+    <children>
+        <HBox alignment="CENTER" prefHeight="47.0" prefWidth="389.0">
+            <children>
+                <Text fill="#1c3680" strokeType="OUTSIDE" strokeWidth="0.0" text="Modification Utilisateur" wrappingWidth="280.13671875">
+                    <font>
+                        <Font name="Arial Black" size="20.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin>
+                </Text>
+            </children>
+        </HBox>
+        <Pane prefHeight="4.0" prefWidth="389.0" style="-fx-background-color: #1c3680;" />
+      
+        <JFXTextField fx:id="txtNom" focusColor="#18b56e" layoutX="53.0" layoutY="58.0" prefHeight="27.0" prefWidth="347.0" promptText="Nom" unFocusColor="#1c3680">
+            <VBox.margin>
+                <Insets bottom="20.0" top="20.0" />
+            </VBox.margin>
+            <padding>
+                <Insets left="10.0" right="10.0" />
+            </padding>
+        </JFXTextField>
+        <JFXTextField fx:id="txtPrenom" focusColor="#18b56e" layoutX="53.0" layoutY="101.0" prefHeight="25.0" prefWidth="237.0" promptText="Prenom" unFocusColor="#1c3680">
+            <VBox.margin>
+                <Insets bottom="20.0" />
+            </VBox.margin>
+            <padding>
+                <Insets left="10.0" right="10.0" />
+            </padding>
+        </JFXTextField>
+        <JFXTextField fx:id="txtCin" focusColor="#18b56e" layoutX="53.0" layoutY="142.0" prefHeight="25.0" prefWidth="237.0" promptText="CIN" unFocusColor="#1c3680">
+            <VBox.margin>
+                <Insets bottom="20.0" />
+            </VBox.margin>
+            <padding>
+                <Insets left="10.0" right="10.0" />
+            </padding>
+        </JFXTextField>
+        <JFXTextField fx:id="txtEmail" focusColor="#18b56e" layoutX="53.0" layoutY="184.0" prefHeight="25.0" prefWidth="237.0" promptText="Email" unFocusColor="#1c3680">
+            <VBox.margin>
+                <Insets bottom="20.0" />
+            </VBox.margin>
+            <padding>
+                <Insets left="10.0" right="10.0" />
+            </padding>
+        </JFXTextField>
+        <JFXDatePicker fx:id="dateN" defaultColor="#1c3680" layoutX="53.0" layoutY="314.0" prefHeight="35.0" prefWidth="384.0" promptText="Date de naissance">
+            <VBox.margin>
+                <Insets bottom="20.0" />
+            </VBox.margin>
+            <padding>
+                <Insets left="10.0" right="10.0" />
+            </padding>
+        </JFXDatePicker>
+        <HBox prefHeight="44.0" prefWidth="389.0">
+            <VBox.margin>
+                <Insets left="10.0" right="10.0" />
+            </VBox.margin>
+            <children>
+                <JFXButton fx:id="btnModifier" onAction="#update" prefHeight="37.0" prefWidth="367.0" style="-fx-background-color: green;" text="Modifier" textAlignment="CENTER" textFill="WHITE">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <HBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                    </HBox.margin>
+                </JFXButton>
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="10.0" />
+    </padding>
+</VBox>

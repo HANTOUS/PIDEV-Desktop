@@ -24,7 +24,9 @@ public class MaterielFXMain extends Application {
         
         Scene scene = new Scene(root);
         
+
         primaryStage.setTitle("Materiel");
+
         primaryStage.setScene(scene);
         primaryStage.show();
     }

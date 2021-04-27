@@ -51,7 +51,7 @@ public class Festival extends Event{
     }
 
     public Festival(int id, String type_fest, String artist, String picture, int nb_invit) {
-        this.id = id;
+        super(id);
         this.type_fest = type_fest;
         this.artist = artist;
         this.picture = picture;

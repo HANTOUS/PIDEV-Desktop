@@ -25,7 +25,7 @@ public class ChauffeurServices {
 
     private Connection cnx = DataSource.getInstance().getCnx();
 
-    public void ajouterChauffeur(Chauffeur c) {
+    public String ajouterChauffeur(Chauffeur c) {
         String req = "insert into chauffeur(num_permis,date_debut,date_permis,date_expiration,id_user) VALUES (?,?,?,?,?)";
         String req1 = "update utilisateur set roles=? where id = ?";
 
@@ -43,12 +43,14 @@ public class ChauffeurServices {
 
             ps.executeUpdate();
             ps1.executeUpdate();
+            return "Chauffeur ajouté avec succés";
+
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         }
     }
 
-    public void modifierChauffeur(Chauffeur c) {
+    public String modifierChauffeur(Chauffeur c) {
         String req = "update chauffeur set num_permis=?, date_debut= ? , date_permis= ?, date_expiration= ? where id_user = ?";
         String req1 = "update utilisateur set nom=?, prenom= ? , email= ?, cin= ?, date_naissance= ? where id = ?";
 
@@ -70,8 +72,9 @@ public class ChauffeurServices {
 
             ps.executeUpdate();
             ps1.executeUpdate();
+            return "Chauffeur ajouté avec succés";  
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         }
     }
 

@@ -25,7 +25,16 @@ import javafx.scene.layout.VBox;
 import org.controlsfx.control.Rating;
 import tevent.entities.Festival;
 import tevent.services.FestivalServices;
-
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import java.io.IOException;
+import javafx.stage.StageStyle;
+import tevent.entities.Utilisateur;
 /**
  * FXML Controller class
  *
@@ -34,6 +43,7 @@ import tevent.services.FestivalServices;
 public class FrontFestivalController implements Initializable {
   
     public static ObservableList<Festival> list ;
+private Utilisateur user;
 
    // public static JFXComboBox<Integer> filtrePourc = new JFXComboBox<>();
     /**
@@ -52,7 +62,12 @@ public class FrontFestivalController implements Initializable {
         }
 
     }    
-    
+    public void setUser(Utilisateur u) {
+        user = u;
+
+       // lbUser.setText(u.getNom()+" "+u.getPrenom());
+
+    }
     public static AnchorPane createPromotion(Festival j,Festival b)  {
         
         FestivalServices pService = new FestivalServices();
@@ -123,7 +138,29 @@ public class FrontFestivalController implements Initializable {
             
             
             Pane footer = new Pane();
-           // JFXButton buy = new JFXButton("participer");
+            JFXButton feed = new JFXButton("Feedback");
+            feed.setOnAction(new EventHandler<ActionEvent>() {
+    @Override public void handle(ActionEvent e) {
+                            FXMLLoader loader = new FXMLLoader ();
+                            loader.setLocation(getClass().getResource("ModifierUser.fxml"));
+                            //j.getId()
+                            try {
+                                loader.load();
+                            } catch (IOException ex) {
+                               System.out.println(ex.getMessage());
+                            }
+                            
+                           /* FeedbackController mod = loader.getController();
+                            mod.setUser(user,j.getId());*/
+                            
+                            Parent parent = loader.getRoot();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(parent));
+                            stage.initStyle(StageStyle.UTILITY);
+                            stage.show();
+                }
+            });
+
             Rating rating = new Rating(5);
 
             Label l1 = new Label(),l2 = new Label(),l3 = new Label(),l4 = new Label(),l5 = new Label(),l6 = new Label(),l7 = new Label();
@@ -145,7 +182,7 @@ public class FrontFestivalController implements Initializable {
            
            
            
-            //buy.setStyle(styleButton);
+            feed.setStyle(styleButton);
             footer.setStyle(stylefooter);
             card.setStyle(styleCard);
             
@@ -175,7 +212,7 @@ public class FrontFestivalController implements Initializable {
                  
                  Image image1 = new Image(stream1);
                  ImageView im = new ImageView(image1);
-//                 buy.setGraphic(im);
+                feed.setGraphic(im);
                  
             }
 
@@ -215,7 +252,7 @@ public class FrontFestivalController implements Initializable {
                 stream1 = new FileInputStream(pService.findimage(b.getId()));
                 Image image1 = new Image(stream1) ;
                 ImageView im = new ImageView(image1);
-               // buy.setGraphic(im);
+               feed.setGraphic(im);
                  }
                 
             } catch (FileNotFoundException ex) {
@@ -251,7 +288,7 @@ public class FrontFestivalController implements Initializable {
 
             
 
-            test.getChildren().addAll(rating);
+            test.getChildren().addAll(rating,feed);
             
             footer.getChildren().add(test);
             test.setLayoutY(7);

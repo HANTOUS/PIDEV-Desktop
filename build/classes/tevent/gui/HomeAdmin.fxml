@@ -2,23 +2,51 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.HomeAdminController">
+<AnchorPane id="AnchorPane" prefHeight="543.0" prefWidth="798.0" stylesheets="@Dashboard.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.HomeAdminController">
    <children>
-      <Pane prefHeight="400.0" prefWidth="195.0" style="-fx-background-color: #4e73df;">
+      <Pane prefHeight="150.0" prefWidth="777.0" style="-fx-background-color: #4e73df;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="gr" layoutX="7.0" layoutY="299.0" mnemonicParsing="false" onAction="#gestReclamation" prefHeight="61.0" prefWidth="135.0" style="-fx-background-color: #2e05fb;" text="Gestion Reclamation " textFill="#fdfeff" />
-            <Button fx:id="gf" layoutX="7.0" layoutY="231.0" mnemonicParsing="false" onAction="#gestFeedback" prefHeight="61.0" prefWidth="135.0" style="-fx-background-color: #2e05fb;" text="Gestion Feedback" textFill="#fdfeff" />
-            <Button ellipsisString="" layoutX="7.0" layoutY="6.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="83.0" style="-fx-background-color: #ea3737;" text="Logout" textFill="#fdfeff" underline="true" />
+            <ImageView fitHeight="53.0" fitWidth="63.0" layoutX="29.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Logo-Off.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="89.0" layoutY="38.0" prefHeight="53.0" prefWidth="232.0" text="Tunisia Events" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbUser" layoutX="568.0" layoutY="41.0" onMouseClicked="#profile" prefHeight="27.0" prefWidth="144.0" text="USER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="89.0" layoutY="83.0" text="Admin" textFill="WHITE" />
+            <Button fx:id="btnRetour" layoutX="30.0" layoutY="14.0" mnemonicParsing="false" onAction="#getDashboard" text="Retour" />
          </children>
       </Pane>
-      <Label layoutX="254.0" layoutY="22.0" prefHeight="90.0" prefWidth="179.0" text="Home" textAlignment="JUSTIFY" textFill="#7f7f83">
-         <font>
-            <Font size="62.0" />
-         </font>
-      </Label>
+      <GridPane hgap="5.0" layoutX="45.0" layoutY="205.0" prefHeight="292.0" prefWidth="706.0" vgap="5.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="205.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="btnReclamation" alignment="CENTER" contentDisplay="TOP" onAction="#gestReclamation" prefHeight="150.0" prefWidth="233.0" style="-fx-background-color: #F3F3F3;" text="Gestion Réclamation" textFill="#4e73df" GridPane.columnIndex="1">
+            </Button>
+            <Button fx:id="btnFeedback" alignment="CENTER" contentDisplay="TOP" onAction="#gestFeedback" prefHeight="150.0" prefWidth="233.0" style="-fx-background-color: #F3F3F3;" text="Gestion Feedback" textFill="#4e73df" />
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

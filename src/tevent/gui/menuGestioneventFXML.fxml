@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="404.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.MenuGestioneventFXMLController">
+   <children>
+      <VBox layoutX="8.0" layoutY="163.0" prefHeight="242.0" prefWidth="154.0" style="-fx-background-color: #0000FF;">
+         <children>
+            <ButtonBar prefHeight="40.0" prefWidth="200.0" />
+            <Button fx:id="Ajoutercamp" mnemonicParsing="false" onAction="#AjoutcampGNU" prefHeight="41.0" prefWidth="177.0" text="Ajouter camping" />
+            <Button fx:id="ajouterrand" mnemonicParsing="false" onAction="#ajoutrandGNU" prefHeight="40.0" prefWidth="160.0" text="Ajouter randonnée" />
+            <Button fx:id="affichercamp" mnemonicParsing="false" onAction="#affichcampGNU" prefHeight="42.0" prefWidth="177.0" text="Afficher camping" />
+            <Button fx:id="affichrand" mnemonicParsing="false" onAction="#affichrandGNU" prefHeight="37.0" prefWidth="177.0" text="Afficher randonnée" />
+         </children>
+      </VBox>
+      <ImageView fitHeight="165.0" fitWidth="163.0" layoutX="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Logo-Off.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="206.0" fitWidth="223.0" layoutX="241.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/4153f1a1a7b04a46f27ddb15d18af8a7.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="#9e0f29" fontSmoothingType="LCD" layoutX="189.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dépechez-vous et venez voir nos campings et nos randonnées , il nous reste pas mal d'endroits paradisiaques à visiter dans notre pays." wrappingWidth="315.13671875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

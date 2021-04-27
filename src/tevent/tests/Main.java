@@ -23,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tevent.entities.Bus;
+import tevent.entities.Event;
 import tevent.entities.ChauffBusEvent;
 import tevent.entities.Chauffeur;
 import tevent.gui.FrontFestivalController;
@@ -31,6 +32,7 @@ import tevent.entities.Feedback;
 import tevent.entities.Jmu;
 import tevent.entities.Reclamation;
 import tevent.services.ChauffeurServices;
+import tevent.services.EventServices;
 
 import tevent.services.SecurityServices;
 
@@ -40,7 +42,7 @@ import tevent.services.UtilisateurServices;
 import tevent.services.DemandeMaterielServices;
 import tevent.services.DemandeChauffeurServices;
 import tevent.services.DemandeBusServices;
-
+import javafx.collections.ObservableList;
 /**
  *
  * @author hanto
@@ -53,9 +55,14 @@ import tevent.services.DemandeBusServices;
 //=======
 
 
+public class Main {
+    
+    /*
+=======
 public class Main extends Application {
     
     
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
     public void start(Stage stage) throws Exception {
          FrontFestivalController F = new FrontFestivalController();
       Parent root = FXMLLoader.load(getClass().getResource("/tevent/gui/CrudSponsor.fxml"));
@@ -65,6 +72,8 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
     }
+<<<<<<< HEAD
+*/
 
 
     public static void main(String[] args) throws SQLException, Exception {
@@ -100,10 +109,30 @@ public class Main extends Application {
 
 
 
+       /* Utilisateur user1 = new Utilisateur(8, "Bellalouna", "Tarek", "tarek.bellalounkka@esprit.tn", "123456", "12345679", null, Date.valueOf("1998-12-04"), null, null);
+>>>>>>> gestionreclamationetfeedback
+        UtilisateurServices us = new UtilisateurServices();
+<<<<<<< HEAD
+        Utilisateur u = new Utilisateur();
+        u = us.getUserByMail("skander.bachta@esprit.tn");
+        System.out.println(u);
+        System.out.println(us.getRolebyId(1));
+        
+         SecurityServices ss = new SecurityServices();
+         ss.resetPassword(23,"123456789");
+        
+       // us.ajouterUtilisateur(user1);
+        System.out.println("-----------------------------------------------------------------------------------------");
+/*
+=======
+=======
+
+
 
        /* Utilisateur user1 = new Utilisateur(8, "Bellalouna", "Tarek", "tarek.bellalounkka@esprit.tn", "123456", "12345679", null, Date.valueOf("1998-12-04"), null, null);
 >>>>>>> gestionreclamationetfeedback
         UtilisateurServices us = new UtilisateurServices();
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
       
         launch(args);  /*
         us.ajouterUtilisateur(user1);
@@ -111,6 +140,10 @@ public class Main extends Application {
    String message="Vous êtes prié de bien vouloir vous présenter à l'agence pour l'évenement du  qui debute le et qui prendra fin le  pour la signature de la location du bus";
 
 <<<<<<< HEAD (80eb306) - update master
+<<<<<<< HEAD
+>>>>>>> 49b744841f0456083378f395370d745b6b57670c
+=======
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
         //us.modifierUtilisateur(user);
         //us.supprimerUtilisateur(9);
         List<Utilisateur> users = us.afficherToutUtilisateur();
@@ -129,6 +162,38 @@ public class Main extends Application {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 <<<<<<< HEAD
         }
+<<<<<<< HEAD
+<<<<<<< HEAD
+        System.out.println("-----------------------------------------------------------------------------------------");
+        Utilisateur u = us.afficherUtilisateur(3);
+        if (u == null) {
+            System.out.println("Cette utilisateur n'existe pas!");
+        }
+        else
+            System.out.println(u);
+       */
+      /*  Chauffeur c = new Chauffeur(12345679,Date.valueOf("2021-04-08"),Date.valueOf("2017-11-16"),Date.valueOf("2026-11-15"),8);
+        
+        
+        ChauffeurServices cs = new ChauffeurServices();
+        
+        cs.ajouterChauffeur(c);
+        //cs.modifierChauffeur(c);
+
+        System.out.println(us.calculAge( Date.valueOf("2022-01-04")));
+        SecurityServices ss = new SecurityServices();
+        System.out.println(ss.login("tarek.bellalounka@esprit.tn", "123456"));
+        ss.resetPassword(13, "987654321");
+        // ss.activation("dee45a71-7344-4ab4-8802-22ae5d8f8487");
+        // ss.desactivation(14);
+       
+       
+        List<Chauffeur> chauffeurs = cs.permisExpirer();
+        for (Chauffeur chauf : chauffeurs) {
+            System.out.println(chauf);
+=======
+=======
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
 
        //dcs.updateDemandeChauffeur(new DemandeChauffeur(1,11128163,LocalDate.of(2020, 1, 8),LocalDate.of(2021, 1, 8),"encours"), 2);
        System.out.println(dcs.advancedSearchDemandeChauffeur(0,LocalDate.of(2030,11,19)));
@@ -136,6 +201,10 @@ public class Main extends Application {
 
 =======
 >>>>>>> GestionDemandes1 (cd1ab00) - version 1.2
+<<<<<<< HEAD
+>>>>>>> 49b744841f0456083378f395370d745b6b57670c
+=======
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
         }
 
 >>>>>>> 1ae0156bd712d7385958fff9597e83ec433dfdeb
@@ -165,6 +234,12 @@ public class Main extends Application {
 
         //cc.ajouterChauffeur(c);
       //  cc.modifierChauffeur(c);
+EventServices es=new EventServices();
+      ObservableList <Event> EventList = null;
+        EventList = es.ReadEvent();
+for (Event d : EventList) {
+            System.out.println(d);
+        }
     }
 }
 

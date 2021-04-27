@@ -15,7 +15,7 @@ import tevent.entities.Utilisateur;
  */
 public interface IserviceUtilisateur {
     
-    public void ajouterUtilisateur(Utilisateur user);
+    public String ajouterUtilisateur(Utilisateur user);
 
     public List<Utilisateur> afficherToutUtilisateur() throws SQLException;
 
@@ -23,5 +23,5 @@ public interface IserviceUtilisateur {
 
     public void supprimerUtilisateur(int id);
 
-    public void modifierUtilisateur(Utilisateur user);
+    public String modifierUtilisateur(Utilisateur user);
 }
