@@ -3,27 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/DashboardController.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/entities/DemandeBus.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/ListdmdmaterielController.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/materiel/MaterielFXMain.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/ProfileController.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/entities/DemandeChauffeur.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/services/SecurityServices.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/academiccalendar/ui/main/FXMLDocumentController.java</file>
             <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/interfaces/IserviceSponsor.java</file>
             <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/ListdmdbusController.java</file>
-            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/FxmlMain.java</file>
-            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/listdmdchauffeur.fxml</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/services/ChauffBusEventService.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/entities/Utilisateur.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/services/FestivalServices.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/ListdmdchauffeurController.java</file>
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/MesDemandesController.java</file>
             <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/tests/Main.java</file>
-            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/HomeController.java</file>
-=======
-            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/MaterielA/AdminSideMaterielController.java</file>
-            <file>file:/C:/Users/al199/Downloads/2%20eme%20Semetre/PIDEV/Desktop/PIDEV-Desktop/src/tevent/gui/MaterielA/MaterielAFXMain.java</file>
-<<<<<<< HEAD
-            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/ajouterdemandemateriel.css</file>
-            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/AddDemandeChauffeurController.java</file>
-            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/AddDemandeBusController.java</file>
-            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/FxmlMain.java</file>
-            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/services/DemandeMaterielServices.java</file>
-            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/AddDemandeMaterielController.java</file>
-=======
-            <file>file:/E:/Users/skand/Documents/3EME/Semestre_2/PIDEV/JAVAFX/PIDEV-Desktop/src/tevent/tests/Main.java</file>
->>>>>>> 0895d4d591deeb317e6eba571ad53829013c8d64
->>>>>>> 1ae0156bd712d7385958fff9597e83ec433dfdeb
+            <file>file:/C:/Users/DELL/Desktop/projectJAVA/PIDEV-Desktop/src/tevent/gui/AdminListDemandeMaterielController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -5,21 +5,29 @@
  */
 package tevent.gui.busA;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import tevent.entities.Bus;
+import tevent.entities.Utilisateur;
 import tevent.services.BusService;
 
 /**
@@ -67,6 +75,18 @@ public class AdminSideBusController implements Initializable {
     private ComboBox<Boolean> cb_panne;
     @FXML
     private ComboBox<String> cb_modele;
+    @FXML
+    private Button btnretour;
+    @FXML
+    private Label lbUser;
+    
+    private Utilisateur user;
+
+    public void setUser(Utilisateur u) {
+        user = u;
+        //lbUser.setText(u.getNom()+" "+u.getPrenom());
+
+    }
     
     
     public void loadBus(){
@@ -176,6 +196,28 @@ public class AdminSideBusController implements Initializable {
         btn_add.setDisable(false);
         btn_update.setDisable(true);
         btn_delete.setDisable(true);
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
+            //HomeController dc = loader.getController();
+//            dc.setUser(user);
+            
+            Scene homePage_scene=new Scene(homePage);
+            
+            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            app_stage.setScene(homePage_scene);
+            
+            app_stage.show();
+            Stage stage = (Stage) btnretour.getScene().getWindow(); 
+           
+        } catch (IOException ex) {
+             System.out.println(ex.getMessage());
+        }
     }
     
 }

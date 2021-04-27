@@ -11,12 +11,15 @@ import tevent.entities.Festival;
 
 /**
  *
- * @author skand
+ * @author hanto
  */
 public interface IserviceFestival {
+
     public void AjouterFestival(Festival F);
-    public ObservableList <Festival> AfficherFestival()throws SQLException;
-    public void SupprimerFestival(int id );
+
+    public ObservableList<Festival> AfficherFestival() throws SQLException;
+
+    public void SupprimerFestival(int id);
+
     public void ModifierFestival(Festival F);
-    
 }

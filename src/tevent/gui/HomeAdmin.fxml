@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tevent.gui.HomeAdminController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="195.0" style="-fx-background-color: #4e73df;">
+         <children>
+            <Button fx:id="gr" layoutX="7.0" layoutY="299.0" mnemonicParsing="false" onAction="#gestReclamation" prefHeight="61.0" prefWidth="135.0" style="-fx-background-color: #2e05fb;" text="Gestion Reclamation " textFill="#fdfeff" />
+            <Button fx:id="gf" layoutX="7.0" layoutY="231.0" mnemonicParsing="false" onAction="#gestFeedback" prefHeight="61.0" prefWidth="135.0" style="-fx-background-color: #2e05fb;" text="Gestion Feedback" textFill="#fdfeff" />
+            <Button ellipsisString="" layoutX="7.0" layoutY="6.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="83.0" style="-fx-background-color: #ea3737;" text="Logout" textFill="#fdfeff" underline="true" />
+         </children>
+      </Pane>
+      <Label layoutX="254.0" layoutY="22.0" prefHeight="90.0" prefWidth="179.0" text="Home" textAlignment="JUSTIFY" textFill="#7f7f83">
+         <font>
+            <Font size="62.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

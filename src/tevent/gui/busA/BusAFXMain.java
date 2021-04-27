@@ -27,7 +27,7 @@ public class BusAFXMain extends Application {
         
         Scene scene = new Scene(root);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Gestion Bus");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

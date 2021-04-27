@@ -16,6 +16,7 @@
    <children>
       <AnchorPane layoutX="109.0" layoutY="-49.0" prefHeight="54.0" prefWidth="1300.0" style="-fx-background-color: WHITE;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+<<<<<<< HEAD
             <Button layoutX="688.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: white;" text="Acceuil" AnchorPane.rightAnchor="544.0" AnchorPane.topAnchor="13.0" />
             <Button layoutX="1210.0" layoutY="12.0" mnemonicParsing="false" style="-fx-background-color: #090031; -fx-border-color: black; -fx-border-radius: 5px;" text="Login" textFill="WHITE" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="12.0" />
             <TitledPane animated="false" layoutX="708.0" layoutY="-72.0" text="untitled" />
@@ -23,6 +24,9 @@
             <Button layoutX="1017.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: white;" text="About Us" AnchorPane.rightAnchor="108.0" />
             <Button layoutX="1017.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: white;" text="Contact Us" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="13.0" />
           <TitledPane animated="false" layoutX="768.0" layoutY="12.0" text="Logistique" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="12.0" />
+=======
+            <TitledPane animated="false" layoutX="708.0" layoutY="-72.0" text="untitled" />
+>>>>>>> 1c0734a5f9d465baffc8611ee9dcd7af8dcdbe96
          </children>
       </AnchorPane>
       <TableView fx:id="tableListBusId" layoutY="370.0" prefHeight="350.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="370.0">

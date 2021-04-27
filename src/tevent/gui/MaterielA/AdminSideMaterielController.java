@@ -5,6 +5,7 @@
  */
 package tevent.gui.MaterielA;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -29,6 +30,11 @@ import javax.mail.*;
 import javax.activation.*;
 
 import java.util.Properties;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -36,6 +42,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import tevent.entities.Utilisateur;
+import tevent.gui.HomeController;
 
 
 /**
@@ -88,6 +96,10 @@ public class AdminSideMaterielController implements Initializable {
     private TextField lb_prix;
     @FXML
     private TextField lb_qte_reserve;
+    @FXML
+    private Button btnretour;
+    @FXML
+    private Label lbUser;
     
     
     public void loadMateriel(){
@@ -103,6 +115,14 @@ public class AdminSideMaterielController implements Initializable {
         for(int i=0;i<lsMateriel.size();i++)
             listMateriel.add(lsMateriel.get(i));
         tableListMaterielId.setItems(listMateriel);
+    }
+    
+    private Utilisateur user;
+
+    public void setUser(Utilisateur u) {
+        user = u;
+        //lbUser.setText(u.getNom()+" "+u.getPrenom());
+
     }
 
 
@@ -257,7 +277,28 @@ public class AdminSideMaterielController implements Initializable {
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
+    }
 
+    @FXML
+    private void retour(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            Parent homePage = loader.load(getClass().getResource("Home.fxml"));
+            //HomeController dc = loader.getController();
+//            dc.setUser(user);
+            
+            Scene homePage_scene=new Scene(homePage);
+            
+            Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            
+            app_stage.setScene(homePage_scene);
+            
+            app_stage.show();
+            Stage stage = (Stage) btnretour.getScene().getWindow(); 
+           
+        } catch (IOException ex) {
+             System.out.println(ex.getMessage());
+        }
     }
     
 }
