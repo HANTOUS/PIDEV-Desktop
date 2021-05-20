@@ -209,9 +209,9 @@ public class ProfileController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         lbUser.getScene().getWindow().hide();
         Stage prStage = new Stage();
-        loader.setLocation(getClass().getResource("MesDemandes.fxml"));
+        loader.setLocation(getClass().getResource("ListDemandesFront.fxml"));
          loader.load();
-        MesDemandesController dc = loader.getController();
+        ListDemandesFrontController dc = loader.getController();
          UtilisateurServices us = new UtilisateurServices();
         dc.setUser(us.getUserById(user.getId()));
         Parent root = loader.getRoot();

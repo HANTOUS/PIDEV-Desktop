@@ -42,7 +42,7 @@ public class ListeReclamationController implements Initializable {
     @FXML
     private TableColumn<Reclamation, String> contenur;
     @FXML
-    private TableColumn<Reclamation, Integer> etatr;
+    private TableColumn<Reclamation, String> etatr;
     @FXML
     private TableView<Reclamation> tabler;
     

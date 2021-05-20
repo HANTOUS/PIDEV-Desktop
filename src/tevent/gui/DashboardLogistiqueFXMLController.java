@@ -121,7 +121,7 @@ public class DashboardLogistiqueFXMLController implements Initializable {
                 loader.load();
                 
                 DashboardController auc = loader.getController();
-                //auc.setUser(user);
+                auc.setUser(user);
                 Parent root = loader.getRoot();
                 Scene scene = new Scene(root);
                 prStage.setScene(scene);

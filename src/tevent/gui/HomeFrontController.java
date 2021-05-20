@@ -87,10 +87,10 @@ public class HomeFrontController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
                 lbUser.getScene().getWindow().hide();
                 Stage prStage = new Stage();
-                loader.setLocation(getClass().getResource("AffichageCampingFXML.fxml"));
+                loader.setLocation(getClass().getResource("C:\\Users\\hanto\\Desktop\\Esprit\\3eme\\PI\\PIDEV-Desktop\\src\\tevent\\gui\\menuGestioneventFXML.fxml"));
                 loader.load();
                 
-                AffichageCampingFXMLController auc = loader.getController();
+                MenuGestioneventFXMLController auc = loader.getController();
                 auc.setUser(user);
                 Parent root = loader.getRoot();
                 Scene scene = new Scene(root);
@@ -103,10 +103,10 @@ public class HomeFrontController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
                 lbUser.getScene().getWindow().hide();
                 Stage prStage = new Stage();
-                loader.setLocation(getClass().getResource("AffichageRandonneeFXML.fxml"));
+                loader.setLocation(getClass().getResource("menuGestioneventFXML.fxml"));
                 loader.load();
                 
-                AffichageRandonneeFXMLController auc = loader.getController();
+                MenuGestioneventFXMLController auc = loader.getController();
                 auc.setUser(user);
                 Parent root = loader.getRoot();
                 Scene scene = new Scene(root);
@@ -136,10 +136,10 @@ public class HomeFrontController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
                 lbUser.getScene().getWindow().hide();
                 Stage prStage = new Stage();
-                loader.setLocation(getClass().getResource("ListDemandes.fxml"));
+                loader.setLocation(getClass().getResource("FrontLogistique.fxml"));
                 loader.load();
                 
-                ListDemandesController auc = loader.getController();
+               FrontLogistiqueController auc = loader.getController();
                 auc.setUser(user);
                 Parent root = loader.getRoot();
                 Scene scene = new Scene(root);

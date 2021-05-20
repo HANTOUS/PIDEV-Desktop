@@ -17,7 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tevent.gui.MaterielA.AdminSideMaterielController;
-
+import tevent.entities.Utilisateur;
 /**
  * FXML Controller class
  *
@@ -31,7 +31,12 @@ public class FrontLogistiqueController implements Initializable {
     private Button btnBus;
     @FXML
     private Button btnretour;
+   private Utilisateur user;
 
+    public void setUser(Utilisateur u) {
+        user = u;
+
+    }
     /**
      * Initializes the controller class.
      */
@@ -71,7 +76,19 @@ public class FrontLogistiqueController implements Initializable {
     }
 
     @FXML
-    private void retour(ActionEvent event) {
+    private void retour(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader();
+btnBus.getScene().getWindow().hide();
+                Stage prStage = new Stage();
+                loader.setLocation(getClass().getResource("HomeFront.fxml"));
+                loader.load();
+                
+                HomeFrontController auc = loader.getController();
+                Parent root = loader.getRoot();
+                Scene scene = new Scene(root);
+                prStage.setScene(scene);
+                prStage.setResizable(false);
+                prStage.show();
     }
     
 }

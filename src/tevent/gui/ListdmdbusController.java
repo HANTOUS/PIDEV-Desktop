@@ -311,9 +311,9 @@ if(     "accepter".equals(tableDemandeBus.getSelectionModel().getSelectedItem().
              FXMLLoader loader = new FXMLLoader();
         retourbtn.getScene().getWindow().hide();
         Stage prStage = new Stage();
-        loader.setLocation(getClass().getResource("Home.fxml"));
+        loader.setLocation(getClass().getResource("ListDemandesFront.fxml"));
         loader.load();
-                     HomeController dc = loader.getController();
+                    ListDemandesFrontController dc = loader.getController();
         dc.setUser(user);
        // dc.setFields(user.getNom(),user.getPrenom(),user.getCin(),user.getEmail(),(Date)user.getDateNaissance(),user.getImage());
         Parent root = loader.getRoot();        

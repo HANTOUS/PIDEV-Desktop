@@ -16,7 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
+import tevent.entities.Utilisateur;
 /**
  * FXML Controller class
  *
@@ -32,7 +32,11 @@ public class MenuGestioneventFXMLController implements Initializable {
     private Button affichercamp;
     @FXML
     private Button affichrand;
+    private Utilisateur user;
+ public void setUser(Utilisateur u) {
+        user = u;
 
+    }
     /**
      * Initializes the controller class.
      */

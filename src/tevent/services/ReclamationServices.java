@@ -34,7 +34,7 @@ public class ReclamationServices {
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Reclamation ajoutée !");
-            Jmu.sendMail("mohamedsalim.jemai@esprit.tn", "reclamation", "bonjour votre réclamation a été bien reçue");
+            Jmu.sendMail("hantous.mehdi2@gmail.com", "reclamation", "bonjour votre réclamation a été bien reçue");
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -162,7 +162,7 @@ public class ReclamationServices {
             ps.setString(1,"traité");
            ps.setInt(2, id);
             ps.executeUpdate();
-            Jmu.sendMail("mohamedsalim.jemai@esprit.tn", "reclamation", "Bonjour votre réclamation a été bien traité");
+            Jmu.sendMail("hantous.mehdi2@gmail.com", "reclamation", "Bonjour votre réclamation a été bien traité");
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

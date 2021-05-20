@@ -95,7 +95,7 @@ public class RandonneeServices {
                       ps.setString(2,F.getTyperand());
 
                       ps.executeUpdate();
-                      JavamailUtil.sendMail("maalej.zied@gmail.com", "API", "bonsoir zied un évenement a été ajouté ");
+                      JavamailUtil.sendMail("hantous.mehdi2@gmail.com", "API", "bonsoir zied un évenement a été ajouté ");
 
 
                    } catch (SQLException ex) {

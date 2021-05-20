@@ -73,7 +73,7 @@ idUser = user.getId();
         alert.setHeaderText("Demande Chauffeur ");
         alert.setContentText("Vous recevez un email dans quelques heures ");
         alert.show();
-                        //dcs.SMS();
+                        dcb.SMS();
                         try {
              FXMLLoader loader = new FXMLLoader();
         btn.getScene().getWindow().hide();
